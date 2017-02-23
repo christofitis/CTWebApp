@@ -41,8 +41,16 @@ namespace CriticalWebApp.Controllers.Api
             return serialNumber.Where(s => s.Number.Contains(numberQuery)).ToList();
         }
 
+        public IEnumerable<SerialNumber> GetSerialNumbers(DateTime startDate, DateTime endDate)
+        {
 
-    
+            var serialNumber = _context.SerialNumbers;
+            if (serialNumber == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            return serialNumber.Where(s => s.MFGDate >= startDate && s.MFGDate <= endDate).ToList();
+            
+        }
+
 
     }
 }
