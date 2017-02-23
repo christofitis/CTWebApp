@@ -22,10 +22,10 @@
             Customer Name
         </th>
         <th>
-            SerialNumber
+            @Html.DisplayNameFor(model => model.SerialNumber)
         </th>
         <th>
-            Product
+            @Html.DisplayNameFor(model => model.InProduct)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CustomerComplaint)
@@ -35,6 +35,12 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ActionTaken)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OutSerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OutProduct)
         </th>
     </tr>
     @foreach (var item in Model)
@@ -61,6 +67,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ActionTaken)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OutSerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OutProduct) : @Html.DisplayFor(modelItem => item.OutProductRevision)
+            </td>
+           
         </tr>
     }
 

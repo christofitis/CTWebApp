@@ -41,6 +41,7 @@ namespace CriticalWebApp.Controllers.Api
             return serialNumber.Where(s => s.Number.Contains(numberQuery)).ToList();
         }
 
+
     
 
     }
