@@ -1,0 +1,101 @@
+﻿@model IEnumerable<CriticalWebApp.Models.SerialNumber>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Serial Number Lookup</h2>
+@using (Html.BeginForm("Index", "SerialNumbers"))
+{
+    <input type="text" name="serialNumberQuery" id="serialNumberQuery" />
+    <input type="submit" value="Search" id="searchButton" />
+}
+
+
+@Html.ActionLink("Add", "Create", new { }, new { @class = "btn btn-primary pull-right" })
+
+
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
+        <th>
+            Product: Revision
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.MFGDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name): @Html.DisplayFor(modelItem => item.Product.Revision)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.MFGDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+
+        </tr>
+    }
+
+</table>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        console.log("FUCK");
+        document.getElementById('serialNumberQuery').value = '@ViewBag.UserInput';
+        document.getElementById('serialNumberQuery').focus();
+    });
+  
+
+    //can do studd depending is search box is left empty or not
+    document.getElementById('searchButton').onclick = function () {
+        console.log('Searching for: ' + document.getElementById('serialNumberQuery').value);
+        if (document.getElementById('serialNumberQuery').value == "") {
+            //alert('blank');
+        }
+        else {
+
+
+            var searchQuery = {
+                numberQuery: document.getElementById('serialNumberQuery').value
+            };
+            $.ajax({
+                type: 'GET',
+                url: '/api/serialnumbers/',
+                data: searchQuery,
+                success: function (result) {
+                    if (result[0] == null) {
+                        //alert('nothing found');
+
+
+                    }
+                    else {
+                        //alert('found: ' + result.length + ' items');
+                    }
+                }
+
+            });
+        }
+    };
+</script>

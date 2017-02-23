@@ -1,0 +1,7 @@
+﻿serialNumber Lookup:
+
+	Add serial number search formatting. ie: user types at21 format to AT00021
+
+	add serial number before and after search feature if not found
+
+Repairs:

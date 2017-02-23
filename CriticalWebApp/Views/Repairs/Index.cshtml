@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CriticalWebApp.Models.Repair>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<h3>
+    Search for a repair
+</h3>
+<hr />
+<div class="container">
+    @Html.ActionLink("Add", "Create", new { }, new { @class = "btn btn-primary" })
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RepairDate)
+        </th>
+        <th>
+            Customer Name
+        </th>
+        <th>
+            SerialNumber
+        </th>
+        <th>
+            Product
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerComplaint)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IssueFound)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActionTaken)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RepairDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerFirstName) @Html.DisplayFor(modelItem => item.CustomerLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InProduct) : @Html.DisplayFor(modelItem => item.InProductRevision) 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerComplaint) @*Shorten the displayed text in the table*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IssueFound)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActionTaken)
+            </td>
+        </tr>
+    }
+
+    </table>

@@ -1,0 +1,172 @@
+﻿@model CriticalWebApp.ViewModels.CreateSerialNumberViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Log a new Serial Number</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="radio">
+            <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                Add single number
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" checked>
+                Add multiple #'s
+            </label>
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductNames, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ProductNames, new SelectList(Model.ProductNames, "ProductNames"), "Select Product", new { @class = "form-control", id = "productDropDownList" })
+                @Html.ValidationMessageFor(model => model.ProductNames, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Revision, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                
+                @Html.EditorFor(model => model.Product.Revision, new { htmlAttributes = new { @class = "form-control" } }) 
+                @Html.ValidationMessageFor(model => model.Product.Revision, "", new { @class = "text-danger" })
+            </div>
+        </div>
+     
+            <div class="form-group">
+                <div class="control-label col-md-2">First Number</div>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="serialPrefixText"></span>
+                        <input type="text" class="form-control" placeholder="XXXXXX" aria-describedby="serialPrefixText" , id="serialNumberTextBox">
+                        @Html.ValidationMessageFor(model => model.SerialNumber.Number, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="endSerialNumberDiv">
+                <div class="control-label col-md-2">End Number</div>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="endSerialPrefixText"></span>
+                        <input type="text" class="form-control" placeholder="XXXXXX" aria-describedby="serialPrefixText" , id="endSerialNumberTextBox">
+                        @*@Html.ValidationMessageFor(model => model.SerialNumber.Number, "", new { @class = "text-danger" })*@
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SerialNumber.MFGDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SerialNumber.MFGDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", @Value = DateTime.Now.ToShortDateString() } })
+                @Html.ValidationMessageFor(model => model.SerialNumber.MFGDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SerialNumber.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.SerialNumber.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SerialNumber.Notes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.HiddenFor(model => model.SerialNumber.Number, new { id = "serialNumberHidden" })
+                @Html.HiddenFor(model => model.EndSerialNumber, new { id = "endSerialNumberHidden" })
+                @Html.HiddenFor(model => model.Product.SerialNumberPrefix, new { id = "serialNumberPrefixHidden" })
+                <input type="submit" value="Create" class="btn btn-default" id="submitButton" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var isSingleEntry = false;
+            document.getElementById('endSerialNumberHidden').value = 0;
+        });
+
+
+        document.getElementById('optionsRadios1').onclick = function(){
+            document.getElementById('endSerialNumberDiv').style.display = 'none';
+
+
+        };
+        document.getElementById('optionsRadios2').onclick = function(){
+            document.getElementById('endSerialNumberDiv').style.display = 'block';
+
+        };
+        var data = @Html.Raw(Json.Encode(Model.Products)); @*gets a list of products for the javascript scope*@
+        //TODO: could use this data[i]['Revision'] to help. revision checking
+
+        $('#productDropDownList').on('change', function () {
+            
+            
+                for (var i = 0; i < @Model.Products.Count(); i++) { //this was working when product id was selected from product dropdown
+                
+                    if (data[i]['Name'] == $(this).val()){
+                        console.log(data[i]['SerialNumberPrefix']);
+                        document.getElementById('serialPrefixText').innerHTML = data[i]['SerialNumberPrefix'];
+                        document.getElementById('endSerialPrefixText').innerHTML = data[i]['SerialNumberPrefix'];
+                        document.getElementById('serialNumberPrefixHidden').value = data[i]['SerialNumberPrefix'];
+
+                    
+                    }
+
+                }
+            
+            
+
+            //this is for product then revision selection
+            console.log('Revision Selected: ' + $(this).val());
+            
+
+           
+            $.ajax({
+                type: 'GET',
+                url: '/api/serialnumbers/',
+                success: function(data){
+                    $.each(data, function(i, item){
+                        console.log(item.Number);
+                    });
+                }
+            });
+
+
+
+
+        });
+
+
+        $('#submitButton').on('click', function () {
+            document.getElementById('serialNumberHidden').value = document.getElementById('serialNumberTextBox').value;
+            if (document.getElementById('optionsRadios1').checked){
+                document.getElementById('endSerialNumberHidden').value = 0;
+            }
+            else {
+                document.getElementById('endSerialNumberHidden').value = document.getElementById('endSerialNumberTextBox').value;
+            }
+        });
+    </script>
+}
