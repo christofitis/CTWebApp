@@ -12,6 +12,14 @@
     <input type="submit" value="Search" id="searchButton" />
 }
 
+@using (Html.BeginForm("Index", "SerialNumbers"))
+{
+     <input type="date" name="startDateQuery" id="startDateQueryInput" />
+     <input type="date" name="endDateQuery" id="endDateQueryInput" />
+    <input type="submit" value="Search" id="dateSearchButton" />
+}
+
+
 
 @Html.ActionLink("Add", "Create", new { }, new { @class = "btn btn-primary pull-right" })
 
@@ -75,8 +83,6 @@
             //alert('blank');
         }
         else {
-
-
             var searchQuery = {
                 numberQuery: document.getElementById('serialNumberQuery').value
             };
@@ -87,14 +93,35 @@
                 success: function (result) {
                     if (result[0] == null) {
                         //alert('nothing found');
-
-
                     }
                     else {
                         //alert('found: ' + result.length + ' items');
                     }
                 }
-
+            });
+        }
+    };
+    document.getElementById('dateSearchButton').onclick = function () {
+        //console.log('Searching for: ' + document.getElementById('serialNumberQuery').value);
+        if (document.getElementById('serialNumberQuery').value == "") {
+            //alert('blank');
+        }
+        else {
+            var startDateQuery = {
+                numberQuery: document.getElementById('serialNumberQuery').value
+            };
+            $.ajax({
+                type: 'GET',
+                url: '/api/serialnumbers/',
+                data: startDateQuery,
+                success: function (result) {
+                    if (result[0] == null) {
+                        //alert('nothing found');
+                    }
+                    else {
+                        //alert('found: ' + result.length + ' items');
+                    }
+                }
             });
         }
     };
