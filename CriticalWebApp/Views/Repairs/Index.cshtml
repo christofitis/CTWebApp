@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CriticalWebApp.Models.Repair>
+﻿@model CriticalWebApp.ViewModels.IndexRepairViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -24,34 +24,34 @@
 <table class="table table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.RepairDate)
+            @Html.DisplayNameFor(model => model.Repair.RepairDate)
         </th>
         <th>
             Customer Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SerialNumber)
+            @Html.DisplayNameFor(model => model.Repair.SerialNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InProduct)
+            @Html.DisplayNameFor(model => model.Repair.InProduct)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CustomerComplaint)
+            @Html.DisplayNameFor(model => model.Repair.CustomerComplaint)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IssueFound)
+            @Html.DisplayNameFor(model => model.Repair.IssueFound)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ActionTaken)
+            @Html.DisplayNameFor(model => model.Repair.ActionTaken)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OutSerialNumber)
+            @Html.DisplayNameFor(model => model.Repair.OutSerialNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OutProduct)
+            @Html.DisplayNameFor(model => model.Repair.OutProduct)
         </th>
     </tr>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Repairs)
     {
         <tr>
             <td>
@@ -106,6 +106,7 @@
                 highlight: true,
             }, {
                 name: 'customers',
+
                 display: 'CustomerFirstName',
                 source: customers
             });
