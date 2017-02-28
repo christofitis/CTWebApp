@@ -102,11 +102,17 @@
             });
 
             $('#searchCustomerNameInput').typeahead({
-                
+                hint: true,
                 highlight: true,
+                minLength: 1
             }, {
                 name: 'customers',
-                display: 'CustomerFirstName',
+                display: function(data) {
+                    console.log(data['CustomerFirstName']);
+                    return (data['CustomerFirstName'] + ' ' + data['CustomerLastName']);
+
+                },
+                
                 source: customers
             });
 
