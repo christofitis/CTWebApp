@@ -14,7 +14,7 @@ namespace CriticalWebApp.Controllers
     {
         private ApplicationDbContext _context = new ApplicationDbContext();
         // GET: SerialNumbers
-        public ActionResult Index(string serialNumberQuery = null)
+        public ActionResult Index(DateTime? startDateQuery , DateTime? endDateQuery,string serialNumberQuery = null)
         {
             if (!string.IsNullOrEmpty(serialNumberQuery))
             {
@@ -70,8 +70,18 @@ namespace CriticalWebApp.Controllers
             }
 
             //return View(_context.SerialNumbers.Include(p => p.Product).ToList()); //working that returns entire list of serial numbers
-            return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains("xxx")).ToList());
+            if (startDateQuery == null || endDateQuery == null)
+            {
+                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains("xxx")).ToList());
+
+            }
+            ViewBag.StartDate = startDateQuery.ToString();
+            ViewBag.EndDate = endDateQuery.ToString();
+
+            return View(_context.SerialNumbers.Where(s => s.MFGDate >= startDateQuery && s.MFGDate <= endDateQuery).ToList());
         }
+
+     
 
         public ActionResult Create()
         {

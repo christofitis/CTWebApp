@@ -8,7 +8,7 @@
 <h2>Serial Number Lookup</h2>
 @using (Html.BeginForm("Index", "SerialNumbers"))
 {
-    <input type="text" name="serialNumberQuery" id="serialNumberQuery" placeholder="#####"/>
+    <input type="text" name="serialNumberQuery" id="serialNumberQuery" placeholder=""/>
     <input type="submit" value="Search" id="searchButton" />
 }
 
@@ -70,11 +70,13 @@
 
 <script>
     $(document).ready(function () {
-        
         document.getElementById('serialNumberQuery').value = '@ViewBag.UserInput';
+        document.getElementById('startDateQueryInput').valueAsDate = '@ViewBag.StartDate';
+        document.getElementById('endDateQueryInput').value = '@ViewBag.EndDate';
+
         document.getElementById('serialNumberQuery').focus();
     });
-  
+
 
     //can do studd depending is search box is left empty or not
     document.getElementById('searchButton').onclick = function () {
@@ -101,28 +103,5 @@
             });
         }
     };
-    document.getElementById('dateSearchButton').onclick = function () {
-        //console.log('Searching for: ' + document.getElementById('serialNumberQuery').value);
-        if (document.getElementById('serialNumberQuery').value == "") {
-            //alert('blank');
-        }
-        else {
-            var startDateQuery = {
-                numberQuery: document.getElementById('serialNumberQuery').value
-            };
-            $.ajax({
-                type: 'GET',
-                url: '/api/serialnumbers/',
-                data: startDateQuery,
-                success: function (result) {
-                    if (result[0] == null) {
-                        //alert('nothing found');
-                    }
-                    else {
-                        //alert('found: ' + result.length + ' items');
-                    }
-                }
-            });
-        }
-    };
+
 </script>
