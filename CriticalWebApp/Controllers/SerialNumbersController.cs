@@ -78,7 +78,7 @@ namespace CriticalWebApp.Controllers
             ViewBag.StartDate = startDateQuery;
             ViewBag.EndDate = endDateQuery;
 
-            return View(_context.SerialNumbers.Where(s => s.MFGDate >= startDateQuery && s.MFGDate <= endDateQuery).ToList());
+            return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.MFGDate >= startDateQuery && s.MFGDate <= endDateQuery).ToList());
         }
 
      
