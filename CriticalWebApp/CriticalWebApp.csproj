@@ -217,7 +217,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\Api\RepairsController.cs" />
     <Compile Include="Controllers\Api\SerialNumbersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -324,6 +323,7 @@
     <Content Include="Views\SerialNumbers\UploadFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\UploadedFiles\" />
     <Folder Include="Images\" />
     <Folder Include="Views\Uploads\" />
   </ItemGroup>

@@ -9,17 +9,9 @@
 <h3>
     Search for a repair
 </h3>
-@using (Html.BeginForm("Index", "Repairs"))
-{
-    <div class="form-group">
-        <input type="text" name="searchCustomerName" id="searchCustomerNameInput" class="form-control" />
-        <input type="submit" value="Search" id="searchCustomerNameButton" class="btn btn-default " />
-    </div>
-}
-
 <hr />
 <div class="container">
-    @Html.ActionLink("Add", "Create", new { }, new { @class = "btn btn-primary pull-right" })
+    @Html.ActionLink("Add", "Create", new { }, new { @class = "btn btn-primary" })
 </div>
 <table class="table table-striped">
     <tr>
@@ -85,6 +77,7 @@
         </tr>
     }
 
+<<<<<<< HEAD
     </table>
 
 @section scripts
@@ -125,3 +118,6 @@
 
 
 
+=======
+    </table>
+>>>>>>> parent of 09365cd... added typeahead to repair search
