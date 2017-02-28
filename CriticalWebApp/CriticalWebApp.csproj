@@ -242,7 +242,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CreateSerialNumberViewModel.cs" />
-    <Compile Include="ViewModels\IndexRepairViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\TODO.txt" />

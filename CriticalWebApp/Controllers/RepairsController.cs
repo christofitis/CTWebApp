@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using CriticalWebApp.Models;
-using CriticalWebApp.ViewModels;
 
 namespace CriticalWebApp.Controllers
 {
@@ -16,10 +15,8 @@ namespace CriticalWebApp.Controllers
         // GET: Repairs sends a list of all repairs by date
         public ActionResult Index()
         {
-            IndexRepairViewModel viewModel = new IndexRepairViewModel();
-            viewModel.Repairs = _context.Repairs.ToList();
-            viewModel.CustomerNames = 
-            return View(viewModel);
+
+            return View(_context.Repairs.ToList());
 
         }
 
