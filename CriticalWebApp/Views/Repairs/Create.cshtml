@@ -17,7 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RepairDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RepairDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", @Value = DateTime.Now.ToShortDateString() } })
+                @Html.EditorFor(model => model.RepairDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", @Value = DateTime.Now.ToShortDateString(), id="repairDatePicker" } })
                 @Html.ValidationMessageFor(model => model.RepairDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -121,7 +121,13 @@
 @section scripts{
 @Scripts.Render("~/bundles/jqueryval")
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.getElementById('repairDatePicker').valueAsDate = new Date();
+        });
 
+
+    </script>
    
     
 }

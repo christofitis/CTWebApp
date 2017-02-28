@@ -9,9 +9,17 @@
 <h3>
     Search for a repair
 </h3>
+@using (Html.BeginForm("Index", "Repairs"))
+{
+    <div class="form-group">
+        <input type="text" name="searchCustomerName" id="searchCustomerNameInput" class="form-control" />
+        <input type="submit" value="Search" id="searchCustomerNameButton" class="btn btn-default " />
+    </div>
+}
+
 <hr />
 <div class="container">
-    @Html.ActionLink("Add", "Create", new { }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Add", "Create", new { }, new { @class = "btn btn-primary pull-right" })
 </div>
 <table class="table table-striped">
     <tr>
@@ -78,3 +86,41 @@
     }
 
     </table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var customers = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('CustomerFirstName', 'CustomerLastName'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/repairs?customerQuery=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#searchCustomerNameInput').typeahead({
+                
+                highlight: true,
+            }, {
+                name: 'customers',
+                display: 'CustomerFirstName',
+                source: customers
+            });
+
+
+        });
+
+
+    </script>
+
+
+
+
+}
+
+
+
+
