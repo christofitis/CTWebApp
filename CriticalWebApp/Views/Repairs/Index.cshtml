@@ -107,9 +107,14 @@
                 minLength: 1
             }, {
                 name: 'customers',
-                display: function(data) {
-                    console.log(data['CustomerFirstName']);
-                    return (data['CustomerFirstName'] + ' ' + data['CustomerLastName']);
+                display: function (data) {
+                    var firstName = data['CustomerFirstName'];
+                    var lastName = data['CustomerLastName'];
+                    if (lastName == "") 
+                        customerName = firstName;
+                    else
+                        var customerName = data['CustomerFirstName'] + ' ' + data['CustomerLastName'];
+                    return (customerName);
 
                 },
                 

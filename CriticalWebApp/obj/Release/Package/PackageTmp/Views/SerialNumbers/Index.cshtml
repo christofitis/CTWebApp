@@ -8,9 +8,18 @@
 <h2>Serial Number Lookup</h2>
 @using (Html.BeginForm("Index", "SerialNumbers"))
 {
-    <input type="text" name="serialNumberQuery" id="serialNumberQuery" />
+    <div>Search for a Serial #: </div>
+    <input type="text" name="serialNumberQuery" id="serialNumberQuery" placeholder=""/>
     <input type="submit" value="Search" id="searchButton" />
 }
+
+@using (Html.BeginForm("Index", "SerialNumbers"))
+{     <div>Search a date range: </div>
+     <input type="date" name="startDateQuery" id="startDateQueryInput" />
+     <input type="date" name="endDateQuery" id="endDateQueryInput" />
+    <input type="submit" value="Search" id="dateSearchButton" />
+}
+
 
 
 @Html.ActionLink("Add", "Create", new { }, new { @class = "btn btn-primary pull-right" })
@@ -62,11 +71,13 @@
 
 <script>
     $(document).ready(function () {
-        console.log("FUCK");
         document.getElementById('serialNumberQuery').value = '@ViewBag.UserInput';
+        document.getElementById('startDateQueryInput').valueAsDate = '@ViewBag.StartDate';
+        document.getElementById('endDateQueryInput').value = '@ViewBag.EndDate';
+
         document.getElementById('serialNumberQuery').focus();
     });
-  
+
 
     //can do studd depending is search box is left empty or not
     document.getElementById('searchButton').onclick = function () {
@@ -75,8 +86,6 @@
             //alert('blank');
         }
         else {
-
-
             var searchQuery = {
                 numberQuery: document.getElementById('serialNumberQuery').value
             };
@@ -87,15 +96,13 @@
                 success: function (result) {
                     if (result[0] == null) {
                         //alert('nothing found');
-
-
                     }
                     else {
                         //alert('found: ' + result.length + ' items');
                     }
                 }
-
             });
         }
     };
+
 </script>
