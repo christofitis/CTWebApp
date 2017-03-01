@@ -7,7 +7,7 @@
 
 <h2>Log a new Serial Number</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "SerialNumbers", FormMethod.Post, new { id = "repairForm" }))
 {
     @Html.AntiForgeryToken()
 
@@ -27,7 +27,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.ProductNames, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Product Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.ProductNames, new SelectList(Model.ProductNames, "ProductNames"), "Select Product", new { @class = "form-control", id = "productDropDownList" })
                 @Html.ValidationMessageFor(model => model.ProductNames, "", new { @class = "text-danger" })
@@ -169,5 +169,17 @@
                 document.getElementById('endSerialNumberHidden').value = document.getElementById('endSerialNumberTextBox').value;
             }
         });
+        $("#repairForm").submit(function(event){
+            console.log("LOGGING REPAIR")
+            //var customerName = $("#customerFirstNameId").val() + ' ' + $("#customerLastNameId").val();
+
+            if (confirm("About to log: " + $("#serialNumberPrefixHidden").val() +  $("#serialNumberTextBox").val() + " to " + $("#serialNumberPrefixHidden").val() + $("#endSerialNumberTextBox").val() + ". Are you sure?" ))
+                return true;
+            else{
+                event.preventDefault();
+                return false;
+            }
+        });
+
     </script>
 }

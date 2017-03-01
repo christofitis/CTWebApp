@@ -25,7 +25,7 @@ namespace CriticalWebApp
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-cyborg.css",
+                      "~/Content/bootstrap-slate.css",
                      "~/Content/typeahead.css",
                       "~/Content/site.css"));
         }

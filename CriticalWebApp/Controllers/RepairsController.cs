@@ -62,9 +62,14 @@ namespace CriticalWebApp.Controllers
             return View(_context.Repairs.ToList());
         }
 
-        public ActionResult Details()
+        public ActionResult Details(int id = 0)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                Repair repair = _context.Repairs.Find(id);
+                return View();
+            }
+            return HttpNotFound();
         }
 
 
@@ -113,7 +118,7 @@ namespace CriticalWebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(repair);
+            return HttpNotFound();
         }
 
 
