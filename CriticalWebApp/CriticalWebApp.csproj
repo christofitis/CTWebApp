@@ -321,6 +321,8 @@
     <Content Include="Views\SerialNumbers\Index.cshtml" />
     <Content Include="Views\SerialNumbers\Create.cshtml" />
     <Content Include="Views\SerialNumbers\UploadFile.cshtml" />
+    <Content Include="Views\Repairs\Edit.cshtml" />
+    <Content Include="Views\Repairs\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

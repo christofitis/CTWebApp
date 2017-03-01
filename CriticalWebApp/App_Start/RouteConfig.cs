@@ -13,11 +13,12 @@ namespace CriticalWebApp
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                            name: "SerialNumberSearch",
-                            url: "{controller}/{action}/{serialNumberQuery}",
-                            defaults: new { controller = "SerialNumbers", action = "Index", id = UrlParameter.Optional }
-                        );
+            //routes.MapRoute(
+            //                name: "SerialNumberSearch",
+            //                url: "{controller}/{action}/{serialNumberQuery}",
+            //                defaults: new { controller = "SerialNumbers", action = "Index", id = UrlParameter.Optional }
+            //            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

@@ -81,6 +81,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.OutProduct) : @Html.DisplayFor(modelItem => item.OutProductRevision)
             </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id}, new { })
+            </td>
            
         </tr>
     }
