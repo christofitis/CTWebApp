@@ -45,11 +45,9 @@
             @Html.DisplayNameFor(model => model.ActionTaken)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OutSerialNumber)
+
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OutProduct)
-        </th>
+       
     </tr>
     @foreach (var item in Model)
     {
@@ -67,19 +65,45 @@
                 @Html.DisplayFor(modelItem => item.InProduct) : @Html.DisplayFor(modelItem => item.InProductRevision) 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomerComplaint) @*Shorten the displayed text in the table*@
+                @if (item.CustomerComplaint.Length > 50)
+                {
+                    @item.CustomerComplaint.Substring(0,50)<text>...</text>
+                    
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.CustomerComplaint)
+
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IssueFound)
+                @if (item.IssueFound.Length > 50)
+                {
+                    @item.IssueFound.Substring(0, 50)<text>...</text>
+
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.IssueFound)
+
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ActionTaken)
+                @if (item.ActionTaken.Length > 50)
+                {
+                    @item.ActionTaken.Substring(0, 50)<text>...</text>
+
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.ActionTaken)
+
+                }
             </td>
+            
             <td>
-                @Html.DisplayFor(modelItem => item.OutSerialNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OutProduct) : @Html.DisplayFor(modelItem => item.OutProductRevision)
+                @Html.ActionLink("Detials", "Details", new { id = item.Id }, new { })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id}, new { })
             </td>
            
         </tr>

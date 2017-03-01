@@ -28,21 +28,23 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Serial # <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Create aRepair", "Create", "SerialNumbers")</li>
-                        <li>@Html.ActionLink("Do a Repair", "Create", "SerialNumbers")</li>
-                        <li>@Html.ActionLink("Lookup a Repair", "Index", "SerialNumbers")</li>
+                        <li>@Html.ActionLink("Log a Serial #", "Create", "SerialNumbers")</li>
+                        <li>@Html.ActionLink("Lookup a Serial #", "Index", "SerialNumbers")</li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Repairs <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Logger", "Create", "Repairs")</li>
-                        <li>@Html.ActionLink("Lookup", "Index", "Repairs")</li>
+                        <li>@Html.ActionLink("Log a Repair", "Create", "Repairs")</li>
+                        <li>@Html.ActionLink("Lookup a Repair", "Index", "Repairs")</li>
                     </ul>
                 </li>
-
+                
+                
             </ul>
+            <div class="pull-right">@DateTime.Now</div>
+
            @*@Html.Partial("_LoginPartial")*@ 
         </div>
     </div>
