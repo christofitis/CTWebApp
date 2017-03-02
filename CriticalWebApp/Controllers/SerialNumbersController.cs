@@ -94,7 +94,7 @@ namespace CriticalWebApp.Controllers
                 Products = _context.Products.ToList(),
                 SerialNumber = new SerialNumber()
             };
-            foreach(var products in viewModel.Products)
+            foreach(var products in viewModel.Products) //check each product name in the db to pull only unique names. TODO: broke when no in sequence
             {
                 if (nameCheck != products.Name)
                 {
