@@ -763,8 +763,6 @@ D:\Projects\Critical\CTWebApp\CriticalWebApp\bin\Microsoft.Owin.Security.Google.
 D:\Projects\Critical\CTWebApp\CriticalWebApp\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Projects\Critical\CTWebApp\CriticalWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csprojResolveAssemblyReference.cache
-D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initialize.resources
-D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.dll
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.pdb
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\bin\ApplicationInsights.config
@@ -861,3 +859,5 @@ C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebAp
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.pdb
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initialize.resources
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
+D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.sycing.resources
+D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache

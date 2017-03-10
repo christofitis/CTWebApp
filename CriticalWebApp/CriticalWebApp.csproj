@@ -226,9 +226,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702281545544_initialize.cs" />
-    <Compile Include="Migrations\201702281545544_initialize.Designer.cs">
-      <DependentUpon>201702281545544_initialize.cs</DependentUpon>
+    <Compile Include="Migrations\201703100513049_sycing.cs" />
+    <Compile Include="Migrations\201703100513049_sycing.Designer.cs">
+      <DependentUpon>201703100513049_sycing.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -237,6 +237,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Part.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductionTotals.cs" />
     <Compile Include="Models\Repair.cs" />
     <Compile Include="Models\SerialNumber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -338,8 +339,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702281545544_initialize.resx">
-      <DependentUpon>201702281545544_initialize.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703100513049_sycing.resx">
+      <DependentUpon>201703100513049_sycing.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

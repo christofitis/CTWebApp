@@ -24,7 +24,7 @@ namespace CriticalWebApp.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<SerialNumber> SerialNumbers { get; set; }
         public DbSet<Product> Products { get; set; }
-
+        public DbSet<ProductionTotals> ProductTotals { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
