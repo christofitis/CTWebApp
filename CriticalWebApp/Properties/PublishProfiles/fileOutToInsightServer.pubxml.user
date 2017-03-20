@@ -349,10 +349,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/19/2017 19:28:07</publishTime>
     </File>
     <File Include="Views/SerialNumbers/Create.cshtml">
-      <publishTime>02/28/2017 21:31:41</publishTime>
+      <publishTime>03/19/2017 21:03:55</publishTime>
     </File>
     <File Include="Views/SerialNumbers/Index.cshtml">
-      <publishTime>02/28/2017 07:33:28</publishTime>
+      <publishTime>03/19/2017 21:03:55</publishTime>
     </File>
     <File Include="Views/SerialNumbers/UploadFile.cshtml">
       <publishTime>02/13/2017 22:37:28</publishTime>
@@ -379,7 +379,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/06/2017 19:28:11</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/19/2017 19:48:50</publishTime>
+      <publishTime>03/19/2017 21:06:44</publishTime>
     </File>
   </ItemGroup>
 </Project>

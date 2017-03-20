@@ -111,7 +111,7 @@
 
         document.getElementById('optionsRadios1').onclick = function(){
             document.getElementById('endSerialNumberDiv').style.display = 'none';
-
+            document.getElementById('endSerialNumberTextBox').value = " ";
 
         };
         document.getElementById('optionsRadios2').onclick = function(){
@@ -172,8 +172,24 @@
         $("#repairForm").submit(function(event){
             console.log("LOGGING REPAIR")
             //var customerName = $("#customerFirstNameId").val() + ' ' + $("#customerLastNameId").val();
+            if ($("#endSerialNumberTextBox").val() > 0){
+                var numOfEntries = ($("#endSerialNumberTextBox").val() - $("#serialNumberTextBox").val())+1;
+            }
+            else{
+                var numOfEntries = 1;
+            }
+            
+            
 
-            if (confirm("About to log: " + $("#serialNumberPrefixHidden").val() +  $("#serialNumberTextBox").val() + " to " + $("#serialNumberPrefixHidden").val() + $("#endSerialNumberTextBox").val() + ". Are you sure?" ))
+
+            if (confirm("About to log: " 
+                + numOfEntries + " Entries -  " 
+                + $("#serialNumberPrefixHidden").val() 
+                +  $("#serialNumberTextBox").val().toString("00000")
+                + " to " 
+                + $("#serialNumberPrefixHidden").val()
+                + $("#endSerialNumberTextBox").val().toString("00000") 
+                + ". Are you sure?" ))
                 return true;
             else{
                 event.preventDefault();

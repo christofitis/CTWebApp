@@ -81,14 +81,23 @@
 
     //can do studd depending is search box is left empty or not
     document.getElementById('searchButton').onclick = function () {
-        console.log('Searching for: ' + document.getElementById('serialNumberQuery').value);
+        var queryNum = document.getElementById('serialNumberQuery').value;
+        console.log('Searching for: ' + queryNum);
         if (document.getElementById('serialNumberQuery').value == "") {
             //alert('blank');
         }
         else {
+            document.getElementById('serialNumberQuery').value = queryNum;
+
+
+
+
+
             var searchQuery = {
-                numberQuery: document.getElementById('serialNumberQuery').value
+                numberQuery: queryNum
+                
             };
+            console.log(searchQuery.numberQuery);
             $.ajax({
                 type: 'GET',
                 url: '/api/serialnumbers/',
