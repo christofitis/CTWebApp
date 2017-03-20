@@ -111,7 +111,7 @@
 
         document.getElementById('optionsRadios1').onclick = function(){
             document.getElementById('endSerialNumberDiv').style.display = 'none';
-
+            document.getElementById('endSerialNumberTextBox').value = " ";
 
         };
         document.getElementById('optionsRadios2').onclick = function(){
@@ -172,7 +172,16 @@
         $("#repairForm").submit(function(event){
             console.log("LOGGING REPAIR")
             //var customerName = $("#customerFirstNameId").val() + ' ' + $("#customerLastNameId").val();
-            var numOfEntries = ($("#endSerialNumberTextBox").val() - $("#serialNumberTextBox").val())+1;
+            if ($("#endSerialNumberTextBox").val() > 0){
+                var numOfEntries = ($("#endSerialNumberTextBox").val() - $("#serialNumberTextBox").val())+1;
+            }
+            else{
+                var numOfEntries = 1;
+            }
+            
+            
+
+
             if (confirm("About to log: " 
                 + numOfEntries + " Entries -  " 
                 + $("#serialNumberPrefixHidden").val() 

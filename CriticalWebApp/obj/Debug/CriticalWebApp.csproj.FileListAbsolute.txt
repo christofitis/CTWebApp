@@ -857,7 +857,7 @@ C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\bin\Microsoft.Owin.Secu
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csprojResolveAssemblyReference.cache
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.dll
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.pdb
-D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.sycing.resources
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initialize.resources
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
+D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initialize.resources
