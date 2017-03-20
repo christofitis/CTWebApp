@@ -10,6 +10,7 @@ namespace CriticalWebApp.Controllers
     {
         public ActionResult Index()
         {
+
             return View();
         }
 
