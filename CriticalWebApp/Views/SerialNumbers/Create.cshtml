@@ -172,8 +172,15 @@
         $("#repairForm").submit(function(event){
             console.log("LOGGING REPAIR")
             //var customerName = $("#customerFirstNameId").val() + ' ' + $("#customerLastNameId").val();
-
-            if (confirm("About to log: " + $("#serialNumberPrefixHidden").val() +  $("#serialNumberTextBox").val() + " to " + $("#serialNumberPrefixHidden").val() + $("#endSerialNumberTextBox").val() + ". Are you sure?" ))
+            var numOfEntries = ($("#endSerialNumberTextBox").val() - $("#serialNumberTextBox").val())+1;
+            if (confirm("About to log: " 
+                + numOfEntries + " Entries -  " 
+                + $("#serialNumberPrefixHidden").val() 
+                +  $("#serialNumberTextBox").val().toString("00000")
+                + " to " 
+                + $("#serialNumberPrefixHidden").val()
+                + $("#endSerialNumberTextBox").val().toString("00000") 
+                + ". Are you sure?" ))
                 return true;
             else{
                 event.preventDefault();
