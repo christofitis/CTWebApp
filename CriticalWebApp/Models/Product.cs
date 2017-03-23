@@ -9,10 +9,16 @@ namespace CriticalWebApp.Models
     public class Product
     {
         public int Id { get; set; }
+        public string SKU { get; set; }
+        [Required]
         public string Name { get; set; }
         [Required]
-        public string Revision { get; set; }
-        public string Notes { get; set; }
+        public string HardwareRevision { get; set; }
+        public string SoftwareRevision { get; set; }
+        [Required]
         public string SerialNumberPrefix { get; set; }
+
+        public string Notes { get; set; }
+
     }
 }

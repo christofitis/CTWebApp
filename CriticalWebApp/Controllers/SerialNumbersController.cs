@@ -117,7 +117,7 @@ namespace CriticalWebApp.Controllers
                 if (viewModel.EndSerialNumber == 0) //for single serial input
                 {
                     var sn = viewModel.SerialNumber;
-                    var product = _context.Products.Where(p => p.SerialNumberPrefix == viewModel.Product.SerialNumberPrefix && p.Revision == viewModel.Product.Revision);
+                    var product = _context.Products.Where(p => p.SerialNumberPrefix == viewModel.Product.SerialNumberPrefix && p.HardwareRevision == viewModel.Product.HardwareRevision);
                     sn.ProductId = product.First().Id;
                     int num = int.Parse(sn.Number);
                     sn.Number = product.First().SerialNumberPrefix + num.ToString("D5");
@@ -132,7 +132,7 @@ namespace CriticalWebApp.Controllers
                     {
                         var sn = viewModel.SerialNumber;
                                              
-                        var product = _context.Products.Where(p => p.SerialNumberPrefix == viewModel.Product.SerialNumberPrefix && p.Revision == viewModel.Product.Revision);
+                        var product = _context.Products.Where(p => p.SerialNumberPrefix == viewModel.Product.SerialNumberPrefix && p.HardwareRevision == viewModel.Product.HardwareRevision);
                         sn.ProductId = product.First().Id;
                         int num = beginSerialNumber + i;
                         sn.Number = product.First().SerialNumberPrefix + num.ToString("D5");
