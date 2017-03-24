@@ -32,11 +32,23 @@
             @Html.DisplayNameFor(model => model.Number)
         </th>
         <th>
-            Product: Revision
+            Product
+        </th>
+        <th>
+            Hardware Revision
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.MFGDate)
+            Software Revision
+        </th>
+        <th>
+            MFG Date
+        </th>
+        <th>
+            Customer
+        </th>
+        <th>
+           Ship Date
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Notes)
@@ -51,13 +63,22 @@
                 @Html.DisplayFor(modelItem => item.Number)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Product.Name): @Html.DisplayFor(modelItem => item.Product.HardwareRevision)
+                @Html.DisplayFor(modelItem => item.Product.Name)
             </td>
-
-
-
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.HardwareRevision)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.SoftwareRevision)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MFGDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerFirstName) @Html.DisplayFor(modelItem => item.CustomerLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Notes)

@@ -91,17 +91,29 @@ namespace CriticalWebApp.Controllers
             {
 
                 //ProductNames = new List<string>(),
-                Products = _context.Products.ToList(),
+                Products = _context.Products.Distinct().ToList(),
                 SerialNumber = new SerialNumber()
             };
-            foreach(var products in viewModel.Products) //check each product name in the db to pull only unique names. TODO: broke when no in sequence
+            List<string> productNames = new List<string>(); //gets a list of all product names from db
+            foreach (var prodName in viewModel.Products)
             {
-                if (nameCheck != products.Name)
-                {
-                    viewModel.ProductNames.Add(products.Name);
-                }
-                nameCheck = products.Name;
+                productNames.Add(prodName.Name.ToString());
             }
+
+            List<string> productNamesNoDupes = productNames.Distinct().ToList(); //sofrts through all product names and removed duplicates to add to serialNumberCreateViewModel
+            foreach (var p in productNamesNoDupes)
+            {
+                viewModel.ProductNames.Add(p);
+            }
+            //foreach (var products in viewModel.Products) //check each product name in the db to pull only unique names. TODO: broke when no in sequence
+            //{
+                
+            //    if (nameCheck != products.Name)
+            //    {
+            //        viewModel.ProductNames.Add(products.Name);
+            //    }
+            //    nameCheck = products.Name;
+            //}
             
             return View(viewModel);
         }

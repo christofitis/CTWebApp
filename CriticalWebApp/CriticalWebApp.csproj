@@ -231,6 +231,10 @@
     <Compile Include="Migrations\201703232247390_initialize.Designer.cs">
       <DependentUpon>201703232247390_initialize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703242044230_addCustomerFirstAndLastNameToSerialNumber.cs" />
+    <Compile Include="Migrations\201703242044230_addCustomerFirstAndLastNameToSerialNumber.Designer.cs">
+      <DependentUpon>201703242044230_addCustomerFirstAndLastNameToSerialNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -347,6 +351,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703232247390_initialize.resx">
       <DependentUpon>201703232247390_initialize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703242044230_addCustomerFirstAndLastNameToSerialNumber.resx">
+      <DependentUpon>201703242044230_addCustomerFirstAndLastNameToSerialNumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -16,7 +16,9 @@ namespace CriticalWebApp.Models
         public Product Product { get; set; }
         public int ProductId { get; set; }
 
-        public string Customer { get; set; }
+        public string CustomerFirstName { get; set; }
+        public string CustomerLastName { get; set; }
+
 
 
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]

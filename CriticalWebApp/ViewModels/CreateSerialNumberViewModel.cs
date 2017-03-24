@@ -11,7 +11,7 @@ namespace CriticalWebApp.ViewModels
     {
         [Required]
         public SerialNumber SerialNumber { get; set; }
-        public IEnumerable<Product> Products { get; set; }
+        public List<Product> Products { get; set; }
         public Product Product { get; set; }
         [Required]
         public int EndSerialNumber { get; set; }
