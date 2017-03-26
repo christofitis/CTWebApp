@@ -85,14 +85,15 @@ namespace CriticalWebApp.Controllers
 
         public ActionResult Create()
         {
-            string nameCheck = "";
+            //string nameCheck = "";
             //string productName = "";
             var viewModel = new CreateSerialNumberViewModel()
             {
 
-                //ProductNames = new List<string>(),
-                Products = _context.Products.Distinct().ToList(),
-                SerialNumber = new SerialNumber()
+                ProductNames = new List<string>(),
+                Products = _context.Products.ToList(),
+                SerialNumber = new SerialNumber(),
+                ProductsCount = _context.Products.Count()
             };
             List<string> productNames = new List<string>(); //gets a list of all product names from db
             foreach (var prodName in viewModel.Products)
@@ -122,10 +123,8 @@ namespace CriticalWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateSerialNumberViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                
-
                 if (viewModel.EndSerialNumber == 0) //for single serial input
                 {
                     var sn = viewModel.SerialNumber;
