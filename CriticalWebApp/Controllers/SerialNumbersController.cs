@@ -14,19 +14,24 @@ namespace CriticalWebApp.Controllers
     {
         private ApplicationDbContext _context = new ApplicationDbContext();
         // GET: SerialNumbers
-        public ActionResult Index(DateTime? startDateQuery , DateTime? endDateQuery,string serialNumberQuery = null)
+        public ActionResult Index(DateTime? startShipDateQuery, DateTime? endShipDateQuery, DateTime? startDateQuery , DateTime? endDateQuery,string serialNumberQuery = null)
         {
+            if (startShipDateQuery.HasValue && endShipDateQuery.HasValue)
+            {
+                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.ShipDate >= startShipDateQuery && s.ShipDate <= endShipDateQuery).ToList());
+
+            }
+
+
             if (!string.IsNullOrEmpty(serialNumberQuery))
             {
                 ViewBag.UserInput = serialNumberQuery;
                 int x = 0;
-
                 if (!int.TryParse(serialNumberQuery, out x))
                 {
                     if (serialNumberQuery.Length == 2)
                     {
                         return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains(serialNumberQuery)).ToList());
-
                     }
                     else
                     {
@@ -45,31 +50,23 @@ namespace CriticalWebApp.Controllers
                                 if (i == 2)
                                 {
                                     num = int.Parse(serialNumberQuery.Substring(i));
-
                                 }
                                 else
                                 {
                                     num = int.Parse(serialNumberQuery.Substring(serialNumberQuery.Length - (i - 1)));
-
                                 }
-
                                 prefix = serialNumberQuery.Remove(serialNumberQuery.Length - num.ToString().Length);
                                 serialNumberQuery = prefix + num.ToString("D5");
                                 break;
-
                             }
-
                         }
-
                     }
-
 
                 }
                 return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains(serialNumberQuery)).ToList());
 
             }
 
-            //return View(_context.SerialNumbers.Include(p => p.Product).ToList()); //working that returns entire list of serial numbers
             if (startDateQuery == null || endDateQuery == null)
             {
                 return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains("xxx")).ToList());
