@@ -33,6 +33,23 @@
             </div>
         </div>
         <div class="form-group">
+            @Html.Label("Hardware Revision", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control" name="hardwareRevisionDropDown" id="hardwareRevisionsDropDownList"></select>
+                @Html.ValidationMessageFor(model => model.Product.HardwareRevision, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Software Revision", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control" name="softwareRevisionDropDown" id="softwareRevisionsDropDownList">Select one</select>
+                @Html.ValidationMessageFor(model => model.Product.SoftwareRevision, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+
+        @*replaced with dropdown list*@
+        @*<div class="form-group"> 
             @Html.LabelFor(model => model.Product.HardwareRevision, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
 
@@ -47,7 +64,7 @@
                 @Html.EditorFor(model => model.Product.SoftwareRevision, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Product.SoftwareRevision, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
      
             <div class="form-group">
                 <div class="control-label col-md-2">First Number</div>
@@ -116,6 +133,8 @@
                 @Html.HiddenFor(model => model.SerialNumber.Number, new { id = "serialNumberHidden" })
                 @Html.HiddenFor(model => model.EndSerialNumber, new { id = "endSerialNumberHidden" })
                 @Html.HiddenFor(model => model.Product.SerialNumberPrefix, new { id = "serialNumberPrefixHidden" })
+                @Html.HiddenFor(model => model.Product.HardwareRevision, new { id = "hardwareRevisionHidden" })
+                @Html.HiddenFor(model => model.Product.SoftwareRevision, new { id = "softwareRevisionHidden" })
                 <input type="submit" value="Create" class="btn btn-default" id="submitButton" />
             </div>
         </div>
@@ -157,16 +176,23 @@
 
 
 
-            $('#productDropDownList').on('change', function () {
-                var numOfProducts = @Model.ProductsCount;
-                for (var i = 0; i < numOfProducts; i++) {
+        $('#productDropDownList').on('change', function () {
+            $("#hardwareRevisionsDropDownList").empty();
+            $("#softwareRevisionsDropDownList").empty();
+                for (var i = 0; i < @Model.ProductsCount; i++) {
                     if (data[i]['Name'] == $(this).val()){
                         console.log($(this).val());
                         document.getElementById('serialPrefixText').innerHTML = data[i]['SerialNumberPrefix'];
                         document.getElementById('endSerialPrefixText').innerHTML = data[i]['SerialNumberPrefix'];
                         document.getElementById('serialNumberPrefixHidden').value = data[i]['SerialNumberPrefix'];
+                        $("#hardwareRevisionsDropDownList").append( new Option(data[i]['HardwareRevision']))
+                        $("#softwareRevisionsDropDownList").append( new Option(data[i]['SoftwareRevision']))
+                        
+                       
+                        //console.log(data[i]['HardwareRevision']);
                     }
                 }
+               
             });
             //$.ajax({
             //    type: 'GET',
@@ -181,6 +207,8 @@
 
         $('#submitButton').on('click', function () {
             document.getElementById('serialNumberHidden').value = document.getElementById('serialNumberTextBox').value;
+            document.getElementById('hardwareRevisionHidden').value = document.getElementById('hardwareRevisionsDropDownList').value;
+            document.getElementById('softwareRevisionHidden').value = document.getElementById('softwareRevisionsDropDownList').value;
             if (document.getElementById('optionsRadios1').checked){
                 document.getElementById('endSerialNumberHidden').value = 0;
             }

@@ -123,14 +123,16 @@ namespace CriticalWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateSerialNumberViewModel viewModel)
         {
-            if (!ModelState.IsValid)
-            {
+           // if (!ModelState.IsValid)
+           // {
                 if (viewModel.EndSerialNumber == 0) //for single serial input
                 {
                     var sn = viewModel.SerialNumber;
                     var product = _context.Products.Where(p => p.SerialNumberPrefix == viewModel.Product.SerialNumberPrefix && p.HardwareRevision == viewModel.Product.HardwareRevision);
                     sn.ProductId = product.First().Id;
                     int num = int.Parse(sn.Number);
+                    sn.Product.HardwareRevision = viewModel.Product.HardwareRevision;
+                    sn.Product.SoftwareRevision = viewModel.Product.SoftwareRevision;
                     sn.Number = product.First().SerialNumberPrefix + num.ToString("D5");
                     _context.SerialNumbers.Add(sn);
                     _context.SaveChanges();
@@ -153,7 +155,7 @@ namespace CriticalWebApp.Controllers
                     }
                     return RedirectToAction("Index");
                 }
-            }
+           // }
 
             return View(viewModel);
         }

@@ -50,6 +50,15 @@ namespace CriticalWebApp.Controllers.Api
             return serialNumber.Where(s => s.MFGDate >= startDate && s.MFGDate <= endDate).ToList();
             
         }
+        public IEnumerable<SerialNumber> GetSerialNumbers(DateTime startShipDate, DateTime endShipDate, bool isShipDate)
+        {
+
+            var serialNumber = _context.SerialNumbers;
+            if (serialNumber == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            return serialNumber.Where(s => s.ShipDate >= startShipDate && s.ShipDate <= endShipDate).ToList();
+
+        }
 
 
     }

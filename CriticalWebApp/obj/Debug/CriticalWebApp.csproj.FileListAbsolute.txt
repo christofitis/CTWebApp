@@ -863,3 +863,4 @@ D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.addCustomerFirstAndLastNameToSerialNumber.resources
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.tryingStuff.resources
+D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.requiredCustomerName2.resources

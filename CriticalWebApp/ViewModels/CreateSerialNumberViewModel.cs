@@ -18,10 +18,14 @@ namespace CriticalWebApp.ViewModels
         public bool IsSingleEntry { get; set; }
 
         public List<string> ProductNames { get; set; }
+        public List<string> HardwareRevisions { get; set; }
+        public List<string> SoftwareRevisions { get; set; }
         public int ProductsCount { get; set; }
 
         public CreateSerialNumberViewModel()
         {
+            HardwareRevisions = new List<string>();
+            SoftwareRevisions = new List<string>();
 
             //Product = new Product();
             //ProductNames = new List<string>();
