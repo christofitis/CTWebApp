@@ -186,14 +186,24 @@
                         document.getElementById('endSerialPrefixText').innerHTML = data[i]['SerialNumberPrefix'];
                         document.getElementById('serialNumberPrefixHidden').value = data[i]['SerialNumberPrefix'];
                         $("#hardwareRevisionsDropDownList").append( new Option(data[i]['HardwareRevision']))
-                        $("#softwareRevisionsDropDownList").append( new Option(data[i]['SoftwareRevision']))
                         
-                       
+
+
+
                         //console.log(data[i]['HardwareRevision']);
                     }
                 }
-               
-            });
+
+        });
+        $('#hardwareRevisionsDropDownList').on('change', function (){
+            console.log($(this).val());
+            $("#softwareRevisionsDropDownList").empty();
+            for (var i = 0; i < @Model.ProductsCount; i++) {
+                if (data[i]['HardwareRevision'] == $(this).val() && data[i]['Name'] == document.getElementById('productDropDownList').value){
+                    $("#softwareRevisionsDropDownList").append( new Option(data[i]['SoftwareRevision']))
+                }
+            }
+        });
             //$.ajax({
             //    type: 'GET',
             //    url: '/api/serialnumbers/',
