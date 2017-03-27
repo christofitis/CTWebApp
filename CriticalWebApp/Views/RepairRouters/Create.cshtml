@@ -1,0 +1,164 @@
+﻿@model CriticalWebApp.Models.RepairRouter
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-inline">
+        <h4>RepairRouter</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="form-group-sm">
+            <div class="pull-right" style=" border: 1px solid #000;">
+                <h3 >C.O.D.</h3>
+                @Html.LabelFor(model => model.isCODProduct, htmlAttributes: new { @class = "control-label" }):
+                @Html.EditorFor(model => model.isCODProduct, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.isCODProduct, "", new { @class = "text-danger" })
+                <br />
+                @Html.LabelFor(model => model.IsCodMoney, htmlAttributes: new { @class = "control-label" }):
+                @Html.EditorFor(model => model.IsCodMoney, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IsCodMoney, "", new { @class = "text-danger" })
+            </div>
+
+
+            <div class="col-xs-2">
+                @Html.LabelFor(model => model.ContactDate, htmlAttributes: new { @class = "control-label" }):
+                @Html.EditorFor(model => model.ContactDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", @Value = DateTime.Now.ToShortDateString(), id = "ContactDatePicker" } })
+                @Html.ValidationMessageFor(model => model.ContactDate, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-xs-2">
+                @Html.LabelFor(model => model.ContactedByPhone, htmlAttributes: new { @class = "control-label" }):
+                @Html.EditorFor(model => model.ContactedByPhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ContactedByPhone, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="col-xs-2">
+                @Html.LabelFor(model => model.ContactedByEmail, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.ContactedByEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ContactedByEmail, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="col-xs-2">
+                @Html.LabelFor(model => model.TalkedTo, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.TalkedTo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TalkedTo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+
+        <br />
+        <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+
+        <div class="form-group-sm">
+                <h4><u>Customer Information</u></h4>
+                @Html.LabelFor(model => model.CurrentInQuickbooks, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.CurrentInQuickbooks, new { htmlAttributes = new { @class = "form-control " } })
+                @Html.ValidationMessageFor(model => model.CurrentInQuickbooks, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group-sm">
+
+            <div class="col-sm-4">
+                @Html.LabelFor(model => model.CustomerFirstName, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.CustomerFirstName, new { htmlAttributes = new { @class = "form-control " } })
+                @Html.ValidationMessageFor(model => model.CustomerFirstName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-4">
+                @Html.LabelFor(model => model.CustomerLastName, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.CustomerLastName, new { htmlAttributes = new { @class = "form-control " } })
+                @Html.ValidationMessageFor(model => model.CustomerLastName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-4">
+                @Html.LabelFor(model => model.ShopName, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.ShopName, new { htmlAttributes = new { @class = "form-control " } })
+                @Html.ValidationMessageFor(model => model.ShopName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-6">
+                @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control " } })
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-6">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control ", @style = "width:700px" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-12">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label "} ):
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @style="width:700px"} })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @style = "width:100px" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @style = "width:60px" } })
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
+                @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+            </div>
+           
+        </div>
+
+        
+       
+        <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.getElementById('ContactDatePicker').valueAsDate = new Date();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+
+
+    </script>
+
+    
+    }

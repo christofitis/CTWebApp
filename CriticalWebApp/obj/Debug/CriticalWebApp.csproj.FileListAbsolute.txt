@@ -864,3 +864,4 @@ D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.Gen
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.addCustomerFirstAndLastNameToSerialNumber.resources
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.tryingStuff.resources
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.requiredCustomerName2.resources
+D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.startingRepairRouterModel.resources

@@ -1,0 +1,387 @@
+﻿@model CriticalWebApp.Models.RepairRouter
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RepairRouter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactedByPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactedByPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactedByEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactedByEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TalkedTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TalkedTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isCODProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isCODProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCodMoney)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCodMoney)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentInQuickbooks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentInQuickbooks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShopName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShopName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cirt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cirt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZipCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdInQB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProdInQB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfPurchase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfPurchase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlaceOfPurchase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlaceOfPurchase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoveredUnderWarranty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoveredUnderWarranty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductGen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductGen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductSerialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductSerialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DidSendAdaptor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DidSendAdaptor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsWarrentyRepair)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsWarrentyRepair)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsReplaceRepackage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsReplaceRepackage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsReferbishPkg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsReferbishPkg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPaidRepair)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPaidRepair)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaidRepairAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaidRepairAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReturnLabel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReturnLabel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsLoggedInQb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsLoggedInQb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateReceived)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateReceived)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RMAReceivedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RMAReceivedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsWithinTheUSA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsWithinTheUSA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerComplaint)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerComplaint)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecialInstructions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpecialInstructions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WasRepaired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WasRepaired)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WasReplaced)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WasReplaced)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RepairDoneBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepairDoneBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RepairDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepairDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OutSerialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OutSerialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstTestDone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstTestDone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstTester)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstTester)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondTestDone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondTestDone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondTester)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondTester)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
