@@ -14,14 +14,18 @@ namespace CriticalWebApp.Controllers
     {
         private ApplicationDbContext _context = new ApplicationDbContext();
         // GET: SerialNumbers
-        public ActionResult Index(DateTime? startShipDateQuery, DateTime? endShipDateQuery, DateTime? startDateQuery , DateTime? endDateQuery,string serialNumberQuery = null)
+        public ActionResult Index(DateTime? startShipDateQuery, DateTime? endShipDateQuery, DateTime? startDateQuery , DateTime? endDateQuery,string serialNumberQuery = null, string customerFirstNameQuery = null, string customerLastNameQuery = null)
         {
             if (startShipDateQuery.HasValue && endShipDateQuery.HasValue)
             {
                 return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.ShipDate >= startShipDateQuery && s.ShipDate <= endShipDateQuery).ToList());
 
             }
+            if (!string.IsNullOrEmpty(customerFirstNameQuery) || !string.IsNullOrEmpty(customerLastNameQuery))
+            {
+                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.CustomerFirstName.Contains(customerFirstNameQuery) && s.CustomerLastName.Contains(customerLastNameQuery)).ToList());
 
+            }
 
             if (!string.IsNullOrEmpty(serialNumberQuery))
             {
@@ -120,22 +124,27 @@ namespace CriticalWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateSerialNumberViewModel viewModel)
         {
-           // if (!ModelState.IsValid)
-           // {
-                if (viewModel.EndSerialNumber == 0) //for single serial input
-                {
-                    var sn = viewModel.SerialNumber;
-                    var product = _context.Products.Where(p => p.SerialNumberPrefix == viewModel.Product.SerialNumberPrefix && p.HardwareRevision == viewModel.Product.HardwareRevision);
-                    sn.ProductId = product.First().Id;
-                    int num = int.Parse(sn.Number);
-                    sn.Product.HardwareRevision = viewModel.Product.HardwareRevision;
-                    sn.Product.SoftwareRevision = viewModel.Product.SoftwareRevision;
-                    sn.Number = product.First().SerialNumberPrefix + num.ToString("D5");
-                    _context.SerialNumbers.Add(sn);
-                    _context.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                else if (viewModel.EndSerialNumber >= 1)
+            // if (!ModelState.IsValid)
+            // {
+            if (viewModel.EndSerialNumber == 0) //for single serial input
+            {
+                var sn = viewModel.SerialNumber;
+                //sn.Product.HardwareRevision = viewModel.Product.HardwareRevision;
+                //sn.Product.SoftwareRevision = viewModel.Product.SoftwareRevision;
+                var product = _context.Products.Where(p => p.SerialNumberPrefix == viewModel.Product.SerialNumberPrefix &&
+                    p.HardwareRevision == viewModel.Product.HardwareRevision &&
+                    p.SoftwareRevision == viewModel.Product.SoftwareRevision
+                    );
+
+                sn.ProductId = product.First().Id;
+                int num = int.Parse(viewModel.SerialNumber.Number);
+
+                sn.Number = product.First().SerialNumberPrefix + num.ToString("D5");
+                _context.SerialNumbers.Add(sn);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else if (viewModel.EndSerialNumber >= 1)
                 {
                     int beginSerialNumber = int.Parse(viewModel.SerialNumber.Number);
                     for (int i = 0; i < ((viewModel.EndSerialNumber - beginSerialNumber) + 1); i++)
