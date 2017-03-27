@@ -248,6 +248,10 @@
     <Compile Include="Migrations\201703270145152_startingRepairRouterModel.Designer.cs">
       <DependentUpon>201703270145152_startingRepairRouterModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703271628023_update.cs" />
+    <Compile Include="Migrations\201703271628023_update.Designer.cs">
+      <DependentUpon>201703271628023_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -382,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703270145152_startingRepairRouterModel.resx">
       <DependentUpon>201703270145152_startingRepairRouterModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703271628023_update.resx">
+      <DependentUpon>201703271628023_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -25,6 +26,7 @@ namespace CriticalWebApp.Models
         public string Address { get; set; }
         public string City { get; set; }
         public string State { get; set; }
+        [DataType(DataType.Text)]
         public int ZipCode { get; set; }
         public bool ProdInQB { get; set; }
         public DateTime DateOfPurchase { get; set; }
@@ -40,6 +42,7 @@ namespace CriticalWebApp.Models
         public bool IsReplaceRepackage { get; set; }
         public bool IsReferbishPkg { get; set; }
         public bool IsPaidRepair { get; set; }
+        [DataType(DataType.Currency)]
         public decimal PaidRepairAmount { get; set; }
         public string ReturnLabel { get; set; }
         public bool IsLoggedInQb { get; set; } //for the router "return notes and repair component done in QB date: initial

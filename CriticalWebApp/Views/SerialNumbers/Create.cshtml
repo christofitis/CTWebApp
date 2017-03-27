@@ -63,6 +63,7 @@
                     <div class="input-group">
                         <span class="input-group-addon" id="endSerialPrefixText"></span>
                         <input type="text" class="form-control" placeholder="XXXXXX" autocomplete="off" aria-describedby="serialPrefixText" , id="endSerialNumberTextBox">
+                        @Html.ValidationMessageFor(model => model.EndSerialNumber, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
