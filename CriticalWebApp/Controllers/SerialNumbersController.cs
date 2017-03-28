@@ -18,12 +18,12 @@ namespace CriticalWebApp.Controllers
         {
             if (startShipDateQuery.HasValue && endShipDateQuery.HasValue)
             {
-                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.ShipDate >= startShipDateQuery && s.ShipDate <= endShipDateQuery).ToList());
+                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.ShipDate >= startShipDateQuery && s.ShipDate <= endShipDateQuery).ToList().OrderBy(o => o.Number));
 
             }
             if (!string.IsNullOrEmpty(customerFirstNameQuery) || !string.IsNullOrEmpty(customerLastNameQuery))
             {
-                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.CustomerFirstName.Contains(customerFirstNameQuery) && s.CustomerLastName.Contains(customerLastNameQuery)).ToList());
+                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.CustomerFirstName.Contains(customerFirstNameQuery) && s.CustomerLastName.Contains(customerLastNameQuery)).ToList().OrderBy(o => o.Number));
 
             }
 
@@ -35,7 +35,7 @@ namespace CriticalWebApp.Controllers
                 {
                     if (serialNumberQuery.Length == 2)
                     {
-                        return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains(serialNumberQuery)).ToList());
+                        return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains(serialNumberQuery)).ToList().OrderBy(o => o.Number));
                     }
                     else
                     {
@@ -67,19 +67,19 @@ namespace CriticalWebApp.Controllers
                     }
 
                 }
-                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains(serialNumberQuery)).ToList());
+                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains(serialNumberQuery)).ToList().OrderBy(o => o.Number));
 
             }
 
             if (startDateQuery == null || endDateQuery == null)
             {
-                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains("xxx")).ToList());
+                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains("xxx")).ToList().OrderBy(o => o.Number));
 
             }
             ViewBag.StartDate = startDateQuery;
             ViewBag.EndDate = endDateQuery;
 
-            return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.MFGDate >= startDateQuery && s.MFGDate <= endDateQuery).ToList());
+            return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.MFGDate >= startDateQuery && s.MFGDate <= endDateQuery).ToList().OrderBy(o => o.Number));
         }
 
      
