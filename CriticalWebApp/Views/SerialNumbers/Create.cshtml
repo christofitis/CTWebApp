@@ -209,7 +209,8 @@
                 //supCheckNum adds 1 to first num to check in /api/serialnumbers
                 var dupCheckNum = $("#serialNumberPrefixHidden").val() + ('00000'+(parseInt(firstNum, 10)+ parseInt(i, 10))).substring((parseInt(firstNum, 10)+ parseInt(i, 10)).toString().length);
                 //console.log('Checking: ' + dupCheckNum);
-
+                
+                
                 $.ajax({
                     type: 'GET',
                     url: '/api/serialnumbers',
@@ -221,6 +222,7 @@
                         if (result.length >=1 ){
                             console.log('Duplicate found: ' + dupCheckNum);
                             numOfDuplicates++;
+
                         }
                     }
                 });
