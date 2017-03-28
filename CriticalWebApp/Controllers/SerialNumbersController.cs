@@ -90,7 +90,6 @@ namespace CriticalWebApp.Controllers
             //string productName = "";
             var viewModel = new CreateSerialNumberViewModel()
             {
-
                 ProductNames = new List<string>(),
                 Products = _context.Products.ToList(),
                 SerialNumber = new SerialNumber(),

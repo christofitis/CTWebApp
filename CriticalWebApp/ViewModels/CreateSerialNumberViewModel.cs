@@ -16,7 +16,6 @@ namespace CriticalWebApp.ViewModels
         [Required]
         public int EndSerialNumber { get; set; }
         public bool IsSingleEntry { get; set; }
-
         public List<string> ProductNames { get; set; }
         public List<string> HardwareRevisions { get; set; }
         public List<string> SoftwareRevisions { get; set; }

@@ -1,4 +1,6 @@
-﻿@model CriticalWebApp.ViewModels.CreateSerialNumberViewModel
+﻿
+
+@model CriticalWebApp.ViewModels.CreateSerialNumberViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -46,31 +48,31 @@
                 @Html.ValidationMessageFor(model => model.Product.SoftwareRevision, "", new { @class = "text-danger" })
             </div>
         </div>
-            <div class="form-group">
-                <div class="control-label col-md-2">First Number</div>
-                <div class="col-md-10">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="serialPrefixText"></span>
-                        <input type="text" class="form-control" placeholder="XXXXXX" autocomplete="off" aria-describedby="serialPrefixText" , id="serialNumberTextBox">
-                        @Html.ValidationMessageFor(model => model.SerialNumber.Number, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="control-label col-md-2">First Number</div>
+            <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-addon" id="serialPrefixText"></span>
+                    <input type="text" class="form-control" placeholder="XXXXXX" autocomplete="off" aria-describedby="serialPrefixText" , id="serialNumberTextBox">
+                    @Html.ValidationMessageFor(model => model.SerialNumber.Number, "", new { @class = "text-danger" })
 
-                    </div>
                 </div>
             </div>
-            <div class="form-group" id="endSerialNumberDiv">
-                <div class="control-label col-md-2">End Number</div>
-                <div class="col-md-10">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="endSerialPrefixText"></span>
-                        <input type="text" class="form-control" placeholder="XXXXXX" autocomplete="off" aria-describedby="serialPrefixText" , id="endSerialNumberTextBox">
-                        @Html.ValidationMessageFor(model => model.EndSerialNumber, "", new { @class = "text-danger" })
-                    </div>
+        </div>
+        <div class="form-group" id="endSerialNumberDiv">
+            <div class="control-label col-md-2">End Number</div>
+            <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-addon" id="endSerialPrefixText"></span>
+                    <input type="text" class="form-control" placeholder="XXXXXX" autocomplete="off" aria-describedby="serialPrefixText" , id="endSerialNumberTextBox">
+                    @Html.ValidationMessageFor(model => model.EndSerialNumber, "", new { @class = "text-danger" })
                 </div>
             </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.SerialNumber.MFGDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SerialNumber.MFGDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", @Value = DateTime.Now.ToShortDateString(), id="MFGDatePicker" } })
+                @Html.EditorFor(model => model.SerialNumber.MFGDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", @Value = DateTime.Now.ToShortDateString(), id = "MFGDatePicker" } })
                 @Html.ValidationMessageFor(model => model.SerialNumber.MFGDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -179,26 +181,94 @@
             }
         });
         $("#serialNumberForm").submit(function(event){
-            console.log("LOGGING SERIAL NUMBER")
-            if ($("#endSerialNumberTextBox").val() > 0){
-                var numOfEntries = ($("#endSerialNumberTextBox").val() - $("#serialNumberTextBox").val())+1;
+            console.log("LOGGING SERIAL NUMBER");
+
+            //formats values to have 5 padding
+            var firstNum = ('00000'+$("#serialNumberTextBox").val()).substring($("#serialNumberTextBox").val().length);
+            var endNum = ('00000'+$("#endSerialNumberTextBox").val()).substring($("#endSerialNumberTextBox").val().length);
+            var numOfEntries = 0;
+            if (endNum <= 0){
+                numOfEntries = 1;
+                console.log('numOfEntries: ' + numOfEntries);
             }
             else{
-                var numOfEntries = 1;
+                numOfEntries = ((endNum - firstNum)+1);
+                console.log('numOfEntries: ' + numOfEntries);
             }
-            if (confirm("About to log: "
-                + numOfEntries + " Entries -  "
-                + $("#serialNumberPrefixHidden").val()
-                +  $("#serialNumberTextBox").val()
-                + " to "
-                + $("#serialNumberPrefixHidden").val()
-                + $("#endSerialNumberTextBox").val()
-                + ". Are you sure?" ))
-                return true;
-            else{
+            
+            
+           
+            
+            
+            console.log('First Number: ' + firstNum);
+            console.log('End Number: ' + endNum);
+            console.log('numOfEntries: ' + numOfEntries);
+            var numOfDuplicates = 0;
+
+            
+            console.log('num of entried: ' + numOfEntries);
+            for (var i = 0; i < numOfEntries; i++) {
+                //supCheckNum adds 1 to first num to check in /api/serialnumbers
+                var dupCheckNum = $("#serialNumberPrefixHidden").val() + ('00000'+(parseInt(firstNum, 10)+ parseInt(i, 10))).substring((parseInt(firstNum, 10)+ parseInt(i, 10)).toString().length);
+                //console.log('Checking: ' + dupCheckNum);
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/serialnumbers',
+                    datatype: 'json',
+                    async: false,
+                    data: { numberQuery: dupCheckNum},
+                    success: function (result) {
+                        //console.log(result.length + ' dupes found');
+                        if (result.length >=1 ){
+                            console.log('Duplicate found: ' + dupCheckNum);
+                            numOfDuplicates++;
+                        }
+                    }
+                });
+                
+            }
+            
+
+
+
+            if (numOfDuplicates >= 1){
+                alert(numOfDuplicates + ' Number of duplicates found. Please review your entries and try again.');
+                console.log('numOfDuplicates1: ' + numOfDuplicates);
+            }
+            if (numOfDuplicates <= 0){
+                if ($("#endSerialNumberTextBox").val() > 0){
+                    console.log('numOfDuplicates2: ' + numOfDuplicates);
+                }
+                else{
+                    numOfEntries = 1;
+                }
+                if (confirm("About to log: "
+                    + numOfEntries + " Entries -  "
+                    + $("#serialNumberPrefixHidden").val()
+                    + firstNum
+                    + " to "
+                    + $("#serialNumberPrefixHidden").val()
+                    + endNum
+                    + ". Are you sure?" ))
+                    return true;
+                else{
+                    event.preventDefault();
+                    return false;
+                }
+            }
+
+
+
+            
+                //alert("Didnt log anything");
                 event.preventDefault();
                 return false;
-            }
+            
+
+
+
+
         });
 
     </script>
