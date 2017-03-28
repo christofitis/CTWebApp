@@ -83,7 +83,7 @@ namespace CriticalWebApp.Controllers
         }
 
      
-
+        
         public ActionResult Create()
         {
             //string nameCheck = "";
