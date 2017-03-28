@@ -189,20 +189,18 @@
             var numOfEntries = 0;
             if (endNum <= 0){
                 numOfEntries = 1;
-                console.log('numOfEntries: ' + numOfEntries);
+           
             }
             else{
                 numOfEntries = ((endNum - firstNum)+1);
-                console.log('numOfEntries: ' + numOfEntries);
+               
             }
             
             
            
             
             
-            console.log('First Number: ' + firstNum);
-            console.log('End Number: ' + endNum);
-            console.log('numOfEntries: ' + numOfEntries);
+           
             var numOfDuplicates = 0;
 
             
@@ -234,11 +232,11 @@
 
             if (numOfDuplicates >= 1){
                 alert(numOfDuplicates + ' Number of duplicates found. Please review your entries and try again.');
-                console.log('numOfDuplicates1: ' + numOfDuplicates);
+                console.log('DUPLICATE FOUND!!!! ');
             }
             if (numOfDuplicates <= 0){
                 if ($("#endSerialNumberTextBox").val() > 0){
-                    console.log('numOfDuplicates2: ' + numOfDuplicates);
+                    
                 }
                 else{
                     numOfEntries = 1;
@@ -257,18 +255,9 @@
                     return false;
                 }
             }
-
-
-
-            
-                //alert("Didnt log anything");
+                alert("Didnt log anything");
                 event.preventDefault();
                 return false;
-            
-
-
-
-
         });
 
     </script>
