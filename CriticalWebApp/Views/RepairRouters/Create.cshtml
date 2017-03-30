@@ -7,7 +7,7 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
@@ -16,8 +16,13 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+@*--------------------------------------------Contact-----------------------------------------------------------------------------------*@
+
+        <div class="text-center">
+            <h2><u>1. Contact</u></h2>
+        </div>
         <div class="form-group-sm">
-            <div class="pull-right" style=" border 1px solid #000;">
+            <div class="pull-right" style="border:solid; border-right-color: white; border-style: dotted; padding: 4px">
                 <h3>C.O.D.</h3>
                 @Html.LabelFor(model => model.isCODProduct, htmlAttributes: new { @class = "control-label" }):
                 @Html.EditorFor(model => model.isCODProduct, new { htmlAttributes = new { @class = "form-control" } })
@@ -60,7 +65,7 @@
 
 
         <br />
-        <hr style="width: 100%; color: black; height: 3px; background-color:black;" />
+        <hr style="width: 100%; margin-top:25px; color: black; height: 1px; padding-top:4px; background-color:black;" />
 
         <div class="form-group-sm">
             <h4><u>Customer Information</u></h4>
@@ -143,15 +148,15 @@
 
                 <div class="col-xs-3" style="margin-top:10px; margin-bottom:20px; margin-left:30px; margin-right:auto; border:solid; border-color:black; padding-bottom:9px">
                     <p style="font-size:large"><u>Product Info</u></p>
-                    @Html.LabelFor(model => model.ProductModel, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.ProductModel, new { htmlAttributes = new { @class = "form-control", } })
+                    @Html.LabelFor(model => model.ProductModel, htmlAttributes: new { @class = "control-label " }): 
+                    @Html.EditorFor(model => model.ProductModel, new { htmlAttributes = new { @class = "form-control", id = "productModelInput" } })
                     @Html.ValidationMessageFor(model => model.ProductModel, "", new { @class = "text-danger" })
                     @Html.LabelFor(model => model.ProductSerialNumber, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.ProductSerialNumber, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
+                    @Html.EditorFor(model => model.ProductSerialNumber, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", id = "productSerialNumberInput" } })
                     @Html.ValidationMessageFor(model => model.ProductSerialNumber, "", new { @class = "text-danger" })
-                    @Html.LabelFor(model => model.DidSendAdaptor, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.DidSendAdaptor, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DidSendAdaptor, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.DidSendPowerAdaptor, htmlAttributes: new { @class = "control-label " }):
+                    @Html.EditorFor(model => model.DidSendPowerAdaptor, new { htmlAttributes = new { @class = "form-control", id = "didSendPowerAdapterInput" } })
+                    @Html.ValidationMessageFor(model => model.DidSendPowerAdaptor, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="col-xs-3" style="margin-top:10px; margin-bottom:auto; margin-left:30px; margin-right:auto; border:solid; border-color:black; padding-bottom:12px">
@@ -181,11 +186,132 @@
                 </div>
             </div>
 
-            <hr style="width: 100%; color: black; height: 1px; background-color:black" />
-        
+<hr style="width: 100%; margin-top:25px; color: black; height: 1px; padding-top:4px; background-color:black;" />
+@*--------------------------------------------Receive-------------------------------------------------------------------------------------*@
+
+
+        <div class="text-center">
+            <h2><u>2. Received</u></h2>
+        </div>
+        <div class="form-group-sm" style="margin-top:10px">
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.DateReceived, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.DateReceived, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", @type = "Date", @Value = DateTime.Now.ToShortDateString() } })
+                @Html.ValidationMessageFor(model => model.DateReceived, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-8">
+                @Html.LabelFor(model => model.RMAReceivedBy, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.RMAReceivedBy, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
+                @Html.ValidationMessageFor(model => model.RMAReceivedBy, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-3" style="border-style:dotted; border-color: white; height:160px">
+                <p>Was the below product received? </p>
+                @Html.LabelFor(model => model.ProductReceived, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.ProductReceived, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductReceived, "", new { @class = "text-danger" })
+                <p id="productModelReceived">Product Model: </p>
+                <p id="productSerialNumbeReceived">Serial #: </p>
+                <p id="didSendPowerAdapterReceived"></p>
+            </div>
+            <div class="col-xs-3" style="border-style:dotted; border-color: white; height:160px;">
+                <p>What else was received?</p>
+                <p style="color:darkgray">(seporate items by comma's)</p>
+                @Html.LabelFor(model => model.OtherReceived, htmlAttributes: new { @class = "control-label " }):
+                @Html.TextAreaFor(model => model.OtherReceived, new { htmlAttributes = new { @class = "form-control", rows = "4" } })
+                @Html.ValidationMessageFor(model => model.OtherReceived, "", new { @class = "text-danger" })
+                
+            </div>
+
+
+        </div>
+
+
+        <hr style="width: 100%; margin-top:25px; color: black; height: 1px; padding-top:4px; background-color:black;" />
+
+@*--------------------------------------------REPAIR-------------------------------------------------------------------------------------*@
+        <div class="text-center">
+            <h2><u>3. Repair</u></h2>
+        </div>
+
+        <div class="form-group-sm">
+            <div class="col-xs-4">
+
+                @Html.Label("Name: ", htmlAttributes: new { @class = "control-label " })
+            </div>
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.IsWithinTheUSA, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.IsWithinTheUSA, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IsWithinTheUSA, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-4">
+                @Html.Label("RMA Taken By: ", htmlAttributes: new { @class = "control-label " })
+            </div>
+            
+            <div class="col-xs-12">
+                @Html.Label("Product Model: ", htmlAttributes: new { @class = "control-label col-xs-4", id="repairProductModel" })
+            
+                @Html.Label("Serial #: ", htmlAttributes: new { @class = "control-label ", id = "repairSerialNumber" })
+            </div>
+            <div class="col-xs-12">
+                @Html.LabelFor(model => model.CustomerComplaint, htmlAttributes: new { @class = "control-label " }):
+                @Html.TextAreaFor(model => model.CustomerComplaint, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CustomerComplaint, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-12">
+                @Html.LabelFor(model => model.SpecialInstructions, htmlAttributes: new { @class = "control-label " }):
+                @Html.TextAreaFor(model => model.SpecialInstructions, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SpecialInstructions, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-12">
+                <p>
+                    Repair Notes:
+                    @Html.LabelFor(model => model.WasRepaired, htmlAttributes: new { @class = "control-label " }):
+                    @Html.EditorFor(model => model.WasRepaired, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.WasRepaired, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.WasReplaced, htmlAttributes: new { @class = "control-label " }):
+                    @Html.EditorFor(model => model.WasReplaced, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.WasReplaced, "", new { @class = "text-danger" })
+                </p>
+            </div>
+            <div class="col-xs-12">
+                @Html.LabelFor(model => model.RepairNotes, htmlAttributes: new { @class = "control-label " }):
+                @Html.TextAreaFor(model => model.RepairNotes, new { htmlAttributes = new { @class = "form-control", @style = "color: green" } })
+                @Html.ValidationMessageFor(model => model.RepairNotes, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-3">
+                @Html.LabelFor(model => model.RepairDoneBy, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.RepairDoneBy, new { htmlAttributes = new { @class = "form-control", @style= "width:120px" } })
+                @Html.ValidationMessageFor(model => model.RepairDoneBy, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-3">
+                @Html.LabelFor(model => model.RepairDate, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.RepairDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", @Value = DateTime.Now.ToShortDateString()} })
+                @Html.ValidationMessageFor(model => model.RepairDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-6">
+
+            </div>
+            <div class="col-xs-6">
+                @Html.LabelFor(model => model.OutSerialNumber, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.OutSerialNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OutSerialNumber, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-6">
+                @Html.LabelFor(model => model.FirstTester, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.FirstTester, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstTester, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.SecondTester, htmlAttributes: new { @class = "control-label " }):
+                @Html.EditorFor(model => model.SecondTester, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SecondTester, "", new { @class = "text-danger" })
+            </div>
+
+
+        </div>
 
 
 
+
+        <hr style="width: 100%; margin-top:25px; color: black; height: 1px; padding-top:4px; background-color:black;" />
 
 
         <div class="form-group">
@@ -194,6 +320,8 @@
             </div>
         </div>
     </div>
+
+   
 }
 
 <div>
@@ -207,10 +335,42 @@
         $(document).ready(function () {
             document.getElementById('ContactDatePicker').valueAsDate = new Date();
             document.getElementById('dateOfPurchasePicker').valueAsDate = new Date();
+
+            $('#productModelInput').on('change', function () {
+                document.getElementById('productModelReceived').innerHTML = ("Product Model: " + document.getElementById('productModelInput').value);
+                document.getElementById('repairProductModel').innerHTML = ("Product Model: " + document.getElementById('productModelInput').value);
+
+            });
+            $('#productSerialNumberInput').on('change', function () {
+                document.getElementById('productSerialNumbeReceived').innerHTML = ("Serial #: " + document.getElementById('productSerialNumberInput').value);
+                document.getElementById('repairSerialNumber').innerHTML = ("Serial #: " + document.getElementById('productSerialNumberInput').value);
+
+            });
+            $('#didSendPowerAdapterInput').on('change', function () {
+                if ($('#didSendPowerAdapterInput').is(':checked')) {
+                    document.getElementById('didSendPowerAdapterReceived').innerHTML = ("Power adapter");
+                }
+                else {
+                    document.getElementById('didSendPowerAdapterReceived').innerHTML = ("");
+                }
+                
+            });
+
+
+            
         });
 
 
-    </script>
-
-    
+    </script
+    >}
+@*changes color of all input boxes, i didnt like it*@
+@*<style>input[type=text]{color:white; border-bottom-width:2px; border-bottom-color: black; border: none;  background-color: #2E3338; }
+    input[type=date] {
+        background-color: red;
     }
+  
+    
+    
+    </style>*@
+
+

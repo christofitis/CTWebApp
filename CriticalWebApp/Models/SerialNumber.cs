@@ -11,6 +11,7 @@ namespace CriticalWebApp.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Serial #")]
         public string Number { get; set; }
 
         public Product Product { get; set; }
@@ -23,10 +24,12 @@ namespace CriticalWebApp.Models
 
 
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [Display(Name = "MFG Date")]
         [Required]
         public DateTime MFGDate { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [Display(Name = "Shipment Date")]
         public DateTime ShipDate { get; set; }
 
         public string Notes { get; set; }

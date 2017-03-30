@@ -216,11 +216,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DidSendAdaptor, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DidSendPowerAdaptor, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.DidSendAdaptor)
-                    @Html.ValidationMessageFor(model => model.DidSendAdaptor, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.DidSendPowerAdaptor)
+                    @Html.ValidationMessageFor(model => model.DidSendPowerAdaptor, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -385,15 +385,6 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstTestDone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.FirstTestDone)
-                    @Html.ValidationMessageFor(model => model.FirstTestDone, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.FirstTester, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -403,15 +394,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SecondTestDone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.SecondTestDone)
-                    @Html.ValidationMessageFor(model => model.SecondTestDone, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
+   
 
         <div class="form-group">
             @Html.LabelFor(model => model.SecondTester, htmlAttributes: new { @class = "control-label col-md-2" })

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace CriticalWebApp.Models
 {
-    public class RepairRouter
+    public class RepairRouter //TODO: add "[Display(Name = "Customer First Name")]" to all fields
     {
 
         //contact
@@ -37,7 +37,7 @@ namespace CriticalWebApp.Models
         public string ProductGen { get; set; }
 
         public string ProductSerialNumber { get; set; }
-        public bool DidSendAdaptor { get; set; }
+        public bool DidSendPowerAdaptor { get; set; }
         public bool IsWarrentyRepair { get; set; }
         public bool IsReplaceRepackage { get; set; }
         public bool IsReferbishPkg { get; set; }
@@ -51,11 +51,12 @@ namespace CriticalWebApp.Models
         //receive
         public DateTime DateReceived { get; set; }
         public string RMAReceivedBy { get; set; }
+        public bool ProductReceived { get; set; } //checkbox that will show that stated product and serial number was received
         //public string ReceivedModel { get; set; }
         //public string ReceivedGen { get; set; }
         //public string ReceivedSerialNumber { get; set; }
 
-        public List<string> OtherReceived { get; set; }  //list of things received by customer
+        public string OtherReceived { get; set; }  //list of things received by customer
 
         //public bool ReceivedAdaptor { get; set; }
         //public bool ReceivedCord { get; set; }
@@ -69,12 +70,11 @@ namespace CriticalWebApp.Models
         public string SpecialInstructions { get; set; }
         public bool WasRepaired { get; set; }
         public bool WasReplaced { get; set; }
+        public string RepairNotes { get; set; }
         public string RepairDoneBy { get; set; }
         public DateTime RepairDate { get; set; }
         public string OutSerialNumber { get; set; }
-        public bool FirstTestDone { get; set; }
         public string FirstTester { get; set; }
-        public bool SecondTestDone { get; set; }
         public string SecondTester { get; set; }
     }
 }
