@@ -260,6 +260,26 @@
     <Compile Include="Migrations\201703281824569_addedRepairNoteProperty.Designer.cs">
       <DependentUpon>201703281824569_addedRepairNoteProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703301750458_updatingRepairRouterModel.cs" />
+    <Compile Include="Migrations\201703301750458_updatingRepairRouterModel.Designer.cs">
+      <DependentUpon>201703301750458_updatingRepairRouterModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703301820246_addedNullablkeDatTine.cs" />
+    <Compile Include="Migrations\201703301820246_addedNullablkeDatTine.Designer.cs">
+      <DependentUpon>201703301820246_addedNullablkeDatTine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703301822488_addedNullableFields.cs" />
+    <Compile Include="Migrations\201703301822488_addedNullableFields.Designer.cs">
+      <DependentUpon>201703301822488_addedNullableFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703301928097_datetimenotime.cs" />
+    <Compile Include="Migrations\201703301928097_datetimenotime.Designer.cs">
+      <DependentUpon>201703301928097_datetimenotime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703301930046_datetimenotimef.cs" />
+    <Compile Include="Migrations\201703301930046_datetimenotimef.Designer.cs">
+      <DependentUpon>201703301930046_datetimenotimef.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -403,6 +423,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703281824569_addedRepairNoteProperty.resx">
       <DependentUpon>201703281824569_addedRepairNoteProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703301750458_updatingRepairRouterModel.resx">
+      <DependentUpon>201703301750458_updatingRepairRouterModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703301820246_addedNullablkeDatTine.resx">
+      <DependentUpon>201703301820246_addedNullablkeDatTine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703301822488_addedNullableFields.resx">
+      <DependentUpon>201703301822488_addedNullableFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703301928097_datetimenotime.resx">
+      <DependentUpon>201703301928097_datetimenotime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703301930046_datetimenotimef.resx">
+      <DependentUpon>201703301930046_datetimenotimef.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

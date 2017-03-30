@@ -15,8 +15,31 @@ namespace CriticalWebApp.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: RepairRouters
-        public ActionResult Index()
+        public ActionResult Index(int? rmaNumberQuery, string customerFirstNameQuery = null, string customerLastNameQuery = null)
         {
+            if (!string.IsNullOrEmpty(rmaNumberQuery.ToString()))
+            {
+                return View(db.RepairRouters.Where(r => r.Id == rmaNumberQuery).ToList());
+            }
+            if (!string.IsNullOrEmpty(customerFirstNameQuery) || !string.IsNullOrEmpty(customerLastNameQuery))
+            {
+                if (!string.IsNullOrEmpty(customerFirstNameQuery) && !string.IsNullOrEmpty(customerLastNameQuery))
+                {
+                    return View(db.RepairRouters.Where(s => s.CustomerFirstName.Contains(customerFirstNameQuery) && s.CustomerLastName.Contains(customerLastNameQuery)).ToList().OrderBy(o => o.Id));
+
+                }
+                else if (!string.IsNullOrEmpty(customerFirstNameQuery))
+                {
+                    return View(db.RepairRouters.Where(s => s.CustomerFirstName.Contains(customerFirstNameQuery)).ToList().OrderBy(o => o.Id));
+
+                }
+                else if (!string.IsNullOrEmpty(customerLastNameQuery))
+                {
+                    return View(db.RepairRouters.Where(s => s.CustomerLastName.Contains(customerLastNameQuery)).ToList().OrderBy(o => o.Id));
+
+                }
+
+            }
             return View(db.RepairRouters.ToList());
         }
 
@@ -46,7 +69,7 @@ namespace CriticalWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ContactDate,ContactedByPhone,ContactedByEmail,TalkedTo,isCODProduct,IsCodMoney,CurrentInQuickbooks,CustomerFirstName,CustomerLastName,ShopName,Phone,Email,Address,Cirt,State,ZipCode,ProdInQB,DateOfPurchase,PlaceOfPurchase,CoveredUnderWarranty,ProductModel,ProductGen,ProductSerialNumber,DidSendAdaptor,IsWarrentyRepair,IsReplaceRepackage,IsReferbishPkg,IsPaidRepair,PaidRepairAmount,ReturnLabel,IsLoggedInQb,ShipType,DateReceived,RMAReceivedBy,IsWithinTheUSA,CustomerComplaint,SpecialInstructions,WasRepaired,WasReplaced,RepairDoneBy,RepairDate,OutSerialNumber,FirstTestDone,FirstTester,SecondTestDone,SecondTester")] RepairRouter repairRouter)
+        public ActionResult Create(RepairRouter repairRouter)
         {
             if (ModelState.IsValid)
             {

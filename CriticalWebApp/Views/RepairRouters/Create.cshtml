@@ -11,7 +11,7 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-inline">
+    <div class="form-inline" onkeydown = "return (event.keyCode!=13)">
         <h4>RepairRouter</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -154,9 +154,7 @@
                     @Html.LabelFor(model => model.ProductSerialNumber, htmlAttributes: new { @class = "control-label " }):
                     @Html.EditorFor(model => model.ProductSerialNumber, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", id = "productSerialNumberInput" } })
                     @Html.ValidationMessageFor(model => model.ProductSerialNumber, "", new { @class = "text-danger" })
-                    @Html.LabelFor(model => model.DidSendPowerAdaptor, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.DidSendPowerAdaptor, new { htmlAttributes = new { @class = "form-control", id = "didSendPowerAdapterInput" } })
-                    @Html.ValidationMessageFor(model => model.DidSendPowerAdaptor, "", new { @class = "text-danger" })
+
                 </div>
 
                 <div class="col-xs-3" style="margin-top:10px; margin-bottom:auto; margin-left:30px; margin-right:auto; border:solid; border-color:black; padding-bottom:12px">
@@ -196,12 +194,12 @@
         <div class="form-group-sm" style="margin-top:10px">
             <div class="col-xs-4">
                 @Html.LabelFor(model => model.DateReceived, htmlAttributes: new { @class = "control-label " }):
-                @Html.EditorFor(model => model.DateReceived, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", @type = "Date", @Value = DateTime.Now.ToShortDateString() } })
+                @Html.EditorFor(model => model.DateReceived, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", @type = "Date", @Value = DateTime.Now.ToShortDateString(), id="dateReceivedPicker" } })
                 @Html.ValidationMessageFor(model => model.DateReceived, "", new { @class = "text-danger" })
             </div>
             <div class="col-xs-8">
                 @Html.LabelFor(model => model.RMAReceivedBy, htmlAttributes: new { @class = "control-label " }):
-                @Html.EditorFor(model => model.RMAReceivedBy, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
+                @Html.EditorFor(model => model.RMAReceivedBy, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", id="rmaReceivedByInput" } })
                 @Html.ValidationMessageFor(model => model.RMAReceivedBy, "", new { @class = "text-danger" })
             </div>
             <div class="col-xs-3" style="border-style:dotted; border-color: white; height:160px">
@@ -244,9 +242,10 @@
                 @Html.ValidationMessageFor(model => model.IsWithinTheUSA, "", new { @class = "text-danger" })
             </div>
             <div class="col-xs-4">
-                @Html.Label("RMA Taken By: ", htmlAttributes: new { @class = "control-label " })
+                @Html.Label("RMA Received By: ", htmlAttributes: new { @class = "control-label ", id= "rmaReceivedBy" })
             </div>
-            
+
+
             <div class="col-xs-12">
                 @Html.Label("Product Model: ", htmlAttributes: new { @class = "control-label col-xs-4", id="repairProductModel" })
             
@@ -285,7 +284,7 @@
             </div>
             <div class="col-xs-3">
                 @Html.LabelFor(model => model.RepairDate, htmlAttributes: new { @class = "control-label " }):
-                @Html.EditorFor(model => model.RepairDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", @Value = DateTime.Now.ToShortDateString()} })
+                @Html.EditorFor(model => model.RepairDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", @Value = DateTime.Now.ToShortDateString(), id="repairDatePicker"} })
                 @Html.ValidationMessageFor(model => model.RepairDate, "", new { @class = "text-danger" })
             </div>
             <div class="col-xs-6">
@@ -329,36 +328,42 @@
 </div>
 
 @section scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+                    @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
         $(document).ready(function () {
-            document.getElementById('ContactDatePicker').valueAsDate = new Date();
-            document.getElementById('dateOfPurchasePicker').valueAsDate = new Date();
+                        document.getElementById('ContactDatePicker').valueAsDate = new Date();
+            //document.getElementById('dateOfPurchasePicker').valueAsDate = new Date();
+            //document.getElementById('repairDatePicker').valueAsDate = new Date();
+            //document.getElementById('dateReceivedPicker').valueAsDate = new Date();
 
             $('#productModelInput').on('change', function () {
-                document.getElementById('productModelReceived').innerHTML = ("Product Model: " + document.getElementById('productModelInput').value);
-                document.getElementById('repairProductModel').innerHTML = ("Product Model: " + document.getElementById('productModelInput').value);
+                            document.getElementById('productModelReceived').innerHTML = ("Product Model: " + document.getElementById('productModelInput').value);
+                            document.getElementById('repairProductModel').innerHTML = ("Product Model: " + document.getElementById('productModelInput').value);
+
+                        });
+            $('#productSerialNumberInput').on('change', function () {
+                            document.getElementById('productSerialNumbeReceived').innerHTML = ("Serial #: " + document.getElementById('productSerialNumberInput').value);
+                            document.getElementById('repairSerialNumber').innerHTML = ("Serial #: " + document.getElementById('productSerialNumberInput').value);
 
             });
-            $('#productSerialNumberInput').on('change', function () {
-                document.getElementById('productSerialNumbeReceived').innerHTML = ("Serial #: " + document.getElementById('productSerialNumberInput').value);
-                document.getElementById('repairSerialNumber').innerHTML = ("Serial #: " + document.getElementById('productSerialNumberInput').value);
+            $('#rmaReceivedByInput').on('change', function () {
+                document.getElementById('rmaReceivedBy').innerHTML = ("RMA Received By: " + document.getElementById('rmaReceivedByInput').value);
 
             });
             $('#didSendPowerAdapterInput').on('change', function () {
-                if ($('#didSendPowerAdapterInput').is(':checked')) {
-                    document.getElementById('didSendPowerAdapterReceived').innerHTML = ("Power adapter");
-                }
+                            if ($('#didSendPowerAdapterInput').is(':checked')) {
+                                document.getElementById('didSendPowerAdapterReceived').innerHTML = ("Power adapter");
+                            }
                 else {
-                    document.getElementById('didSendPowerAdapterReceived').innerHTML = ("");
-                }
-                
-            });
+                                document.getElementById('didSendPowerAdapterReceived').innerHTML = ("");
+                            }
+
+                        });
 
 
-            
-        });
+
+                    });
 
 
     </script

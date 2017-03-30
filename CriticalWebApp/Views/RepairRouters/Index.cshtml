@@ -7,11 +7,33 @@
 
 <h2>Index</h2>
 
+@using (Html.BeginForm("Index", "RepairRouters"))
+{
+    <div class="form-inline">
+        <div class="text-primary">Search RMA #: </div>
+        <input class="form-control" autocomplete="off" type="text" name="rmaNumberQuery" id="rmaNumberQuery" placeholder="###" />
+        <input class="btn btn-default" type="submit" value="Search" id="searchButton" />
+    </div>
+}
+@using (Html.BeginForm("Index", "RepairRouters"))
+{
+    <div class="form-inline">
+        <div class="text-primary">Search Customer: </div>
+        <input class="form-control" type="text" name="customerFirstNameQuery" id="customerFirstNameQuery" placeholder="First or Company Name" />
+        <input class="form-control" type="text" name="customerLastNameQuery" id="customerFirstNameQuery" placeholder="Last Name" />
+        <input class="btn btn-default" type="submit" value="Search" id="searchButton" />
+    </div>
+}
+
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            RMA #
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.ContactDate)
         </th>
@@ -75,15 +97,11 @@
         <th>
             @Html.DisplayNameFor(model => model.ProductModel)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductGen)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.ProductSerialNumber)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DidSendPowerAdaptor)
-        </th>
+    
         <th>
             @Html.DisplayNameFor(model => model.IsWarrentyRepair)
         </th>
@@ -93,23 +111,22 @@
         <th>
             @Html.DisplayNameFor(model => model.IsReferbishPkg)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsPaidRepair)
-        </th>
+      
         <th>
             @Html.DisplayNameFor(model => model.PaidRepairAmount)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ReturnLabel)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsLoggedInQb)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.ShipType)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateReceived)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductReceived)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RMAReceivedBy)
@@ -151,6 +168,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.ContactDate)
         </td>
@@ -214,15 +234,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.ProductModel)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductGen)
-        </td>
+      
         <td>
             @Html.DisplayFor(modelItem => item.ProductSerialNumber)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DidSendPowerAdaptor)
-        </td>
+      
         <td>
             @Html.DisplayFor(modelItem => item.IsWarrentyRepair)
         </td>
@@ -232,23 +248,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.IsReferbishPkg)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsPaidRepair)
-        </td>
+     
         <td>
             @Html.DisplayFor(modelItem => item.PaidRepairAmount)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ReturnLabel)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsLoggedInQb)
-        </td>
+      
         <td>
             @Html.DisplayFor(modelItem => item.ShipType)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DateReceived)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductReceived)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RMAReceivedBy)
