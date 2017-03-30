@@ -23,8 +23,13 @@ namespace CriticalWebApp.Controllers
             }
             if (!string.IsNullOrEmpty(customerFirstNameQuery) || !string.IsNullOrEmpty(customerLastNameQuery))
             {
-                if (!string.IsNullOrEmpty(customerFirstNameQuery))
-                    {
+                if (!string.IsNullOrEmpty(customerFirstNameQuery) && !string.IsNullOrEmpty(customerLastNameQuery))
+                {
+                    return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.CustomerFirstName.Contains(customerFirstNameQuery) && s.CustomerLastName.Contains(customerLastNameQuery)).ToList().OrderBy(o => o.Number));
+
+                }
+                else if (!string.IsNullOrEmpty(customerFirstNameQuery))
+                {
                     return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.CustomerFirstName.Contains(customerFirstNameQuery)).ToList().OrderBy(o => o.Number));
 
                 }
@@ -35,6 +40,9 @@ namespace CriticalWebApp.Controllers
                 }
 
             }
+
+
+
 
             if (!string.IsNullOrEmpty(serialNumberQuery))
             {
