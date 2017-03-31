@@ -167,8 +167,10 @@
             <h4>Was the below product received? </h4>
             @Html.LabelFor(model => model.ProductReceived, new { @class = "control-label" }):
             @Html.DisplayFor(model => model.ProductReceived, new { htmlAttributes = new { @class = "form-control" } })
-            <p><u>Product Model:</u>  @Html.DisplayFor(model => model.ProductModel, new { htmlAttributes = new { @class = "form-control" } })</p>
-            <p><u>Serial #:</u>  @Html.DisplayFor(model => model.ProductSerialNumber, new { htmlAttributes = new { @class = "form-control" } })</p>
+            @Html.LabelFor(model => model.ProductModel, new { @class = "control-label" }):
+            @Html.DisplayFor(model => model.ProductModel, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.LabelFor(model => model.ProductSerialNumber, new { @class = "control-label" }):
+            @Html.DisplayFor(model => model.ProductSerialNumber, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <div class="col-xs-3" style="border:2px dashed black; height:160px;">
             <h4>What else was received?</h4>
@@ -217,16 +219,16 @@
         </div>
         </div>
         <div class="col-xs-12">
-            @Html.LabelFor(model => model.CustomerComplaint):
+            @Html.LabelFor(model => model.CustomerComplaint, htmlAttributes: new { @class = "control-label" }):
             @Html.DisplayFor(model => model.CustomerComplaint, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <div class="col-xs-12">
-            @Html.LabelFor(model => model.SpecialInstructions):
+            @Html.LabelFor(model => model.SpecialInstructions, htmlAttributes: new { @class = "control-label" }):
             @Html.DisplayFor(model => model.SpecialInstructions, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <div class="col-xs-12">
             <p>
-                Repair Notes:
+               <h3><u> Repair Notes:</u></h3>
                 @Html.LabelFor(model => model.WasRepaired, new { @class = "control-label" }):
                 @Html.DisplayFor(model => model.WasRepaired, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.LabelFor(model => model.WasReplaced, new { @class = "control-label" }):
@@ -303,5 +305,6 @@
 
     .control-label {
         text-decoration: underline;
+        color:lightslategray;
     }
 </style>
