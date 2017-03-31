@@ -288,6 +288,10 @@
     <Compile Include="Migrations\201703311610082_updateRequiredOnRouterModel2.Designer.cs">
       <DependentUpon>201703311610082_updateRequiredOnRouterModel2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703311750522_addedRequiredToTalkedTo.cs" />
+    <Compile Include="Migrations\201703311750522_addedRequiredToTalkedTo.Designer.cs">
+      <DependentUpon>201703311750522_addedRequiredToTalkedTo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -452,6 +456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703311610082_updateRequiredOnRouterModel2.resx">
       <DependentUpon>201703311610082_updateRequiredOnRouterModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703311750522_addedRequiredToTalkedTo.resx">
+      <DependentUpon>201703311750522_addedRequiredToTalkedTo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -23,6 +23,7 @@ namespace CriticalWebApp.Models
         [Display(Name = "Contacted by E-Mail")]
         public bool ContactedByEmail { get; set; }
         [Display(Name = "Correspondent")]
+        [Required]
         public string TalkedTo { get; set; }
         [Display(Name = "C.O.D. Product")]
         public bool isCODProduct { get; set; }
