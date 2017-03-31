@@ -139,11 +139,14 @@
         </div>
 
         <div class="col-xs-12">
-            @Html.LabelFor(model => model.ReturnLabel, new { @class = "control-label" }):
-            @Html.DisplayFor(model => model.ReturnLabel, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
-            @Html.LabelFor(model => model.ShipType, new { @class = "control-label" }):
-            @Html.DisplayFor(model => model.ShipType, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
-
+            <div class="col-xs-4">
+                @Html.LabelFor(model => model.ReturnLabel, new { @class = "control-label" }):
+                <a href="https://www.google.com/search?q= + @Model.ReturnLabel" target="_blank">@Html.DisplayFor(model => model.ReturnLabel, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })</a>
+            </div>
+                <div class="col-xs-5">
+                @Html.LabelFor(model => model.ShipType, new { @class = "control-label" }):
+                @Html.DisplayFor(model => model.ShipType, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
+            </div>
         </div>
     </div>
 
