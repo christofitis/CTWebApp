@@ -280,6 +280,14 @@
     <Compile Include="Migrations\201703301930046_datetimenotimef.Designer.cs">
       <DependentUpon>201703301930046_datetimenotimef.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703311608390_updateRequiredOnRouterModel.cs" />
+    <Compile Include="Migrations\201703311608390_updateRequiredOnRouterModel.Designer.cs">
+      <DependentUpon>201703311608390_updateRequiredOnRouterModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703311610082_updateRequiredOnRouterModel2.cs" />
+    <Compile Include="Migrations\201703311610082_updateRequiredOnRouterModel2.Designer.cs">
+      <DependentUpon>201703311610082_updateRequiredOnRouterModel2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -438,6 +446,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703301930046_datetimenotimef.resx">
       <DependentUpon>201703301930046_datetimenotimef.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703311608390_updateRequiredOnRouterModel.resx">
+      <DependentUpon>201703311608390_updateRequiredOnRouterModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703311610082_updateRequiredOnRouterModel2.resx">
+      <DependentUpon>201703311610082_updateRequiredOnRouterModel2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

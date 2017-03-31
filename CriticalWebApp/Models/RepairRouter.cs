@@ -18,6 +18,7 @@ namespace CriticalWebApp.Models
         [Column(TypeName = "date")]
         public DateTime ContactDate { get; set; }
         [Display(Name = "Contacted by Phone")]
+        [Required]
         public bool ContactedByPhone { get; set; }
         [Display(Name = "Contacted by E-Mail")]
         public bool ContactedByEmail { get; set; }
@@ -30,14 +31,17 @@ namespace CriticalWebApp.Models
         [Display(Name = "Current In Quickbooks")]
         public bool CurrentInQuickbooks { get; set; }
         [Display(Name = "First Name / Company")]
+        [Required]
         public string CustomerFirstName { get; set; }
         [Display(Name = "Customer Last Name")]
         public string CustomerLastName { get; set; }
         [Display(Name = "Shop Name")]
         public string ShopName { get; set; }
         [Display(Name = "Phone Number")]
+        [Required]
         public string Phone { get; set; }
         [Display(Name = "E-Mail")]
+        [Required]
         public string Email { get; set; }
         [Display(Name = "Address")]
         public string Address { get; set; }
@@ -50,7 +54,7 @@ namespace CriticalWebApp.Models
         [Display(Name = "Product in Quickbooks")]
         public bool ProdInQB { get; set; }
         [Display(Name = "Date of Purchase")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [Column(TypeName = "date")]
         public DateTime? DateOfPurchase { get; set; }
         [Display(Name = "Purchased From")]
@@ -58,6 +62,7 @@ namespace CriticalWebApp.Models
         [Display(Name = "Covered Under Warranty")]
         public bool CoveredUnderWarranty { get; set; }
         [Display(Name = "Product Model")]
+        [Required]
         public string ProductModel { get; set; }
 
         //public string ProductGen { get; set; }

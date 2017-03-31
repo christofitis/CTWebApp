@@ -137,7 +137,7 @@
 
 
                     @Html.LabelFor(model => model.DateOfPurchase, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.DateOfPurchase, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", id = "dateOfPurchasePicker" } })
+                    @Html.EditorFor(model => model.DateOfPurchase, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", id = "dateOfPurchasePicker"} })
                     @Html.ValidationMessageFor(model => model.DateOfPurchase, "", new { @class = "text-danger" })
                     @Html.LabelFor(model => model.PlaceOfPurchase, htmlAttributes: new { @class = "control-label " }):
                     @Html.EditorFor(model => model.PlaceOfPurchase, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
@@ -343,7 +343,7 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-           
+            
 
         });
 
@@ -371,6 +371,7 @@
         color: black;
         border: 2px thick black;
         vertical-align: top;
+        width:100%;
     }
 
     .control-label {

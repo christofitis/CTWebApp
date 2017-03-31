@@ -873,3 +873,5 @@ D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.addedNullableFields.resources
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.datetimenotime.resources
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.datetimenotimef.resources
+D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.updateRequiredOnRouterModel.resources
+D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.updateRequiredOnRouterModel2.resources
