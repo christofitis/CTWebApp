@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SQL COMMANDER</h2>
+<h3 class="text-danger">FOR SYSTEM ADMINISTRATOR ONLY!!!</h3>
+
+<p>Enter Sql Command</p>
+
+
+<input type="text" id="sqlPassword" placeholder="...." />
+
+@using (Html.BeginForm("Run", "SqlCommander", FormMethod.Post, new { id = "repairRouterForm" }))
+{
+    <div class="form-horizontal">
+        <div class="text-primary">SQL Command: </div>
+        <input class="form-control" type="text" name="sqlCommand" id="sqlCommand" placeholder="Authorized personel only!" />
+        
+        <input class="btn btn-default" type="submit" value="Search" id="searchButton" />
+    </div>
+}
+
+
+@section scripts{
+    
+    <script>
+        $(document).ready(function () {
+
+            
+                
+                $("#repairRouterForm").submit(function (event) {
+
+                    if (document.getElementById('sqlPassword').value == "Nothing") {
+                       
+                        if (confirm("Are you sure?")) {
+                            return true;
+                        }
+                        
+                    }
+                    
+                    event.preventDefault();
+                    return false;
+
+                });
+            
+          
+            
+
+
+
+        });
+        
+
+
+    </script>
+    
+    }

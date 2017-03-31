@@ -225,6 +225,7 @@
     <Compile Include="Controllers\RepairRoutersController.cs" />
     <Compile Include="Controllers\RepairsController.cs" />
     <Compile Include="Controllers\SerialNumbersController.cs" />
+    <Compile Include="Controllers\SqlCommanderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -398,6 +399,7 @@
     <Content Include="Views\RepairRouters\Details.cshtml" />
     <Content Include="Views\RepairRouters\Edit.cshtml" />
     <Content Include="Views\RepairRouters\Index.cshtml" />
+    <Content Include="Views\SqlCommander\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
