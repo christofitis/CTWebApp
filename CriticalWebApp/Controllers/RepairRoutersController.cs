@@ -101,7 +101,7 @@ namespace CriticalWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ContactDate,ContactedByPhone,ContactedByEmail,TalkedTo,isCODProduct,IsCodMoney,CurrentInQuickbooks,CustomerFirstName,CustomerLastName,ShopName,Phone,Email,Address,Cirt,State,ZipCode,ProdInQB,DateOfPurchase,PlaceOfPurchase,CoveredUnderWarranty,ProductModel,ProductGen,ProductSerialNumber,DidSendAdaptor,IsWarrentyRepair,IsReplaceRepackage,IsReferbishPkg,IsPaidRepair,PaidRepairAmount,ReturnLabel,IsLoggedInQb,ShipType,DateReceived,RMAReceivedBy,IsWithinTheUSA,CustomerComplaint,SpecialInstructions,WasRepaired,WasReplaced,RepairDoneBy,RepairDate,OutSerialNumber,FirstTestDone,FirstTester,SecondTestDone,SecondTester")] RepairRouter repairRouter)
+        public ActionResult Edit( RepairRouter repairRouter)
         {
             if (ModelState.IsValid)
             {

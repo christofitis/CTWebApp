@@ -39,7 +39,16 @@
                     <ul class="dropdown-menu">
                         <li>@Html.ActionLink("Log a Repair", "Create", "Repairs")</li>
                         <li>@Html.ActionLink("Lookup a Repair", "Index", "Repairs")</li>
-                        <li>@Html.ActionLink("Start A Repair", "Index", "RepairRouters")</li>
+                       
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">RMA <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Lookup a RMA", "Index", "RepairRouters")</li>
+                        <li>@Html.ActionLink("Start A Repair", "Create", "RepairRouters")</li>
+                        
+
                     </ul>
                 </li>
                 <li class="dropdown">

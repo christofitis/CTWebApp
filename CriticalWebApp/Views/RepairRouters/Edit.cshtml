@@ -126,7 +126,7 @@
 
         <div class="form-group-sm">
 
-            <div class="col-xs-3" style="margin-top:10px; margin-bottom:auto; margin-left:auto; margin-right:auto; border:solid; border-color:black">
+            <div class="col-xs-3" style="margin-top:10px; margin-bottom:auto; margin-left:auto; margin-right:auto; border:2px dashed black;">
                 <p style="font-size:large">
                     <u>Warranty Status</u>
                     @Html.LabelFor(model => model.ProdInQB, htmlAttributes: new { @class = "control-label", @style = "margin-left: 20px; margin-right:auto; font-size:small" }):
@@ -147,7 +147,7 @@
             </div>
 
 
-            <div class="col-xs-3" style="margin-top:10px; margin-bottom:20px; margin-left:30px; margin-right:auto; border:solid; border-color:black; padding-bottom:9px">
+            <div class="col-xs-3" style="margin-top:10px; margin-bottom:20px; margin-left:30px; margin-right:auto; border:2px dashed black; padding-bottom:9px">
                 <p style="font-size:large"><u>Product Info</u></p>
                 @Html.LabelFor(model => model.ProductModel, htmlAttributes: new { @class = "control-label " }):
                 @Html.EditorFor(model => model.ProductModel, new { htmlAttributes = new { @class = "form-control", id = "productModelInput" } })
@@ -158,7 +158,7 @@
 
             </div>
 
-            <div class="col-xs-3" style="margin-top:10px; margin-bottom:auto; margin-left:30px; margin-right:auto; border:solid; border-color:black; padding-bottom:12px">
+            <div class="col-xs-3" style="margin-top:10px; margin-bottom:auto; margin-left:30px; margin-right:auto; border:2px dashed black; padding-bottom:12px">
                 <p style="font-size:large"><u>Services</u></p>
                 @Html.LabelFor(model => model.IsWarrentyRepair, htmlAttributes: new { @class = "control-label " }):
                 @Html.EditorFor(model => model.IsWarrentyRepair, new { htmlAttributes = new { @class = "form-control" } })
@@ -203,16 +203,15 @@
                 @Html.EditorFor(model => model.RMAReceivedBy, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", id= "rmaReceivedByInput" } })
                 @Html.ValidationMessageFor(model => model.RMAReceivedBy, "", new { @class = "text-danger" })
             </div>
-            <div class="col-xs-3" style="border-style:dotted; border-color: white; height:160px">
+            <div class="col-xs-3" style="border:2px dashed black; height:160px">
                 <p>Was the below product received? </p>
                 @Html.LabelFor(model => model.ProductReceived, htmlAttributes: new { @class = "control-label " }):
                 @Html.EditorFor(model => model.ProductReceived, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductReceived, "", new { @class = "text-danger" })
-                <p id="productModelReceived">Product Model: </p>
-                <p id="productSerialNumbeReceived">Serial #: </p>
-                <p id="didSendPowerAdapterReceived"></p>
+                <p><u>Product Model:</u>  @Html.DisplayFor(model => model.ProductModel, new { htmlAttributes = new { @class = "form-control" } })</p>
+                <p><u>Serial #:</u>  @Html.DisplayFor(model => model.ProductSerialNumber, new { htmlAttributes = new { @class = "form-control" } })</p>
             </div>
-            <div class="col-xs-3" style="border-style:dotted; border-color: white; height:160px;">
+            <div class="col-xs-3" style="border:2px dashed black; height:160px;">
                 <p>What else was received?</p>
                 <p style="color:darkgray">(seporate items by comma's)</p>
                 @Html.LabelFor(model => model.OtherReceived, htmlAttributes: new { @class = "control-label " }):
@@ -236,6 +235,8 @@
             <div class="col-xs-4">
 
                 @Html.Label("Name: ", htmlAttributes: new { @class = "control-label " })
+                @Html.DisplayFor(model => model.CustomerFirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DisplayFor(model => model.CustomerLastName, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="col-xs-4">
                 @Html.LabelFor(model => model.IsWithinTheUSA, htmlAttributes: new { @class = "control-label " }):
@@ -244,13 +245,19 @@
             </div>
             <div class="col-xs-4">
                 @Html.Label("RMA Received By: ", htmlAttributes: new { @class = "control-label ",id = "rmaReceivedBy" })
+                @Html.DisplayFor(model => model.RMAReceivedBy, new { htmlAttributes = new { @class = "form-control" } })
             </div>
 
-            <div class="col-xs-12">
-                @Html.Label("Product Model: ", htmlAttributes: new { @class = "control-label col-xs-4", id = "repairProductModel" })
-
-                @Html.Label("Serial #: ", htmlAttributes: new { @class = "control-label ", id = "repairSerialNumber" })
+               <div class="col-xs-12">
+            <div class="col-xs-4">
+                @Html.Label("Product Model: ", htmlAttributes: new { @class = "control-label" })
+                @Html.DisplayFor(model => model.ProductModel, new { htmlAttributes = new { @class = "form-control" } })
             </div>
+            <div>
+            @Html.Label("Serial #: ", htmlAttributes: new { @class = "control-label ", id = "productSerialNumberRepair" })
+            @Html.DisplayFor(model => model.ProductSerialNumber, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+                   </div>
             <div class="col-xs-12">
                 @Html.LabelFor(model => model.CustomerComplaint, htmlAttributes: new { @class = "control-label " }):
                 @Html.TextAreaFor(model => model.CustomerComplaint, new { htmlAttributes = new { @class = "form-control" } })
@@ -263,7 +270,7 @@
             </div>
             <div class="col-xs-12">
                 <p>
-                    Repair Notes:
+                    <h3><u>Repair Notes:</u></h3>
                     @Html.LabelFor(model => model.WasRepaired, htmlAttributes: new { @class = "control-label " }):
                     @Html.EditorFor(model => model.WasRepaired, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.WasRepaired, "", new { @class = "text-danger" })
@@ -274,7 +281,7 @@
             </div>
             <div class="col-xs-12">
                 @Html.LabelFor(model => model.RepairNotes, htmlAttributes: new { @class = "control-label " }):
-                @Html.TextAreaFor(model => model.RepairNotes, new { htmlAttributes = new { @class = "form-control", @style = "color: green" } })
+                @Html.TextAreaFor(model => model.RepairNotes, new { htmlAttributes = new { @class = "form-control"} })
                 @Html.ValidationMessageFor(model => model.RepairNotes, "", new { @class = "text-danger" })
             </div>
             <div class="col-xs-3">
@@ -331,11 +338,7 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            document.getElementById('productModelReceived').innerHTML = ("Product Model: " + document.getElementById('productModelInput').value);
-            document.getElementById('repairProductModel').innerHTML = ("Product Model: " + document.getElementById('productModelInput').value);
-            document.getElementById('productSerialNumbeReceived').innerHTML = ("Serial #: " + document.getElementById('productSerialNumberInput').value);
-            document.getElementById('repairSerialNumber').innerHTML = ("Serial #: " + document.getElementById('productSerialNumberInput').value);
-            document.getElementById('rmaReceivedBy').innerHTML = ("RMA Received By: " + document.getElementById('rmaReceivedByInput').value);
+           
 
         });
 
@@ -345,3 +348,27 @@
     
     
     }
+<style>
+    input[type=text] {
+        color: white;
+        border: 2px thin black;
+        background-color: #2E3338;
+        margin: 5px;
+    }
+
+    input[type=date] {
+        color: white;
+        background-color: #2E3338;
+    }
+
+    textarea {
+        background-color: #2E3338;
+        color: black;
+        border: 2px thick black;
+        vertical-align: top;
+    }
+
+    .control-label {
+        text-decoration: underline;
+    }
+</style>

@@ -35,7 +35,7 @@ namespace CriticalWebApp.Models
         public string CustomerLastName { get; set; }
         [Display(Name = "Shop Name")]
         public string ShopName { get; set; }
-        [Display(Name = "Pnone Number")]
+        [Display(Name = "Phone Number")]
         public string Phone { get; set; }
         [Display(Name = "E-Mail")]
         public string Email { get; set; }
