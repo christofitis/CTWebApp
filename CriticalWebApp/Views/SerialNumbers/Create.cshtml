@@ -12,7 +12,7 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+    <div class="form-horizontal" onkeydown = "return (event.keyCode!=13)">
         <div class="radio">
             <label>
                 <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
@@ -196,10 +196,6 @@
                 numOfEntries = ((endNum - firstNum)+1);
                
             }
-            
-            
-           
-            
             
            
             var numOfDuplicates = 0;

@@ -14,7 +14,7 @@ namespace CriticalWebApp.Models
         [Display(Name = "RMA#")]
         public int Id { get; set; }
         [Display(Name = "Contact Date")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true,DataFormatString = "{0:MM/dd/yyyy}")]
         [Column(TypeName = "date")]
         public DateTime ContactDate { get; set; }
         [Display(Name = "Contacted by Phone")]
@@ -88,7 +88,7 @@ namespace CriticalWebApp.Models
 
         //receive
         [Display(Name = "Date Received")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [Column(TypeName = "date")]
         public DateTime? DateReceived { get; set; }
         [Display(Name = "Received By")]
@@ -123,7 +123,7 @@ namespace CriticalWebApp.Models
         [Display(Name = "Repair Done By")]
         public string RepairDoneBy { get; set; }
         [Display(Name = "Repair Date")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [Column(TypeName = "date")]
         public DateTime? RepairDate { get; set; }
         [Display(Name = "Serial# Sent Out")]
@@ -132,5 +132,7 @@ namespace CriticalWebApp.Models
         public string FirstTester { get; set; }
         [Display(Name = "Second Tester")]
         public string SecondTester { get; set; }
+
+        public string Status { get; set; }
     }
 }

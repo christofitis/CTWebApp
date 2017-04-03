@@ -15,32 +15,40 @@ namespace CriticalWebApp.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: RepairRouters
-        public ActionResult Index(int? rmaNumberQuery, string customerFirstNameQuery = null, string customerLastNameQuery = null)
+        public ActionResult Index(int? rmaNumberQuery, string customerFirstNameQuery = null, string customerLastNameQuery = null, string sortyBy = null)
         {
-            if (!string.IsNullOrEmpty(rmaNumberQuery.ToString()))
+            if (string.IsNullOrEmpty(sortyBy) || sortyBy == "All")
             {
-                return View(db.RepairRouters.Where(r => r.Id == rmaNumberQuery).ToList());
+                if (!string.IsNullOrEmpty(rmaNumberQuery.ToString()))
+                {
+                    return View(db.RepairRouters.Where(r => r.Id == rmaNumberQuery).ToList().OrderByDescending(o => o.Id));
+                }
+                if (!string.IsNullOrEmpty(customerFirstNameQuery) || !string.IsNullOrEmpty(customerLastNameQuery))
+                {
+                    if (!string.IsNullOrEmpty(customerFirstNameQuery) && !string.IsNullOrEmpty(customerLastNameQuery))
+                    {
+                        return View(db.RepairRouters.Where(s => s.CustomerFirstName.Contains(customerFirstNameQuery) && s.CustomerLastName.Contains(customerLastNameQuery)).ToList().OrderBy(o => o.Id));
+
+                    }
+                    else if (!string.IsNullOrEmpty(customerFirstNameQuery))
+                    {
+                        return View(db.RepairRouters.Where(s => s.CustomerFirstName.Contains(customerFirstNameQuery)).ToList().OrderBy(o => o.Id));
+
+                    }
+                    else if (!string.IsNullOrEmpty(customerLastNameQuery))
+                    {
+                        return View(db.RepairRouters.Where(s => s.CustomerLastName.Contains(customerLastNameQuery)).ToList().OrderBy(o => o.Id));
+
+                    }
+                }
+           
+
             }
-            if (!string.IsNullOrEmpty(customerFirstNameQuery) || !string.IsNullOrEmpty(customerLastNameQuery))
+            else
             {
-                if (!string.IsNullOrEmpty(customerFirstNameQuery) && !string.IsNullOrEmpty(customerLastNameQuery))
-                {
-                    return View(db.RepairRouters.Where(s => s.CustomerFirstName.Contains(customerFirstNameQuery) && s.CustomerLastName.Contains(customerLastNameQuery)).ToList().OrderBy(o => o.Id));
-
-                }
-                else if (!string.IsNullOrEmpty(customerFirstNameQuery))
-                {
-                    return View(db.RepairRouters.Where(s => s.CustomerFirstName.Contains(customerFirstNameQuery)).ToList().OrderBy(o => o.Id));
-
-                }
-                else if (!string.IsNullOrEmpty(customerLastNameQuery))
-                {
-                    return View(db.RepairRouters.Where(s => s.CustomerLastName.Contains(customerLastNameQuery)).ToList().OrderBy(o => o.Id));
-
-                }
-
+                return View(db.RepairRouters.Where(r => r.Status == sortyBy).ToList().OrderByDescending(o => o.Id));
             }
-            return View(db.RepairRouters.ToList());
+            return View(db.RepairRouters.ToList().OrderByDescending(o => o.Id));
         }
 
         // GET: RepairRouters/Details/5
@@ -73,6 +81,17 @@ namespace CriticalWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                repairRouter.Status = "Complete";
+                if (repairRouter.DateReceived == null)
+                {
+                    repairRouter.Status = "Waiting to Receive";
+                    
+                }
+                else if (repairRouter.RepairDate == null)
+                {
+                    repairRouter.Status = "Waiting to be Repaired";
+                }
+
                 db.RepairRouters.Add(repairRouter);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -105,6 +124,16 @@ namespace CriticalWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                repairRouter.Status = "Complete";
+                if (repairRouter.DateReceived == null)
+                {
+                    repairRouter.Status = "Waiting to Receive";
+
+                }
+                else if (repairRouter.RepairDate == null)
+                {
+                    repairRouter.Status = "Waiting to be Repaired";
+                }
                 db.Entry(repairRouter).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

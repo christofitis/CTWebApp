@@ -6,30 +6,47 @@
 }
 
 <h2>Index</h2>
-
+<div class="col-xs-6">
+    @using (Html.BeginForm("Index", "RepairRouters"))
+    {
+        <div class="form-inline">
+            <div class="text-primary">Search RMA #: </div>
+            <input class="form-control" autocomplete="off" type="text" name="rmaNumberQuery" id="rmaNumberQuery" placeholder="###" />
+            <input class="btn btn-default" type="submit" value="Search" id="searchButton" />
+        </div>
+    }
+    @using (Html.BeginForm("Index", "RepairRouters"))
+    {
+        <div class="form-inline">
+            <div class="text-primary">Search Customer: </div>
+            <input class="form-control" type="text" name="customerFirstNameQuery" id="customerFirstNameQuery" placeholder="First or Company Name" />
+            <input class="form-control" type="text" name="customerLastNameQuery" id="customerFirstNameQuery" placeholder="Last Name" />
+            <input class="btn btn-default" type="submit" value="Search" id="searchButton" />
+        </div>
+    }
+</div>
 @using (Html.BeginForm("Index", "RepairRouters"))
 {
-    <div class="form-inline">
-        <div class="text-primary">Search RMA #: </div>
-        <input class="form-control" autocomplete="off" type="text" name="rmaNumberQuery" id="rmaNumberQuery" placeholder="###" />
-        <input class="btn btn-default" type="submit" value="Search" id="searchButton" />
-    </div>
+<div class="input-group">
+    <p>Sort By:</p>
+    <select name="sortyBy" id="sortSelect">
+        <option value="All">All</option>
+        <option value="Waiting To Receive">Waiting To Receive</option>
+        <option value="Waiting To Be Repaired">Waiting To Be Repaired</option>
+        <option value="Complete">Complete</option>
+        
+    </select>
+    <br><br>
+    <input type="submit" value="Sort">
+</div>
 }
-@using (Html.BeginForm("Index", "RepairRouters"))
-{
-    <div class="form-inline">
-        <div class="text-primary">Search Customer: </div>
-        <input class="form-control" type="text" name="customerFirstNameQuery" id="customerFirstNameQuery" placeholder="First or Company Name" />
-        <input class="form-control" type="text" name="customerLastNameQuery" id="customerFirstNameQuery" placeholder="Last Name" />
-        <input class="btn btn-default" type="submit" value="Search" id="searchButton" />
-    </div>
-}
+<div class="col-xs-12">
+    <p>
+        @Html.ActionLink("Create New", "Create",null, htmlAttributes: new { @class = "btn btn-primary"})
+    </p>
+</div>
 
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="table table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Id)
@@ -61,14 +78,16 @@
         <th>
             @Html.DisplayNameFor(model => model.ProductSerialNumber)
         </th>
-    
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
        
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Id)
+           <b>@Html.ActionLink((@Html.DisplayFor(modelItem => item.Id).ToString()), "Edit", new { id = item.Id })</b>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ContactDate)
@@ -93,7 +112,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.ProductSerialNumber)
         </td>
-      
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
@@ -104,3 +125,19 @@
 }
 
 </table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+
+        });
+
+    </script>
+}
+
+<style>
+    #sortSelect {
+        color: black;
+    }
+</style>
