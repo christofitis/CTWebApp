@@ -132,7 +132,7 @@ namespace CriticalWebApp.Models
         public string FirstTester { get; set; }
         [Display(Name = "Second Tester")]
         public string SecondTester { get; set; }
-
+        public string Notes { get; set; }
         public string Status { get; set; }
     }
 }

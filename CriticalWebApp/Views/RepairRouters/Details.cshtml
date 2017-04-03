@@ -155,7 +155,7 @@
 
 
     <div class="text-center">
-        <h2><u>2. Received</u></h2>
+        <h2><u>2. Receive</u></h2>
     </div>
     <div class="form-group-sm" style="margin-top:10px">
         <div class="col-xs-4">
@@ -267,11 +267,16 @@
 
 
     </div>
-
+   
 
 </div>
 <hr style="width: 100%; margin-top:25px; color: black; height: 1px; padding-top:4px; background-color:black;" />
 <br />
+<div class="col-xs-12">
+    @Html.LabelFor(model => model.Notes, new { @class = "control-label" }):
+    @Html.DisplayFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control", id = "repairDatePicker" } })
+</div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

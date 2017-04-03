@@ -192,7 +192,7 @@
 
 
             <div class="text-center">
-                <h2><u>2. Received</u></h2>
+                <h2><u>2. Receive</u></h2>
             </div>
             <div class="container" style="border:2px solid darkgrey;">
                 <div class="form-group-sm" style="margin-top:10px">
@@ -323,7 +323,11 @@
 
 
             <hr style="width: 100%; margin-top:25px; color: black; height: 1px; padding-top:4px; background-color:black;" />
-
+        <div class="col-xs-12">
+            @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label " }):
+            @Html.TextAreaFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+        </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -367,7 +371,7 @@
 
     textarea {
         background-color: #2E3338;
-        color: black;
+        color: White;
         border: 2px thick black;
         vertical-align: top;
         width:100%;

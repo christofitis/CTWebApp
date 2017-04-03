@@ -151,7 +151,12 @@
                 <div class="col-xs-3" style="margin-top:10px; margin-bottom:20px; margin-left:30px; margin-right:auto; border:2px dashed black; padding-bottom:9px">
                     <p style="font-size:large"><u>Product Info</u></p>
                     @Html.LabelFor(model => model.ProductModel, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.ProductModel, new { htmlAttributes = new { @class = "form-control", id = "productModelInput" } })
+                    <select class="form-control" id="productList">
+                        <option value="" disabled selected>Select a product</option>
+                        
+                    </select>
+                    @Html.HiddenFor(model => model.ProductModel, htmlAttributes: new { id = "productModelHidden" })
+                    @*@Html.EditorFor(model => model.ProductModel, new { htmlAttributes = new { @class = "form-control", id = "productModelInput" } })*@
                     @Html.ValidationMessageFor(model => model.ProductModel, "", new { @class = "text-danger" })
                     @Html.LabelFor(model => model.ProductSerialNumber, htmlAttributes: new { @class = "control-label " }):
                     @Html.EditorFor(model => model.ProductSerialNumber, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", id = "productSerialNumberInput" } })
@@ -191,7 +196,7 @@
 
 
         <div class="text-center">
-            <h2><u>2. Received</u></h2>
+            <h2><u>2. Receive</u></h2>
         </div>
         <div class="container" style="border:2px solid darkgrey;">
             <div class="form-group-sm" style="margin-top:10px">
@@ -317,7 +322,11 @@
 
 
             <hr style="width: 100%; margin-top:25px; color: black; height: 1px; padding-top:4px; background-color:black;" />
-
+        <div class="col-xs-12">
+            @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label " }):
+            @Html.TextAreaFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+        </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -336,21 +345,18 @@
 @section scripts {
                     @Scripts.Render("~/bundles/jqueryval")
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
-                        document.getElementById('ContactDatePicker').valueAsDate = new Date();
-            //document.getElementById('dateOfPurchasePicker').valueAsDate = new Date();
-            //document.getElementById('repairDatePicker').valueAsDate = new Date();
-            //document.getElementById('dateReceivedPicker').valueAsDate = new Date();
+            document.getElementById('ContactDatePicker').valueAsDate = new Date();
 
             $('#productModelInput').on('change', function () {
-                            document.getElementById('productModelReceived').innerHTML = (document.getElementById('productModelInput').value);
-                            document.getElementById('repairProductModel').innerHTML = ("Product Model: " + document.getElementById('productModelInput').value);
+                document.getElementById('productModelReceived').innerHTML = (document.getElementById('productModelInput').value);
+                document.getElementById('repairProductModel').innerHTML = ("Product Model: " + document.getElementById('productModelInput').value);
 
-                        });
+            });
             $('#productSerialNumberInput').on('change', function () {
-                            document.getElementById('productSerialNumbeReceived').innerHTML = (document.getElementById('productSerialNumberInput').value);
-                            document.getElementById('repairSerialNumber').innerHTML = ("Serial #: " + document.getElementById('productSerialNumberInput').value);
+                document.getElementById('productSerialNumbeReceived').innerHTML = (document.getElementById('productSerialNumberInput').value);
+                document.getElementById('repairSerialNumber').innerHTML = ("Serial #: " + document.getElementById('productSerialNumberInput').value);
 
             });
             $('#rmaReceivedByInput').on('change', function () {
@@ -358,25 +364,47 @@
 
             });
             $('#didSendPowerAdapterInput').on('change', function () {
-                            if ($('#didSendPowerAdapterInput').is(':checked')) {
-                                document.getElementById('didSendPowerAdapterReceived').innerHTML = ("Power adapter");
-                            }
+                if ($('#didSendPowerAdapterInput').is(':checked')) {
+                    document.getElementById('didSendPowerAdapterReceived').innerHTML = ("Power adapter");
+                }
                 else {
-                                document.getElementById('didSendPowerAdapterReceived').innerHTML = ("");
-                            }
+                    document.getElementById('didSendPowerAdapterReceived').innerHTML = ("");
+                }
 
             });
 
-           
-                    });
+            var productListDropdown = $("#productList");
+            $.getJSON("/Api/Products", null, function (data) {
+                $("#productList option").remove(); // Remove all <option> child tags.
+                var allProducts = [];
+                var products = [];
+                $.each(data, function (index, item) { // Iterates through a collection
+                    allProducts.push(item);
+                });
+                
+                $.each(allProducts, function (i, prod) {
+                    if (($.inArray(prod.Name, products)) == -1) {
+                        console.log(prod.Name);
+                        products.push(prod.Name);
+                        productListDropdown.append($("<option />").val(prod.Name).text(prod.Name));
+                    }
+                });
+            });
+
+            
+
+        });
         $("#repairRouterForm").submit(function (event) {
             if (confirm("Create a RMA for "
                 + $('#customerFirstNameInput').val()
                 + " "
                 + $('#customerLastNameInput').val()
-                + ". Are you sure?"))
-
+                + ". Are you sure?")){
+                document.getElementById('productModelHidden').value = (document.getElementById('productList').value);
                 return true;
+
+            }
+
             else {
                 event.preventDefault();
                 return false;
@@ -384,7 +412,8 @@
 
         });
 
-    </script>
+</script>
+
     }
 @*changes color of all input boxes, i didnt like it*@
 <style>
