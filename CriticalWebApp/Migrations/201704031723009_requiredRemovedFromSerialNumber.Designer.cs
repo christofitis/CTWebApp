@@ -7,13 +7,13 @@ namespace CriticalWebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class changedModel : IMigrationMetadata
+    public sealed partial class requiredRemovedFromSerialNumber : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(changedModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(requiredRemovedFromSerialNumber));
         
         string IMigrationMetadata.Id
         {
-            get { return "201703281558002_changedModel"; }
+            get { return "201704031723009_requiredRemovedFromSerialNumber"; }
         }
         
         string IMigrationMetadata.Source

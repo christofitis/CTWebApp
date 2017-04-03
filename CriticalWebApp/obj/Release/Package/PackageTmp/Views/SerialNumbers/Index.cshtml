@@ -8,110 +8,156 @@
 <h2>Serial Number Lookup</h2>
 @using (Html.BeginForm("Index", "SerialNumbers"))
 {
-    <div>Search for a Serial #: </div>
-    <input type="text" name="serialNumberQuery" id="serialNumberQuery" placeholder=""/>
-    <input type="submit" value="Search" id="searchButton" />
+    <div class="form-inline">
+        <div class="text-primary">Search for a Serial #: </div>
+        <input class="form-control" autocomplete="off" type="text" name="serialNumberQuery" id="serialNumberQuery" placeholder="2r1234" />
+        <input class="btn btn-default" type="submit" value="Search" id="searchButton" />
+    </div>
 }
 
 @using (Html.BeginForm("Index", "SerialNumbers"))
-{     <div>Search a date range: </div>
-     <input type="date" name="startDateQuery" id="startDateQueryInput" />
-     <input type="date" name="endDateQuery" id="endDateQueryInput" />
-    <input type="submit" value="Search" id="dateSearchButton" />
+{
+    <div class="form-inline">
+        <div class="text-primary">Search Customer: </div>
+        <input class="form-control" type="text" name="customerFirstNameQuery" id="customerFirstNameQuery" placeholder="First or Company Name" />
+        <input class="form-control" type="text" name="customerLastNameQuery" id="customerFirstNameQuery" placeholder="Last Name" />
+        <input class="btn btn-default" type="submit" value="Search" id="searchButton" />
+    </div>
 }
 
 
-
-@Html.ActionLink("Add", "Create", new { }, new { @class = "btn btn-primary pull-right" })
-
-
-
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Number)
-        </th>
-        <th>
-            Product: Revision
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.MFGDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.Name): @Html.DisplayFor(modelItem => item.Product.Revision)
-            </td>
-
-
-
-            <td>
-                @Html.DisplayFor(modelItem => item.MFGDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-
-        </tr>
-    }
-
-</table>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-        document.getElementById('serialNumberQuery').value = '@ViewBag.UserInput';
-        document.getElementById('startDateQueryInput').valueAsDate = '@ViewBag.StartDate';
-        document.getElementById('endDateQueryInput').value = '@ViewBag.EndDate';
-
-        document.getElementById('serialNumberQuery').focus();
-    });
-
-
-    //can do studd depending is search box is left empty or not
-    document.getElementById('searchButton').onclick = function () {
-        var queryNum = document.getElementById('serialNumberQuery').value;
-        console.log('Searching for: ' + queryNum);
-        if (document.getElementById('serialNumberQuery').value == "") {
-            //alert('blank');
+@using (Html.BeginForm("Index", "SerialNumbers"))
+{
+    <div class="form-inline">
+        <div class="text-primary">Search MFG Date Range: </div>
+        <input class="form-control" type="date" name="startDateQuery" id="startDateQueryInput" />
+        <input class="form-control" type="date" name="endDateQuery" id="endDateQueryInput" />
+        <input class="btn btn-default" type="submit" value="Search" id="dateSearchButton" />
+        </div>
         }
-        else {
-            document.getElementById('serialNumberQuery').value = queryNum;
+        @using (Html.BeginForm("Index", "SerialNumbers"))
+        {
+            <div class="form-inline">
+                <div class="text-primary">Search Ship Date Range: </div>
+                <input class="form-control" type="date" name="startShipDateQuery" id="startShipDateQueryInput" />
+                <input class="form-control" type="date" name="endShipDateQuery" id="endShipDateQueryInput" />
 
-
-
-
-
-            var searchQuery = {
-                numberQuery: queryNum
-                
-            };
-            console.log(searchQuery.numberQuery);
-            $.ajax({
-                type: 'GET',
-                url: '/api/serialnumbers/',
-                data: searchQuery,
-                success: function (result) {
-                    if (result[0] == null) {
-                        //alert('nothing found');
-                    }
-                    else {
-                        //alert('found: ' + result.length + ' items');
-                    }
+                <input class="btn btn-default" type="submit" value="Search" id="shipDateSearchButton" />
+                </div>
                 }
-            });
-        }
-    };
 
-</script>
+
+                @Html.ActionLink("Add", "Create", new { }, new { @class = "btn btn-primary pull-right" })
+
+
+
+                <table class="table table-hover">
+                    <tr >
+                        <th>
+                            Serial Number
+                        </th>
+                        <th>
+                            Product
+                        </th>
+                        <th>
+                            Hardware Revision
+                        </th>
+
+                        <th>
+                            Software Revision
+                        </th>
+                        <th>
+                            MFG Date
+                        </th>
+                        <th>
+                            Customer
+                        </th>
+                        <th>
+                            Ship Date
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Notes)
+                        </th>
+
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Number)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product.HardwareRevision)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product.SoftwareRevision)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MFGDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerFirstName) @Html.DisplayFor(modelItem => item.CustomerLastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ShipDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Notes)
+                            </td>
+
+                        </tr>
+                    }
+
+                </table>
+                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+
+                <script>
+                    $(document).ready(function () {
+                        document.getElementById('serialNumberQuery').value = '@ViewBag.UserInput';
+                        document.getElementById('startDateQueryInput').valueAsDate = '@ViewBag.StartDate';
+                        document.getElementById('endDateQueryInput').value = '@ViewBag.EndDate';
+
+                        document.getElementById('serialNumberQuery').focus();
+                    });
+
+
+                    //can do studd depending is search box is left empty or not
+                    document.getElementById('searchButton').onclick = function () {
+                        var queryNum = document.getElementById('serialNumberQuery').value;
+                        console.log('Searching for: ' + queryNum);
+                        if (document.getElementById('serialNumberQuery').value == "") {
+                            //alert('blank');
+                        }
+                        else {
+                            document.getElementById('serialNumberQuery').value = queryNum;
+
+
+
+
+
+                            var searchQuery = {
+                                numberQuery: queryNum
+
+                            };
+                            console.log(searchQuery.numberQuery);
+                            $.ajax({
+                                type: 'GET',
+                                url: '/api/serialnumbers/',
+                                data: searchQuery,
+                                success: function (result) {
+                                    if (result[0] == null) {
+                                        //alert('nothing found');
+                                    }
+                                    else {
+                                        //alert('found: ' + result.length + ' items');
+                                    }
+                                }
+                            });
+                        }
+                    };
+
+                </script>

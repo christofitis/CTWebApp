@@ -30,7 +30,7 @@ namespace CriticalWebApp.Models
 
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         [Display(Name = "Shipment Date")]
-        public DateTime ShipDate { get; set; }
+        public DateTime? ShipDate { get; set; }
 
         public string Notes { get; set; }
 

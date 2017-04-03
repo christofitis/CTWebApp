@@ -230,77 +230,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703232247390_initialize.cs" />
-    <Compile Include="Migrations\201703232247390_initialize.Designer.cs">
-      <DependentUpon>201703232247390_initialize.cs</DependentUpon>
+    <Compile Include="Migrations\201704031705566_initialize.cs" />
+    <Compile Include="Migrations\201704031705566_initialize.Designer.cs">
+      <DependentUpon>201704031705566_initialize.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703242044230_addCustomerFirstAndLastNameToSerialNumber.cs" />
-    <Compile Include="Migrations\201703242044230_addCustomerFirstAndLastNameToSerialNumber.Designer.cs">
-      <DependentUpon>201703242044230_addCustomerFirstAndLastNameToSerialNumber.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703262120517_tryingStuff.cs" />
-    <Compile Include="Migrations\201703262120517_tryingStuff.Designer.cs">
-      <DependentUpon>201703262120517_tryingStuff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703262145309_requiredCustomerName2.cs" />
-    <Compile Include="Migrations\201703262145309_requiredCustomerName2.Designer.cs">
-      <DependentUpon>201703262145309_requiredCustomerName2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703270145152_startingRepairRouterModel.cs" />
-    <Compile Include="Migrations\201703270145152_startingRepairRouterModel.Designer.cs">
-      <DependentUpon>201703270145152_startingRepairRouterModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703271628023_update.cs" />
-    <Compile Include="Migrations\201703271628023_update.Designer.cs">
-      <DependentUpon>201703271628023_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703281558002_changedModel.cs" />
-    <Compile Include="Migrations\201703281558002_changedModel.Designer.cs">
-      <DependentUpon>201703281558002_changedModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703281824569_addedRepairNoteProperty.cs" />
-    <Compile Include="Migrations\201703281824569_addedRepairNoteProperty.Designer.cs">
-      <DependentUpon>201703281824569_addedRepairNoteProperty.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703301750458_updatingRepairRouterModel.cs" />
-    <Compile Include="Migrations\201703301750458_updatingRepairRouterModel.Designer.cs">
-      <DependentUpon>201703301750458_updatingRepairRouterModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703301820246_addedNullablkeDatTine.cs" />
-    <Compile Include="Migrations\201703301820246_addedNullablkeDatTine.Designer.cs">
-      <DependentUpon>201703301820246_addedNullablkeDatTine.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703301822488_addedNullableFields.cs" />
-    <Compile Include="Migrations\201703301822488_addedNullableFields.Designer.cs">
-      <DependentUpon>201703301822488_addedNullableFields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703301928097_datetimenotime.cs" />
-    <Compile Include="Migrations\201703301928097_datetimenotime.Designer.cs">
-      <DependentUpon>201703301928097_datetimenotime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703301930046_datetimenotimef.cs" />
-    <Compile Include="Migrations\201703301930046_datetimenotimef.Designer.cs">
-      <DependentUpon>201703301930046_datetimenotimef.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703311608390_updateRequiredOnRouterModel.cs" />
-    <Compile Include="Migrations\201703311608390_updateRequiredOnRouterModel.Designer.cs">
-      <DependentUpon>201703311608390_updateRequiredOnRouterModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703311610082_updateRequiredOnRouterModel2.cs" />
-    <Compile Include="Migrations\201703311610082_updateRequiredOnRouterModel2.Designer.cs">
-      <DependentUpon>201703311610082_updateRequiredOnRouterModel2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703311750522_addedRequiredToTalkedTo.cs" />
-    <Compile Include="Migrations\201703311750522_addedRequiredToTalkedTo.Designer.cs">
-      <DependentUpon>201703311750522_addedRequiredToTalkedTo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704030107039_makingRepairRStatusTracker.cs" />
-    <Compile Include="Migrations\201704030107039_makingRepairRStatusTracker.Designer.cs">
-      <DependentUpon>201704030107039_makingRepairRStatusTracker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704030219168_repairRouterNotes.cs" />
-    <Compile Include="Migrations\201704030219168_repairRouterNotes.Designer.cs">
-      <DependentUpon>201704030219168_repairRouterNotes.cs</DependentUpon>
+    <Compile Include="Migrations\201704031723009_requiredRemovedFromSerialNumber.cs" />
+    <Compile Include="Migrations\201704031723009_requiredRemovedFromSerialNumber.Designer.cs">
+      <DependentUpon>201704031723009_requiredRemovedFromSerialNumber.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -423,59 +359,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703232247390_initialize.resx">
-      <DependentUpon>201703232247390_initialize.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704031705566_initialize.resx">
+      <DependentUpon>201704031705566_initialize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703242044230_addCustomerFirstAndLastNameToSerialNumber.resx">
-      <DependentUpon>201703242044230_addCustomerFirstAndLastNameToSerialNumber.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703262120517_tryingStuff.resx">
-      <DependentUpon>201703262120517_tryingStuff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703262145309_requiredCustomerName2.resx">
-      <DependentUpon>201703262145309_requiredCustomerName2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703270145152_startingRepairRouterModel.resx">
-      <DependentUpon>201703270145152_startingRepairRouterModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703271628023_update.resx">
-      <DependentUpon>201703271628023_update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703281558002_changedModel.resx">
-      <DependentUpon>201703281558002_changedModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703281824569_addedRepairNoteProperty.resx">
-      <DependentUpon>201703281824569_addedRepairNoteProperty.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703301750458_updatingRepairRouterModel.resx">
-      <DependentUpon>201703301750458_updatingRepairRouterModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703301820246_addedNullablkeDatTine.resx">
-      <DependentUpon>201703301820246_addedNullablkeDatTine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703301822488_addedNullableFields.resx">
-      <DependentUpon>201703301822488_addedNullableFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703301928097_datetimenotime.resx">
-      <DependentUpon>201703301928097_datetimenotime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703301930046_datetimenotimef.resx">
-      <DependentUpon>201703301930046_datetimenotimef.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703311608390_updateRequiredOnRouterModel.resx">
-      <DependentUpon>201703311608390_updateRequiredOnRouterModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703311610082_updateRequiredOnRouterModel2.resx">
-      <DependentUpon>201703311610082_updateRequiredOnRouterModel2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703311750522_addedRequiredToTalkedTo.resx">
-      <DependentUpon>201703311750522_addedRequiredToTalkedTo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704030107039_makingRepairRStatusTracker.resx">
-      <DependentUpon>201704030107039_makingRepairRStatusTracker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704030219168_repairRouterNotes.resx">
-      <DependentUpon>201704030219168_repairRouterNotes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704031723009_requiredRemovedFromSerialNumber.resx">
+      <DependentUpon>201704031723009_requiredRemovedFromSerialNumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

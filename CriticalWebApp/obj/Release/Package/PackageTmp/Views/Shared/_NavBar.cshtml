@@ -11,7 +11,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="dropdown">
+                @*<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventory <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><b>Department</b></li>
@@ -24,24 +24,43 @@
 
                         <li>@Html.ActionLink("Off-Site", "Offsite", "Inventory")</li>
                     </ul>
-                </li>
+                </li>*@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Serial # <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>@Html.ActionLink("Log a Serial #", "Create", "SerialNumbers")</li>
                         <li>@Html.ActionLink("Lookup a Serial #", "Index", "SerialNumbers")</li>
+                        
                     </ul>
                 </li>
-
+                
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Repairs <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Repairs (old) <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>@Html.ActionLink("Log a Repair", "Create", "Repairs")</li>
                         <li>@Html.ActionLink("Lookup a Repair", "Index", "Repairs")</li>
+                       
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">RMA <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Lookup a RMA", "Index", "RepairRouters")</li>
+                        <li>@Html.ActionLink("Start a RMA", "Create", "RepairRouters")</li>
+                        
+
                     </ul>
                 </li>
                 
-                
+                    <li class="dropdown" >
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Products", "Index", "Products")</li>
+                            @*<li>@Html.ActionLink("SqlCommander", "Index", "SqlCommander")</li>*@
+
+                        </ul>
+                    </li>
+               
             </ul>
             <div class="pull-right">@DateTime.Now</div>
 
