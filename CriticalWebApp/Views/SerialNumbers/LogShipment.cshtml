@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "LogShipment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>LogShipment</h2>
+@using (Html.BeginForm("Add", "SerialNumbers", FormMethod.Post, new { id = "logShipmentForm" }))
+{
+<div class="form-group-sm">
+   
+    <p class="control-label">Start Serial Number</p>
+    <input class="form-control" type="text" name="serialNumberStartInput" />
+    <p class="control-label">End Serial Number</p>
+    <input class="form-control" type="text" name="serialNumberEndInput" />
+    <input class="btn btn-primary" id="logShipmentFormSubmitButton" type="submit" value="Add" />
+</div>
+
+<h3>Serial Numbers in shipment:</h3>
+<ul id="shipmentSerialNumbers">
+    <li>one</li>
+    <li>2</li>
+</ul>
+
+
+}
+
+@section scripts{
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var numbersInShipment = document.getElementById('shipmentSerialNumbers');
+        console.log(numbersInShipment);
+
+
+    });
+
+
+</script>
+
+
+}

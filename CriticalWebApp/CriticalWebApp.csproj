@@ -342,6 +342,7 @@
     <Content Include="Views\RepairRouters\Index.cshtml" />
     <Content Include="Views\SqlCommander\Index.cshtml" />
     <Content Include="Views\SerialNumbers\Details.cshtml" />
+    <Content Include="Views\SerialNumbers\LogShipment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

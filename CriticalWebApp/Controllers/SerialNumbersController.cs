@@ -206,6 +206,12 @@ namespace CriticalWebApp.Controllers
             return View(serialNumber);
         }
 
+        public ActionResult LogShipment()
+        {
+            return View();
+        }
+
+       
 
         public ActionResult UploadFile()
         {
