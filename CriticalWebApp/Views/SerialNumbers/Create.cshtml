@@ -239,6 +239,19 @@
                 }
                 else{
                     numOfEntries = 1;
+                    if (confirm("About to log: "
+                    + numOfEntries + " Entry -  "
+                    + $("#serialNumberPrefixHidden").val()
+                    + firstNum
+                    + ". Are you sure?" ))
+                    {
+                        return true;
+                    }
+                    
+                    else{
+                        event.preventDefault();
+                        return false;
+                    }
                 }
                 if (confirm("About to log: "
                     + numOfEntries + " Entries -  "
@@ -248,7 +261,10 @@
                     + $("#serialNumberPrefixHidden").val()
                     + endNum
                     + ". Are you sure?" ))
+                {
                     return true;
+                }
+                    
                 else{
                     event.preventDefault();
                     return false;
