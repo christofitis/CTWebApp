@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using CriticalWebApp.ViewModels;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace CriticalWebApp.Controllers
 {
@@ -14,93 +15,59 @@ namespace CriticalWebApp.Controllers
     {
         private ApplicationDbContext _context = new ApplicationDbContext();
         // GET: SerialNumbers
-        public ActionResult Index(DateTime? startShipDateQuery, DateTime? endShipDateQuery, DateTime? startDateQuery , DateTime? endDateQuery,string serialNumberQuery = null, string customerFirstNameQuery = null, string customerLastNameQuery = null)
+        public ActionResult Index(DateTime? startShipDateQuery, DateTime? endShipDateQuery, DateTime? startDateQuery, DateTime? endDateQuery, string serialNumberQuery = null, string customerFirstNameQuery = null, string customerLastNameQuery = null)
         {
-            if (startShipDateQuery.HasValue && endShipDateQuery.HasValue)
-            {
-                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.ShipDate >= startShipDateQuery && s.ShipDate <= endShipDateQuery).ToList().OrderBy(o => o.Number));
 
-            }
-            if (!string.IsNullOrEmpty(customerFirstNameQuery) || !string.IsNullOrEmpty(customerLastNameQuery))
-            {
-                if (!string.IsNullOrEmpty(customerFirstNameQuery) && !string.IsNullOrEmpty(customerLastNameQuery))
-                {
-                    return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.CustomerFirstName.Contains(customerFirstNameQuery) && s.CustomerLastName.Contains(customerLastNameQuery)).ToList().OrderBy(o => o.Number));
-
-                }
-                else if (!string.IsNullOrEmpty(customerFirstNameQuery))
-                {
-                    return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.CustomerFirstName.Contains(customerFirstNameQuery)).ToList().OrderBy(o => o.Number));
-
-                }
-                else if (!string.IsNullOrEmpty(customerLastNameQuery))
-                {
-                    return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.CustomerLastName.Contains(customerLastNameQuery)).ToList().OrderBy(o => o.Number));
-
-                }
-
-            }
-
-
-
+            ViewBag.UserInput = serialNumberQuery;
+            ViewBag.StartMFGDate = startDateQuery;
+            ViewBag.EndMFGDate = endDateQuery;
+            ViewBag.StartShipDate = startShipDateQuery;
+            ViewBag.EndShipDate = endShipDateQuery;
+            ViewBag.CustomerFirstName = customerFirstNameQuery;
+            ViewBag.CustomerLastName = customerLastNameQuery;
 
             if (!string.IsNullOrEmpty(serialNumberQuery))
             {
-                ViewBag.UserInput = serialNumberQuery;
-                int x = 0;
-                if (!int.TryParse(serialNumberQuery, out x))
-                {
-                    if (serialNumberQuery.Length == 2)
-                    {
-                        return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains(serialNumberQuery)).ToList().OrderBy(o => o.Number));
-                    }
-                    else
-                    {
-                        //format of userinput for itterating through the number
-                        int num = 0;
-                        string prefix = "";
-                        int testNum = 0;
+                int intTest = 0;
+                int endNumberTest = 0;
+                int.TryParse(serialNumberQuery.Substring(serialNumberQuery.Length-1), out endNumberTest);
 
-                        //test to find prefix
-                        for (int i = 1; i < serialNumberQuery.Length; i++)
+                int.TryParse(serialNumberQuery, out intTest);
+                if ( intTest == 0 && endNumberTest != 0)
+                {
+
+                
+                
+                if (serialNumberQuery.Length < 3)
+                {
+                    return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains(serialNumberQuery)).ToList().OrderBy(o => o.Number));
+                }
+                else if (serialNumberQuery.Length == 3 && intTest == 0)
+                {
+                    int.TryParse(serialNumberQuery.Substring(2), out intTest);
+                    if (intTest == 0)
+                        return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains(serialNumberQuery)).ToList().OrderBy(o => o.Number));
+                        else
                         {
-                            string smallString = serialNumberQuery.Substring(serialNumberQuery.Length - (i));
-                            bool isNumeric = int.TryParse(smallString, out testNum);
-                            if (!isNumeric && testNum == 0)
-                            {
-                                if (i == 2)
-                                {
-                                    num = int.Parse(serialNumberQuery.Substring(i));
-                                }
-                                else
-                                {
-                                    num = int.Parse(serialNumberQuery.Substring(serialNumberQuery.Length - (i - 1)));
-                                }
-                                prefix = serialNumberQuery.Remove(serialNumberQuery.Length - num.ToString().Length);
-                                serialNumberQuery = prefix + num.ToString("D5");
-                                break;
-                            }
+                            string number = Regex.Match(serialNumberQuery.Substring(1), @"\d+").Value;
+                            string prefix = serialNumberQuery.Substring(0, serialNumberQuery.Length - number.Length);
+                            string formattedSerialNumber = prefix + int.Parse(number).ToString("D5");
+                            return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains(formattedSerialNumber)).ToList().OrderBy(o => o.Number));
                         }
                     }
-
+                else
+                {
+                    string number = Regex.Match(serialNumberQuery.Substring(1), @"\d+").Value;
+                    string prefix = serialNumberQuery.Substring(0, serialNumberQuery.Length - number.Length);
+                    string formattedSerialNumber = prefix + int.Parse(number).ToString("D5");
+                    return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains(formattedSerialNumber)).ToList().OrderBy(o => o.Number));
                 }
-                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains(serialNumberQuery)).ToList().OrderBy(o => o.Number));
-
+                }
             }
+            return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains(serialNumberQuery)).ToList().OrderBy(o => o.Number));
 
-            if (startDateQuery == null || endDateQuery == null)
-            {
-                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.Number.Contains("xxx")).ToList().OrderBy(o => o.Number));
-
-            }
-            ViewBag.StartDate = startDateQuery;
-            ViewBag.EndDate = endDateQuery;
-
-            return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.MFGDate >= startDateQuery && s.MFGDate <= endDateQuery).ToList().OrderBy(o => o.Number));
         }
 
-     
-        
         public ActionResult Create()
         {
             //string nameCheck = "";
