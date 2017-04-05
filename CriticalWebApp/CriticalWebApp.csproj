@@ -341,6 +341,7 @@
     <Content Include="Views\RepairRouters\Edit.cshtml" />
     <Content Include="Views\RepairRouters\Index.cshtml" />
     <Content Include="Views\SqlCommander\Index.cshtml" />
+    <Content Include="Views\SerialNumbers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

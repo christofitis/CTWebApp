@@ -1,0 +1,87 @@
+﻿@model CriticalWebApp.Models.SerialNumber
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SerialNumber</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Product Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.SKU)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.SKU)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.HardwareRevision)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.HardwareRevision)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.SoftwareRevision)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.SoftwareRevision)
+        </dd>
+       
+
+      
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number)
+        </dd>
+
+        <dt>
+            Customer
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerFirstName) @Html.DisplayFor(model => model.CustomerLastName)
+        </dd>
+
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.MFGDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MFGDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl> 
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

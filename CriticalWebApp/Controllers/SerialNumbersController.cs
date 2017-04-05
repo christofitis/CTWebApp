@@ -8,6 +8,7 @@ using System.Data.Entity;
 using CriticalWebApp.ViewModels;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Net;
 
 namespace CriticalWebApp.Controllers
 {
@@ -189,6 +190,22 @@ namespace CriticalWebApp.Controllers
 
             return View(viewModel);
         }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SerialNumber serialNumber = _context.SerialNumbers.Include(p => p.Product).FirstOrDefault(p => p.Id == id);
+            if (serialNumber == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(serialNumber);
+        }
+
 
         public ActionResult UploadFile()
         {
