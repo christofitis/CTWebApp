@@ -9,14 +9,14 @@
 @using (Html.BeginForm("Index", "SerialNumbers"))
 {
     <div class="form-inline">
-        <div class="text-primary">Search for a Serial #: </div>
+        <div class="text-primary">Search for a Serial #: <b class="text-info">@ViewBag.UserInput </b></div>
         <input class="form-control" autocomplete="off" type="text" name="serialNumberQuery" id="serialNumberQuery" placeholder="2r1234" />
     </div>
 
 
 
     <div class="form-inline">
-        <div class="text-primary">Search Customer: </div>
+        <div class="text-primary">Search Customer: <b class="text-info">@ViewBag.CustomerFirstName @ViewBag.CustomerLastName</b> </div>
         <input class="form-control" type="text" name="customerFirstNameQuery" id="customerFirstNameQuery" placeholder="First or Company Name" />
         <input class="form-control" type="text" name="customerLastNameQuery" id="customerFirstNameQuery" placeholder="Last Name" />
     </div>
@@ -25,14 +25,14 @@
 
 
     <div class="form-inline">
-        <div class="text-primary">Search MFG Date Range: </div>
+        <div class="text-primary">Search MFG Date Range:<b class="text-info"> @ViewBag.StartMFGDate @ViewBag.EndMFGDate</b></div>
         <input class="form-control" type="date" name="startDateQuery" id="startDateQueryInput" />
         <input class="form-control" type="date" name="endDateQuery" id="endDateQueryInput" />
     </div>
 
 
     <div class="form-inline">
-        <div class="text-primary">Search Ship Date Range: </div>
+        <div class="text-primary">Search Ship Date Range: <b class="text-info">@ViewBag.StartShipDate @ViewBag.EndShipDate</b></div>
         <input class="form-control" type="date" name="startShipDateQuery" id="startShipDateQueryInput" />
         <input class="form-control" type="date" name="endShipDateQuery" id="endShipDateQueryInput" />
 
@@ -113,13 +113,13 @@
 
                 <script>
                     $(document).ready(function () {
-                        document.getElementById('serialNumberQuery').value = '@ViewBag.UserInput';
+                        @*document.getElementById('serialNumberQuery').value = '@ViewBag.UserInput';
                         document.getElementById('startDateQueryInput').valueAsDate = '@ViewBag.StartMFGDate';
                         document.getElementById('endDateQueryInput').value = '@ViewBag.EndMFGDate';
                         document.getElementById('startShipDateQueryInput').value = '@ViewBag.StartShipDate';
                         document.getElementById('endShipDateQueryInput').value = '@ViewBag.EndShipDate';
                         document.getElementById('customerFirstNameQuery').value = '@ViewBag.CustomerFirstName';
-                        document.getElementById('customerLastNameQuery').value = '@ViewBag.CustomerLastName';
+                        document.getElementById('customerLastNameQuery').value = '@ViewBag.CustomerLastName';*@
 
 
 
