@@ -16,7 +16,7 @@ namespace CriticalWebApp.Models
 
         public Product Product { get; set; }
         public int ProductId { get; set; }
-        [Display(Name = "Customer First Name")]
+        [Display(Name = "Customer First Name / Company Name")]
         public string CustomerFirstName { get; set; }
         [Display(Name = "Customer Last Name")]
         public string CustomerLastName { get; set; }

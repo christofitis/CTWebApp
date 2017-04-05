@@ -76,14 +76,16 @@
                 @Html.ValidationMessageFor(model => model.SerialNumber.MFGDate, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.SerialNumber.ShipDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SerialNumber.ShipDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", id = "ShipDatePicker" } })
-                @Html.ValidationMessageFor(model => model.SerialNumber.ShipDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
         <div style="border: 2px dashed grey">
+            <p>Leave blank unless for spacific shipment to customer.</p>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SerialNumber.ShipDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SerialNumber.ShipDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", id = "ShipDatePicker" } })
+                    @Html.ValidationMessageFor(model => model.SerialNumber.ShipDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
             <div class="form-group">
                 @Html.LabelFor(model => model.SerialNumber.CustomerFirstName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -132,7 +134,6 @@
         $(document).ready(function(){
 
             document.getElementById('MFGDatePicker').valueAsDate = new Date();
-            document.getElementById('ShipDatePicker').valueAsDate = new Date();
             var isSingleEntry = false;
             document.getElementById('endSerialNumberHidden').value = 0;
         });
@@ -183,8 +184,22 @@
                 document.getElementById('endSerialNumberHidden').value = document.getElementById('endSerialNumberTextBox').value;
             }
         });
+
+        //------------------------FORM SUBMIT BUTTON -----------------------------------------
         $("#serialNumberForm").submit(function(event){
             console.log("LOGGING SERIAL NUMBER");
+
+
+
+
+
+            if (!$('#productDropDownList').val() || !$('#serialNumberTextBox').val() ){
+                alert('Missing fields.');
+                event.preventDefault();
+                return false;
+            }
+
+
 
             //formats values to have 5 padding
             var firstNum = ('00000'+$("#serialNumberTextBox").val()).substring($("#serialNumberTextBox").val().length);
