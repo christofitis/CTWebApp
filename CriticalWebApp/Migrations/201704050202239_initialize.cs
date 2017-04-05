@@ -149,7 +149,7 @@ namespace CriticalWebApp.Migrations
                         CustomerFirstName = c.String(),
                         CustomerLastName = c.String(),
                         MFGDate = c.DateTime(nullable: false),
-                        ShipDate = c.DateTime(nullable: false),
+                        ShipDate = c.DateTime(),
                         Notes = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
