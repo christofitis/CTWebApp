@@ -20,16 +20,30 @@ namespace CriticalWebApp.Controllers
         {
             var viewModel =  new ProductionOutputTotalsViewModel();
             viewModel.Products = db.Products.ToList();
-            viewModel.ProductionOutputTotals = db.ProductionOutputTotals.ToList();
-            var productionAverageTotals = new ProductionAverageTotals();
+            List<string> uniqueProducts = db.Products.Select(p => p.Name).Distinct().ToList(); //entire listof products sent to view model
+            viewModel.ProductionOutputTotals = db.ProductionOutputTotals.ToList(); //list of all production totals in db
+            
+            foreach (var product in uniqueProducts)
+            {
+                var productionAverageTotals = new ProductionAverageTotals();
+               
+                var singleProductTotals = db.ProductionOutputTotals.Where(t => t.Product.Name == product).ToList(); //fills list object with production totalls matching product name
+
+                for (int i = 0; i < singleProductTotals.Count; i++)
+                {
+
+
+                    productionAverageTotals.Quantity += singleProductTotals[i].Quantity;
+                    productionAverageTotals.Product = singleProductTotals[i].Product.Name;
+
+                }
+
+                viewModel.ProductionAverageTotals.Add(productionAverageTotals);
+            }
             
             
             //TODO: add math to figure out production totals for month using linq entityframework
-            foreach (var product in db.Products)
-            {
-                productionAverageTotals.Product = product.Name;
-                viewModel.ProductionAverageTotals.Add(productionAverageTotals);
-            }
+         
             //productionAverageTotals = db.ProductionOutputTotals.
             //viewModel.ProductionAverageTotals.Add();
             

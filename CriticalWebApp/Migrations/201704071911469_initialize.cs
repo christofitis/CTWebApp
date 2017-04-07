@@ -3,7 +3,7 @@ namespace CriticalWebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class productionOutputTotals : DbMigration
+    public partial class initialize : DbMigration
     {
         public override void Up()
         {
@@ -21,12 +21,14 @@ namespace CriticalWebApp.Migrations
                 .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
                 .Index(t => t.ProductId);
             
+            AddColumn("dbo.ProductionTotals", "Date", c => c.DateTime(nullable: false));
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.ProductionOutputTotals", "ProductId", "dbo.Products");
             DropIndex("dbo.ProductionOutputTotals", new[] { "ProductId" });
+            DropColumn("dbo.ProductionTotals", "Date");
             DropTable("dbo.ProductionOutputTotals");
         }
     }
