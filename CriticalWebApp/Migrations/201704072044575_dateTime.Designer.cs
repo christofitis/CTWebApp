@@ -7,13 +7,13 @@ namespace CriticalWebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class dateToProductionTotals : IMigrationMetadata
+    public sealed partial class dateTime : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(dateToProductionTotals));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(dateTime));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704072016056_dateToProductionTotals"; }
+            get { return "201704072044575_dateTime"; }
         }
         
         string IMigrationMetadata.Source

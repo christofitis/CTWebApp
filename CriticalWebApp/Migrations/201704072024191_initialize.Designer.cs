@@ -13,7 +13,7 @@ namespace CriticalWebApp.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201704071911469_initialize"; }
+            get { return "201704072024191_initialize"; }
         }
         
         string IMigrationMetadata.Source

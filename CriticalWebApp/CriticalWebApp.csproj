@@ -231,13 +231,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704071911469_initialize.cs" />
-    <Compile Include="Migrations\201704071911469_initialize.Designer.cs">
-      <DependentUpon>201704071911469_initialize.cs</DependentUpon>
+    <Compile Include="Migrations\201704072024191_initialize.cs" />
+    <Compile Include="Migrations\201704072024191_initialize.Designer.cs">
+      <DependentUpon>201704072024191_initialize.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704072016056_dateToProductionTotals.cs" />
-    <Compile Include="Migrations\201704072016056_dateToProductionTotals.Designer.cs">
-      <DependentUpon>201704072016056_dateToProductionTotals.cs</DependentUpon>
+    <Compile Include="Migrations\201704072044575_dateTime.cs" />
+    <Compile Include="Migrations\201704072044575_dateTime.Designer.cs">
+      <DependentUpon>201704072044575_dateTime.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -370,11 +370,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704071911469_initialize.resx">
-      <DependentUpon>201704071911469_initialize.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704072024191_initialize.resx">
+      <DependentUpon>201704072024191_initialize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704072016056_dateToProductionTotals.resx">
-      <DependentUpon>201704072016056_dateToProductionTotals.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704072044575_dateTime.resx">
+      <DependentUpon>201704072044575_dateTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

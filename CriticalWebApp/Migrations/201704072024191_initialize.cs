@@ -12,6 +12,7 @@ namespace CriticalWebApp.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        Date = c.DateTime(nullable: false),
                         ProductId = c.Int(nullable: false),
                         Employee = c.String(),
                         Quantity = c.Int(nullable: false),
