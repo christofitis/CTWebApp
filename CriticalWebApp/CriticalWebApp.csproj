@@ -223,6 +223,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductionOutputTotalsController.cs" />
+    <Compile Include="Controllers\ProductReceivedsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RepairRoutersController.cs" />
     <Compile Include="Controllers\RepairsController.cs" />
@@ -231,13 +232,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704072024191_initialize.cs" />
-    <Compile Include="Migrations\201704072024191_initialize.Designer.cs">
-      <DependentUpon>201704072024191_initialize.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704072044575_dateTime.cs" />
-    <Compile Include="Migrations\201704072044575_dateTime.Designer.cs">
-      <DependentUpon>201704072044575_dateTime.cs</DependentUpon>
+    <Compile Include="Migrations\201704072157587_initializeProductReceived.cs" />
+    <Compile Include="Migrations\201704072157587_initializeProductReceived.Designer.cs">
+      <DependentUpon>201704072157587_initializeProductReceived.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -249,6 +246,7 @@
     <Compile Include="Models\ProductionAverageTotals.cs" />
     <Compile Include="Models\ProductionOutputTotals.cs" />
     <Compile Include="Models\ProductionTotals.cs" />
+    <Compile Include="Models\ProductReceived.cs" />
     <Compile Include="Models\Repair.cs" />
     <Compile Include="Models\RepairRouter.cs" />
     <Compile Include="Models\SerialNumber.cs" />
@@ -356,6 +354,11 @@
     <Content Include="Views\ProductionOutputTotals\Details.cshtml" />
     <Content Include="Views\ProductionOutputTotals\Edit.cshtml" />
     <Content Include="Views\ProductionOutputTotals\Index.cshtml" />
+    <Content Include="Views\ProductReceiveds\Create.cshtml" />
+    <Content Include="Views\ProductReceiveds\Delete.cshtml" />
+    <Content Include="Views\ProductReceiveds\Details.cshtml" />
+    <Content Include="Views\ProductReceiveds\Edit.cshtml" />
+    <Content Include="Views\ProductReceiveds\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
@@ -370,11 +373,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704072024191_initialize.resx">
-      <DependentUpon>201704072024191_initialize.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704072044575_dateTime.resx">
-      <DependentUpon>201704072044575_dateTime.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704072157587_initializeProductReceived.resx">
+      <DependentUpon>201704072157587_initializeProductReceived.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

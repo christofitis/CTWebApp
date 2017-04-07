@@ -374,8 +374,7 @@ C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\bin\Microsoft.Owin.Secu
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Release\CriticalWebApp.csprojResolveAssemblyReference.cache
-C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Release\CriticalWebApp.Migrations.initialize.resources
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Release\CriticalWebApp.csproj.GenerateResource.Cache
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Release\CriticalWebApp.dll
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Release\CriticalWebApp.pdb
-C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Release\CriticalWebApp.Migrations.dateToProductionTotals.resources
+C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Release\CriticalWebApp.Migrations.initializeProductReceived.resources

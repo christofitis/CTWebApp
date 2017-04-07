@@ -1,0 +1,70 @@
+﻿@model IEnumerable<CriticalWebApp.Models.ProductReceived>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceivedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfBoxes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantityOnBox)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountedQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReferenceNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceivedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfBoxes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantityOnBox)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountedQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReferenceNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
