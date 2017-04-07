@@ -149,10 +149,12 @@ namespace CriticalWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateSerialNumberViewModel viewModel)
         {
+   
             // if (!ModelState.IsValid)
             // {
             if (viewModel.EndSerialNumber == 0) //for single serial input
             {
+         
                 var sn = viewModel.SerialNumber;
                 //sn.Product.HardwareRevision = viewModel.Product.HardwareRevision;
                 //sn.Product.SoftwareRevision = viewModel.Product.SoftwareRevision;
@@ -171,8 +173,8 @@ namespace CriticalWebApp.Controllers
             }
             else if (viewModel.EndSerialNumber >= 1)
                 {
-                    int beginSerialNumber = int.Parse(viewModel.SerialNumber.Number);
-                    for (int i = 0; i < ((viewModel.EndSerialNumber - beginSerialNumber) + 1); i++)
+                int beginSerialNumber = int.Parse(viewModel.SerialNumber.Number);
+                for (int i = 0; i < ((viewModel.EndSerialNumber - beginSerialNumber) + 1); i++)
                     {
                         var sn = viewModel.SerialNumber;
                                              
