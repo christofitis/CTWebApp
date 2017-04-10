@@ -3,39 +3,102 @@
     ViewBag.Title = "LogShipment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <h2>LogShipment</h2>
-@using (Html.BeginForm("Add", "SerialNumbers", FormMethod.Post, new { id = "logShipmentForm" }))
-{
-<div class="form-group-sm">
-   
-    <p class="control-label">Start Serial Number</p>
-    <input class="form-control" type="text" name="serialNumberStartInput" />
-    <p class="control-label">End Serial Number</p>
-    <input class="form-control" type="text" name="serialNumberEndInput" />
-    <input class="btn btn-primary" id="logShipmentFormSubmitButton" type="submit" value="Add" />
+<div class="container">
+
+    <form class="form-group-sm form-inline col-md-12" style="padding: 5px; margin-top: 10px;">
+        <div style="border:dashed thin white; padding: 10px;">
+        <label class="control-label">Customer First Name or Company Name</label>
+        <input type="text" id="customerFirstNameInput" class="form-control" />
+        <label class="control-label">Customer Last Name</label>
+        <input type="text" id="customerLastNameInput" class="form-control" />
+            </div>
+        <div class="col-md-4"></div>
+        <div style="padding: 10px;" class="col-xs-12">
+            <label>Search for number to add to shipment</label>
+            <input type="text" id="inputStartSerialNumber" class="form-control typeahead" placeholder="search for serial number" />
+            <input type="text" id="inputEndSerialNumber" class="form-control" placeholder="search for end serial number" />
+            @*<button type="button" class="btn btn-default" id="findSerialNumberButton">find</button>*@
+           
+
+            </div>
+        <div >
+            <label class="control-label">Serial Numbers in Shipment: <text id="totalInShipment"></text></label>
+            <ul id="serialNumbersInShipmentList" class="list-group">
+                
+            </ul>
+        </div>
+      
+
+       
+
+        <div class="col-md-12 " style="padding:20px;">
+
+            <button type="button" class="btn btn-default">Submit</button>
+
+        </div>
+
+    </form>
+
 </div>
 
-<h3>Serial Numbers in shipment:</h3>
-<ul id="shipmentSerialNumbers">
-    <li>one</li>
-    <li>2</li>
-</ul>
-
-
-}
-
 @section scripts{
-<script type="text/javascript">
+    <script>
+        $(document).ready(function () {
 
-    $(document).ready(function () {
-        var numbersInShipment = document.getElementById('shipmentSerialNumbers');
-        console.log(numbersInShipment);
+            vm = {
+                CustomerFirstName: "",
+                CustomerLastName: "",
+                SerialNumberIds: []
+            };
+
+            var serialNumbers = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Number'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                
+                remote: {
+                    url: '/api/serialnumbers?numberQuery=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#inputStartSerialNumber').typeahead({
+                hint: true,
+                minLength: 3,
+                highlight: true
+            }, {
+                name: 'SerialNumbers',
+                display: 'Number',
+                source: serialNumbers
+            }).on("typeahead:select", function (e, serialNumber) {
+                vm.SerialNumberIds.push(serialNumber.Id);
+                console.log("selectedId : " + serialNumber.Id);
+                $('#serialNumbersInShipmentList').append("<li class=list-group-item>" + $('#inputStartSerialNumber').val() + "<input value='Remove' class='btn-sm btn-primary pull-right' type='button' style='align-self:center' />" +"</li>");
+                $('#totalInShipment').html(vm.SerialNumberIds.length);
+                toastr.warning("Found " + $('#inputStartSerialNumber').val() + ". Added to shipment.");
+            });
+
+            $('#inputEndSerialNumber').typeahead({
+                minLength: 3,
+                highlight: true
+            }, {
+                name: 'SerialNumbers',
+                display: 'Number',
+                source: serialNumbers
+            }).on("typeahead:select", function (e, serialNumber) {
+                vm.SerialNumberIds.push(serialNumber.Id);
+                console.log("selectedId : " + serialNumber.Id);
+                $('#serialNumbersInShipmentList').append("<li class=list-group-item>" + $('#inputEndSerialNumber').val() + "</li>");
+                toastr.warning("Found " + $('#inputEndSerialNumber').val() + ". Added to shipment.");
+            });
+            
+
+        });
 
 
-    });
 
-
-</script>
+    </script>
 
 
 }

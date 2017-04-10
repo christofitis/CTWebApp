@@ -10,6 +10,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Net;
 
+
 namespace CriticalWebApp.Controllers
 {
     public class SerialNumbersController : Controller
@@ -110,6 +111,8 @@ namespace CriticalWebApp.Controllers
 
         }
 
+
+
         public ActionResult Create()
         {
             //string nameCheck = "";
@@ -193,6 +196,17 @@ namespace CriticalWebApp.Controllers
             return View(viewModel);
         }
 
+        public ActionResult LogShipment()
+        {
+            return View();
+        }
+
+        //public ActionResult LogShipment(LogShipmentViewModel viewModel)
+        //{
+
+        //    return View();
+        //}
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -208,10 +222,7 @@ namespace CriticalWebApp.Controllers
             return View(serialNumber);
         }
 
-        public ActionResult LogShipment()
-        {
-            return View();
-        }
+        
 
        
 

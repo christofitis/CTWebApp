@@ -10,6 +10,7 @@ namespace CriticalWebApp
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/toastr.js",
                        "~/Scripts/typeahead.bundle.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -27,6 +28,7 @@ namespace CriticalWebApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-slate.css",
                      "~/Content/typeahead.css",
+                     "~/Content/toastr.css",
                       "~/Content/site.css"));
         }
     }
