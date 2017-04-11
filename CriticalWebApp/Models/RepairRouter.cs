@@ -111,6 +111,7 @@ namespace CriticalWebApp.Models
         [Display(Name = "Is within the USA")]
         public bool IsWithinTheUSA { get; set; }
         [Display(Name = "Customer Complaint")]
+        [Required]
         public string CustomerComplaint { get; set; }
         [Display(Name = "Special Instructions")]
         public string SpecialInstructions { get; set; }
