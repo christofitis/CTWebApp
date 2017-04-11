@@ -15,8 +15,16 @@ namespace CriticalWebApp.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: RepairRouters
-        public ActionResult Index(int? rmaNumberQuery, string customerFirstNameQuery = null, string customerLastNameQuery = null, string sortyBy = null)
+        public ActionResult Index(int? rmaNumberQuery, string serialNumberQuery = null, string customerFirstNameQuery = null, string customerLastNameQuery = null, string sortyBy = null)
         {
+            if (serialNumberQuery != null)
+            {
+                return View(db.RepairRouters.Where(s => s.ProductSerialNumber.Contains(serialNumberQuery)).ToList().OrderBy(o => o.Id));
+
+            }
+
+
+
             if (string.IsNullOrEmpty(sortyBy) || sortyBy == "All")
             {
                 if (!string.IsNullOrEmpty(rmaNumberQuery.ToString()))
@@ -41,7 +49,7 @@ namespace CriticalWebApp.Controllers
 
                     }
                 }
-           
+
 
             }
             else
@@ -85,7 +93,7 @@ namespace CriticalWebApp.Controllers
                 if (repairRouter.DateReceived == null)
                 {
                     repairRouter.Status = "Waiting to Receive";
-                    
+
                 }
                 else if (repairRouter.RepairDate == null)
                 {
@@ -120,7 +128,7 @@ namespace CriticalWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( RepairRouter repairRouter)
+        public ActionResult Edit(RepairRouter repairRouter)
         {
             if (ModelState.IsValid)
             {
