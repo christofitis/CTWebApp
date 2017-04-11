@@ -17,6 +17,7 @@ namespace CriticalWebApp.Controllers
     {
         private ApplicationDbContext _context = new ApplicationDbContext();
         // GET: SerialNumbers
+        //TODO: Build list of objects then return that to view (will allow for multiple searches to be added together), not return per input. 
         public ActionResult Index(DateTime? startShipDateQuery, DateTime? endShipDateQuery, DateTime? startDateQuery, DateTime? endDateQuery, string serialNumberQuery = null, string customerFirstNameQuery = null, string customerLastNameQuery = null)
         {
             if (!string.IsNullOrEmpty(serialNumberQuery))

@@ -7,7 +7,7 @@ using System.Web;
 
 namespace CriticalWebApp.Models
 {
-    public class RepairRouter //TODO: add "[Display(Name = "Customer First Name")]" to all fields
+    public class RepairRouter 
     {
 
         //contact

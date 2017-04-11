@@ -388,8 +388,7 @@
                 document.getElementById('productModelHidden').value = parsedEmail.ProductModel;
                 $('#productSerialNumberInput').val(parsedEmail.SerialNumber);
                 console.log(parsedEmail.ExplinationOfIssue);
-                $('#customerComplaintUserInput').val(parsedEmail.ExplinationOfIssue);
-                console.log($('#customerComplaintUserInput').val());
+                $('#customerComplaintUserInput').text(parsedEmail.ExplinationOfIssue);
                 $('#specialInstructionsUserInput').val(parsedEmail.Comments);
 
 
