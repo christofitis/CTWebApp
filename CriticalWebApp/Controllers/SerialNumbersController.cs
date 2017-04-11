@@ -213,6 +213,7 @@ namespace CriticalWebApp.Controllers
                 sn.CustomerFirstName = viewModel.CustomerFirstName;
                 sn.CustomerLastName = viewModel.CustomerLastName;
                 sn.ShipDate = viewModel.Shipdate;
+                sn.InvoiceNumber = viewModel.InvoiceNumber;
                 _context.Entry(sn).State = EntityState.Modified;
                 
             }

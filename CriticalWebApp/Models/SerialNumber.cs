@@ -32,6 +32,10 @@ namespace CriticalWebApp.Models
         [Display(Name = "Shipment Date")]
         public DateTime? ShipDate { get; set; }
 
+        [Display(Name = "Invoice #")]
+        public string InvoiceNumber { get; set; }
+
+
         public string Notes { get; set; }
 
 

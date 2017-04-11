@@ -268,7 +268,11 @@
                 </div>
                 <div class="col-xs-12">
                     @Html.LabelFor(model => model.CustomerComplaint, htmlAttributes: new { @class = "control-label " }):
-                    @Html.TextAreaFor(model => model.CustomerComplaint, new { htmlAttributes = new { @class = "form-control", id= "customerComplaintUserInput" } })
+                    @*@Html.TextAreaFor(model => model.CustomerComplaint, new { htmlAttributes = new { @class = "form-control", id = "customerComplaintUserInput" } })*@
+                    <textarea id="myTextarea">
+                        342 Alvin Road
+                        Ducksburg
+                    </textarea>
                     @Html.ValidationMessageFor(model => model.CustomerComplaint, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-xs-12">
@@ -339,7 +343,7 @@
         </div>
     </div>
 
-
+    <button type="button" onclick="myFunction()">Press me</button>
 }
 
 <div>
@@ -350,13 +354,21 @@
                         @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
+        function myFunction() {
+            document.getElementById("customerComplaintUserInput").value = "Fifth Avenue, New York City";
+            console.log(document.getElementById("customerComplaintUserInput").value);
+
+        }
         $(document).ready(function () {
+           
+
+
 
 
             //---------------autofill form with email-----------------------------
             $('#getEmailButton').on('click', function () {
                 console.log("here we go!");
-
+                
                 var rawEmailData = $('#rawEmailData').val();
                 var parsedEmail = {
                 };
@@ -388,7 +400,8 @@
                 document.getElementById('productModelHidden').value = parsedEmail.ProductModel;
                 $('#productSerialNumberInput').val(parsedEmail.SerialNumber);
                 console.log(parsedEmail.ExplinationOfIssue);
-                $('#customerComplaintUserInput').text(parsedEmail.ExplinationOfIssue);
+                document.getElementById('customerComplaintUserInput').innerHTML = parsedEmail.ExplinationOfIssue;
+                
                 $('#specialInstructionsUserInput').val(parsedEmail.Comments);
 
 

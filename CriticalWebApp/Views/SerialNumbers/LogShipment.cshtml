@@ -9,58 +9,61 @@
 
 
     <form class="form-group-sm form-inline col-md-12" style="padding: 5px; margin-top: 10px;">
-        <div style="padding: 10px;">
-            <h3>Customer Info</h3>
-        <label class="control-label">Customer First Name or Company Name</label>
-        <input type="text" id="customerFirstNameInput" class="form-control" />
-        <label class="control-label">Customer Last Name</label>
-        <input type="text" id="customerLastNameInput" class="form-control" />
-            </div>
-        <div class="col-md-4"></div>
-        <br />
-        <hr />
-        <div class="col-md-12" style="border:dotted 2px lightgrey;">
-
-
-            <div style="padding: 10px;" class="col-xs-6">
-                <h4>Single Serial #</h4>
-                <input type="text" id="inputSingleSerialNumber" class="form-control typeahead" placeholder="search" />
-                @*<button type="button" class="btn btn-default" id="findSerialNumberButton">find</button>*@
-
-
-            </div>
-
-            <div class="col-md-6" style=" background-color:#2E3338; padding 10px;">
-                <h4>Multi-Serial #</h4>
-                
-                <input type="text" id="inputStartSerialNumber" class="form-control typeahead" placeholder="search" />
-                <input type="text" id="inputEndSerialNumber" class="form-control" placeholder="search" />
-                <button class="btn btn-primary" type="button" id="findSerialRangeButton">Find</button>
-            </div>
-        </div>
-        <div class="col-md-12" style="padding: 10px;">
+        <div class="col-xs-12" style="padding: 10px;">
+            <h3>Shipment Info Info</h3>
             <label class="control-label">Shipment Date:</label>
             <input class="form-control center-block" type="date" id="shipDatePicker" />
-
-        </div>
-
-
-        <div >
-            <label class="">Serial Numbers in Shipment: <text id="totalInShipment"></text></label>
-            <ul id="serialNumbersInShipmentList" class="list-group">
-                
-            </ul>
-        </div>
-      
-        <div class="col-md-12 " style="padding:20px;">
-
-            <button type="button" class="btn btn-default" id="formSubmitButton">Submit</button>
-            <button type="button" class="btn btn-default" id="clearAllButton">Clear All</button>
+            <label class="control-label">Invoice #:</label>
+            <input class="form-control center-block" type="text" id="invoiceNumberUserInput" />
 
 
-        </div>
+            </div>
 
-    </form>
+            <div class="col-xs-12" style="padding: 10px;">
+                <h3>Customer Info</h3>
+                <label class="control-label">Customer First Name or Company Name</label>
+                <input type="text" id="customerFirstNameInput" class="form-control" />
+                <label class="control-label">Customer Last Name</label>
+                <input type="text" id="customerLastNameInput" class="form-control" />
+            </div>
+            <div class="col-md-4"></div>
+            <br />
+            <hr />
+            <div class="col-md-12" style="border:dotted 2px lightgrey;">
+
+
+                <div style="padding: 10px;" class="col-xs-6">
+                    <h4>Single Serial #</h4>
+                    <input type="text" id="inputSingleSerialNumber" class="form-control typeahead" placeholder="search" />
+                    @*<button type="button" class="btn btn-default" id="findSerialNumberButton">find</button>*@
+
+
+                </div>
+
+                <div class="col-md-6" style=" background-color:#2E3338; padding 10px;">
+                    <h4>Multi-Serial #</h4>
+
+                    <input type="text" id="inputStartSerialNumber" class="form-control typeahead" placeholder="search" />
+                    <input type="text" id="inputEndSerialNumber" class="form-control" placeholder="search" />
+                    <button class="btn btn-primary" type="button" id="findSerialRangeButton">Find</button>
+                </div>
+            </div>
+     
+
+            <div>
+                <label class="">Serial Numbers in Shipment: <text id="totalInShipment"></text></label>
+                <ul id="serialNumbersInShipmentList" class="list-group"></ul>
+            </div>
+
+            <div class="col-md-12 " style="padding:20px;">
+
+                <button type="button" class="btn btn-default" id="formSubmitButton">Submit</button>
+                <button type="button" class="btn btn-default" id="clearAllButton">Clear All</button>
+
+
+            </div>
+
+</form>
 
 </div>
 
@@ -73,7 +76,8 @@
                     CustomerFirstName: "",
                     CustomerLastName: "",
                     SerialNumberIds: [],
-                    Shipdate: ""
+                    Shipdate: "",
+                    invoiceNumber: ""
                 };
                 document.getElementById("serialNumbersInShipmentList").innerHTML = "";
                 $('#totalInShipment').html(vm.SerialNumberIds.length);
@@ -86,7 +90,8 @@
                 CustomerFirstName: "",
                 CustomerLastName: "",
                 SerialNumberIds: [],
-                Shipdate: ""
+                Shipdate: "",
+                invoiceNumber: ""
             };
             
             //typeahead object initialization
@@ -226,6 +231,7 @@
                         vm.CustomerFirstName = $('#customerFirstNameInput').val();
                         vm.CustomerLastName = $('#customerLastNameInput').val();
                         vm.Shipdate = $('#shipDatePicker').val();
+                        vm.invoiceNumber = $('#invoiceNumberUserInput').val();
                         console.log("ITS " + vm);
                         $.ajax({
                             type: 'POST',
