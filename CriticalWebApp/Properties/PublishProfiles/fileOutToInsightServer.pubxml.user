@@ -22,7 +22,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/06/2017 19:28:20</publishTime>
     </File>
     <File Include="bin/CriticalWebApp.dll">
-      <publishTime>04/07/2017 15:01:49</publishTime>
+      <publishTime>04/11/2017 07:47:15</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 08:32:26</publishTime>
@@ -192,8 +192,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/Site.css">
       <publishTime>02/06/2017 19:28:11</publishTime>
     </File>
+    <File Include="Content/toastr.css">
+      <publishTime>04/11/2017 07:35:12</publishTime>
+    </File>
+    <File Include="Content/toastr.less">
+      <publishTime>04/11/2017 07:35:12</publishTime>
+    </File>
+    <File Include="Content/toastr.min.css">
+      <publishTime>04/11/2017 07:35:12</publishTime>
+    </File>
+    <File Include="Content/toastr.scss">
+      <publishTime>04/11/2017 07:35:12</publishTime>
+    </File>
     <File Include="Content/typeahead.css">
-      <publishTime>02/06/2017 20:48:36</publishTime>
+      <publishTime>04/11/2017 07:35:12</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>02/06/2017 19:28:11</publishTime>
@@ -214,7 +226,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/06/2017 19:28:11</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>02/13/2017 22:11:52</publishTime>
+      <publishTime>04/11/2017 07:35:12</publishTime>
     </File>
     <File Include="Scripts/bloodhound.js">
       <publishTime>02/06/2017 21:15:05</publishTime>
@@ -258,6 +270,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/respond.min.js">
       <publishTime>02/06/2017 19:28:14</publishTime>
     </File>
+    <File Include="Scripts/toastr.js">
+      <publishTime>04/11/2017 07:35:12</publishTime>
+    </File>
+    <File Include="Scripts/toastr.min.js">
+      <publishTime>04/11/2017 07:35:12</publishTime>
+    </File>
     <File Include="Scripts/typeahead.bundle.js">
       <publishTime>02/06/2017 21:15:05</publishTime>
     </File>
@@ -271,7 +289,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/06/2017 21:15:05</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>02/06/2017 21:15:05</publishTime>
+      <publishTime>04/11/2017 07:35:12</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>02/06/2017 19:28:14</publishTime>
@@ -352,7 +370,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/07/2017 12:47:39</publishTime>
     </File>
     <File Include="Views/ProductReceiveds/Create.cshtml">
-      <publishTime>04/07/2017 14:59:09</publishTime>
+      <publishTime>04/07/2017 15:15:03</publishTime>
     </File>
     <File Include="Views/ProductReceiveds/Delete.cshtml">
       <publishTime>04/07/2017 14:59:10</publishTime>
@@ -376,13 +394,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/27/2017 07:32:41</publishTime>
     </File>
     <File Include="Views/Products/Edit.cshtml">
-      <publishTime>03/27/2017 07:32:41</publishTime>
+      <publishTime>04/11/2017 07:35:12</publishTime>
     </File>
     <File Include="Views/Products/Index.cshtml">
       <publishTime>03/27/2017 07:32:41</publishTime>
     </File>
     <File Include="Views/RepairRouters/Create.cshtml">
-      <publishTime>04/05/2017 09:13:31</publishTime>
+      <publishTime>04/11/2017 07:35:12</publishTime>
     </File>
     <File Include="Views/RepairRouters/Delete.cshtml">
       <publishTime>04/03/2017 07:40:15</publishTime>
@@ -394,7 +412,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/03/2017 07:40:15</publishTime>
     </File>
     <File Include="Views/RepairRouters/Index.cshtml">
-      <publishTime>04/03/2017 07:40:15</publishTime>
+      <publishTime>04/11/2017 07:35:12</publishTime>
     </File>
     <File Include="Views/Repairs/Create.cshtml">
       <publishTime>02/28/2017 21:31:41</publishTime>
@@ -418,7 +436,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/05/2017 09:30:48</publishTime>
     </File>
     <File Include="Views/SerialNumbers/LogShipment.cshtml">
-      <publishTime>04/05/2017 13:01:35</publishTime>
+      <publishTime>04/11/2017 07:35:12</publishTime>
     </File>
     <File Include="Views/SerialNumbers/UploadFile.cshtml">
       <publishTime>02/13/2017 22:37:28</publishTime>
@@ -436,10 +454,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/06/2017 19:28:15</publishTime>
     </File>
     <File Include="Views/Shared/_NavBar.cshtml">
-      <publishTime>04/07/2017 15:00:09</publishTime>
+      <publishTime>04/11/2017 07:35:12</publishTime>
     </File>
     <File Include="Views/SqlCommander/Index.cshtml">
-      <publishTime>04/03/2017 07:40:15</publishTime>
+      <publishTime>04/11/2017 07:35:12</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>02/06/2017 19:28:11</publishTime>
@@ -448,7 +466,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/06/2017 19:28:11</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/07/2017 15:01:50</publishTime>
+      <publishTime>04/11/2017 07:47:16</publishTime>
     </File>
   </ItemGroup>
 </Project>

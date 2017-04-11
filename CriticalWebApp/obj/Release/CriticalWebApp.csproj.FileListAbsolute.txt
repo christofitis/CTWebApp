@@ -377,4 +377,4 @@ C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Release\CriticalWeb
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Release\CriticalWebApp.csproj.GenerateResource.Cache
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Release\CriticalWebApp.dll
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Release\CriticalWebApp.pdb
-C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Release\CriticalWebApp.Migrations.initializeProductReceived.resources
+C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Release\CriticalWebApp.Migrations.initialize.resources
