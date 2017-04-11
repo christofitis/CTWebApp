@@ -198,14 +198,26 @@ namespace CriticalWebApp.Controllers
 
         public ActionResult LogShipment()
         {
+            
             return View();
         }
 
-        //public ActionResult LogShipment(LogShipmentViewModel viewModel)
-        //{
-
-        //    return View();
-        //}
+        [HttpPost]
+        public ActionResult LogShipment(LogShipmentViewModel viewModel)
+        {
+            var sns = _context.SerialNumbers.Where(s => viewModel.SerialNumberIds.Contains(s.Id));
+            foreach (var sn in sns)
+            {
+                
+                sn.CustomerFirstName = viewModel.CustomerFirstName;
+                sn.CustomerLastName = viewModel.CustomerLastName;
+                sn.ShipDate = viewModel.Shipdate;
+                _context.Entry(sn).State = EntityState.Modified;
+                
+            }
+            _context.SaveChanges();
+            return View();
+        }
 
         public ActionResult Details(int? id)
         {

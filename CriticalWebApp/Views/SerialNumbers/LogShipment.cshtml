@@ -7,8 +7,9 @@
 <h2>LogShipment</h2>
 <div class="container">
 
+
     <form class="form-group-sm form-inline col-md-12" style="padding: 5px; margin-top: 10px;">
-        <div style="border:dashed thin white; padding: 10px;">
+        <div style="border:dashed thin white; padding: 10px; background-color:#2E3338;">
         <label class="control-label">Customer First Name or Company Name</label>
         <input type="text" id="customerFirstNameInput" class="form-control" />
         <label class="control-label">Customer Last Name</label>
@@ -16,26 +17,38 @@
             </div>
         <div class="col-md-4"></div>
         <div style="padding: 10px;" class="col-xs-12">
-            <label>Search for number to add to shipment</label>
-            <input type="text" id="inputStartSerialNumber" class="form-control typeahead" placeholder="search for serial number" />
-            <input type="text" id="inputEndSerialNumber" class="form-control" placeholder="search for end serial number" />
+            <label class="control-label">Search for Serial # to add to shipment</label>
+            <input type="text" id="inputSingleSerialNumber" class="form-control typeahead" placeholder="search" />
             @*<button type="button" class="btn btn-default" id="findSerialNumberButton">find</button>*@
            
 
             </div>
+
+        <div class="col-md-12" style="border:dashed thin white; background-color:#2E3338; padding: 10px;">
+            <label class="control-label">Search for Serial # Range to add to shipment</label>
+            <input type="text" id="inputStartSerialNumber" class="form-control typeahead" placeholder="search" />
+            <input type="text" id="inputEndSerialNumber" class="form-control" placeholder="search" />
+            <button class="btn btn-primary" type="button" id="findSerialRangeButton">Find</button>
+        </div>
+        <div class="col-md-12" style="padding: 10px;">
+            <label class="control-label">Shipment Date:</label>
+            <input class="form-control center-block" type="date" id="shipDatePicker" />
+
+        </div>
+
+
         <div >
-            <label class="control-label">Serial Numbers in Shipment: <text id="totalInShipment"></text></label>
+            <label class="">Serial Numbers in Shipment: <text id="totalInShipment"></text></label>
             <ul id="serialNumbersInShipmentList" class="list-group">
                 
             </ul>
         </div>
       
-
-       
-
         <div class="col-md-12 " style="padding:20px;">
 
-            <button type="button" class="btn btn-default">Submit</button>
+            <button type="button" class="btn btn-default" id="formSubmitButton">Submit</button>
+            <button type="button" class="btn btn-default" id="clearAllButton">Clear All</button>
+
 
         </div>
 
@@ -47,12 +60,28 @@
     <script>
         $(document).ready(function () {
 
+            $('#clearAllButton').on('click', function () {
+                vm = {
+                    CustomerFirstName: "",
+                    CustomerLastName: "",
+                    SerialNumberIds: [],
+                    Shipdate: ""
+                };
+                document.getElementById("serialNumbersInShipmentList").innerHTML = "";
+                $('#totalInShipment').html(vm.SerialNumberIds.length);
+
+            });
+
+
+            //view model object to pass back to controller
             vm = {
                 CustomerFirstName: "",
                 CustomerLastName: "",
-                SerialNumberIds: []
+                SerialNumberIds: [],
+                Shipdate: ""
             };
-
+            
+            //typeahead object initialization
             var serialNumbers = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Number'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -62,9 +91,8 @@
                     wildcard: '%QUERY'
                 }
             });
-
-            $('#inputStartSerialNumber').typeahead({
-                hint: true,
+            //single serial add typeahead box
+            $('#inputSingleSerialNumber').typeahead({
                 minLength: 3,
                 highlight: true
             }, {
@@ -74,11 +102,24 @@
             }).on("typeahead:select", function (e, serialNumber) {
                 vm.SerialNumberIds.push(serialNumber.Id);
                 console.log("selectedId : " + serialNumber.Id);
-                $('#serialNumbersInShipmentList').append("<li class=list-group-item>" + $('#inputStartSerialNumber').val() + "<input value='Remove' class='btn-sm btn-primary pull-right' type='button' style='align-self:center' />" +"</li>");
+                $('#serialNumbersInShipmentList').append("<li class=list-group-item>" + $('#inputSingleSerialNumber').val() + "<input value='Remove' id='deleteButton' class='btn-sm btn-primary pull-right' type='button' style='align-self:center' />" + "</li>");
                 $('#totalInShipment').html(vm.SerialNumberIds.length);
-                toastr.warning("Found " + $('#inputStartSerialNumber').val() + ". Added to shipment.");
+                toastr.success("Found " + $('#inputSingleSerialNumber').val() + ". Added to shipment.");
+            });
+            //start serial # typeahead box
+            $('#inputStartSerialNumber').typeahead({
+                minLength: 3,
+                highlight: true
+            }, {
+                name: 'SerialNumbers',
+                display: 'Number',
+                source: serialNumbers
+            }).on("typeahead:select", function (e, serialNumber) {
+                //vm.SerialNumberIds.push(serialNumber.Id); //removed sure to for loop below already pushing that num
+                console.log("Start SN# Selected: " + serialNumber.Id);
             });
 
+            //end serial # typeahead box
             $('#inputEndSerialNumber').typeahead({
                 minLength: 3,
                 highlight: true
@@ -87,18 +128,168 @@
                 display: 'Number',
                 source: serialNumbers
             }).on("typeahead:select", function (e, serialNumber) {
-                vm.SerialNumberIds.push(serialNumber.Id);
-                console.log("selectedId : " + serialNumber.Id);
-                $('#serialNumbersInShipmentList').append("<li class=list-group-item>" + $('#inputEndSerialNumber').val() + "</li>");
-                toastr.warning("Found " + $('#inputEndSerialNumber').val() + ". Added to shipment.");
+                //vm.SerialNumberIds.push(serialNumber.Id);
+                console.log("Start SN# Selected: " + serialNumber.Id);
             });
             
+            //find serial range button------------------------------------
+            $('#findSerialRangeButton').on('click', function () {
+                if ($('#inputStartSerialNumber').val().substring(0, 2) == $('#inputEndSerialNumber').val().substring(0, 2)) { //check if both serial number prefix's are the same
+                    var startSN = $('#inputStartSerialNumber').val();
+                    var endSN = $('#inputEndSerialNumber').val();
+                    console.log("User Start Entry: " + startSN);
+                    console.log("User End Entry: " + endSN);
+                    var startSNPrefix = "";
+                    var endSNPrefix = "";
+                    var startSNNum = 0;
+                    var endSNNum = 0;
+
+                    //tests number to get out interget and prefix
+                    if (startSN.length <= 5) {
+                        alert("Invalid Start Serial # Entry: " + startSN)
+                    }
+                    else if (endSN.length <= 5) {
+                        alert("Invalid End Serial # Entry: " + startSN)
+                    }
+                    else {
+                        startSNNum = retnum(startSN.substring(2));
+                        endSNNum = retnum(endSN.substring(2));
+                        startSNPrefix = startSN.substring(0, (startSN.length - startSNNum.length));
+                        endSNPrefix = endSN.substring(0, (endSN.length - endSNNum.length));
+                        var numCount = 0; //to count how many entries are added through ajax call
+                        for (var i = 0; i < (parseInt(endSNNum) - parseInt(startSNNum) + 1) ; i++) {
+                            //var newSN = startSNPrefix + (parseInt(startSNNum) + i);
+                            var newSN = startSNPrefix + ('00000' + (parseInt(startSNNum, 10) + parseInt(i, 10))).substring((parseInt(startSNNum, 10) + parseInt(i, 10)).toString().length);
+
+
+
+                            $.ajax({
+                                type: 'GET',
+                                url: '/api/serialnumbers',
+                                datatype: 'json',
+                                async: false,
+                                data: { numberQuery: newSN },
+                                success: function (result) {
+                                    if (result.length >= 1) {
+                                        vm.SerialNumberIds.push(result[0].Id);
+                                        $('#serialNumbersInShipmentList').append("<li class=list-group-item>" + newSN + "<input value='Remove' id='deleteButton' class='btn-sm btn-primary pull-right' type='button'/>" + "</li>");
+                                        numCount++;
+                                    }
+                                    else {
+                                        alert("ERROR! " + newSN + " does not exsist!");
+
+                                    }
+                                }
+                            });
+
+                        }
+                        toastr.success("Added " + numCount + " Serial #'s to Shipment.")
+                        //adds end num to visable list since ajax loops stops at last num
+                        //$('#serialNumbersInShipmentList').append("<li class=list-group-item>" + newSN + "<input value='Remove' class='btn-sm btn-primary pull-right' type='button' style='align-self:center' />" + "</li>");
+
+                    }
+                    //function to take a string and extract all numeric values from it
+                    function retnum(str) {
+                        var num = str.replace(/[^0-9]/g, '');
+                        return num;
+
+                    }
+                    $('#totalInShipment').html(vm.SerialNumberIds.length);
+
+                }
+                else
+                {
+                    toastr.error("Serial #'s Don't Match!");
+                }
+            });
+            //find button end------------------------------------
+
+
+
+
+            //SUBMIT FORM BUTTON
+            $('#formSubmitButton').on('click', function () {
+
+                if ($('#shipDatePicker').val().length <= 0) {
+                    toastr.error("Please choose a valid ship date!");
+                }
+                else {
+                    if (confirm("About to Log a Shipment. Are you sure?")) {
+                        vm.CustomerFirstName = $('#customerFirstNameInput').val();
+                        vm.CustomerLastName = $('#customerLastNameInput').val();
+                        vm.Shipdate = $('#shipDatePicker').val();
+                        console.log("ITS " + vm);
+                        $.ajax({
+                            type: 'POST',
+                            url: '/serialNumbers/logshipment',
+                            async: true,
+                            datatype: 'json',
+                            data: vm,
+                            success: function () {
+                                toastr.success("Shipment successfully logged! YAY!");
+
+                            }
+                        });
+
+                        return true;
+                    }
+
+                    else {
+                        event.preventDefault();
+                        return false;
+                    }
+
+
+                }
+
+
+                
+
+
+
+                
+            });
+
+
+
+
+            //TODO: Delete button not getting rid of single record
+            $('#deleteButton').on('click', function () {
+                console.log("hi");
+            });
+
+
 
         });
-
-
-
     </script>
 
 
 }
+
+<style>
+    input[type=text] {
+        color: white;
+        border: 2px thin black;
+        background-color: #2E3338;
+        margin: 5px;
+    }
+
+    input[type=date] {
+        color: white;
+        background-color: #2E3338;
+    }
+
+    textarea {
+        background-color: #2E3338;
+        color: white;
+        border: 2px thick black;
+        vertical-align: top;
+        width: 100%;
+    }
+
+    .control-label {
+        text-decoration: underline;
+        color: lightslategray;
+    }
+</style>
+
