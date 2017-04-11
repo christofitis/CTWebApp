@@ -18,10 +18,16 @@ namespace CriticalWebApp.Controllers
         private ApplicationDbContext _context = new ApplicationDbContext();
         // GET: SerialNumbers
         //TODO: Build list of objects then return that to view (will allow for multiple searches to be added together), not return per input. 
-        public ActionResult Index(DateTime? startShipDateQuery, DateTime? endShipDateQuery, DateTime? startDateQuery, DateTime? endDateQuery, string serialNumberQuery = null, string customerFirstNameQuery = null, string customerLastNameQuery = null)
+        public ActionResult Index(DateTime? startShipDateQuery, DateTime? endShipDateQuery, DateTime? startDateQuery, DateTime? endDateQuery, string serialNumberQuery = null, string customerFirstNameQuery = null, string customerLastNameQuery = null, string invoiceNumberQuery = null)
         {
+            if (!string.IsNullOrEmpty(invoiceNumberQuery))
+            {
+                ViewBag.InvoiceNumber = invoiceNumberQuery;
+                return View(_context.SerialNumbers.Include(p => p.Product).Where(s => s.InvoiceNumber.Contains(invoiceNumberQuery)).ToList().OrderBy(o => o.Number));
+            }
+
             if (!string.IsNullOrEmpty(serialNumberQuery))
-                ViewBag.UserInput = serialNumberQuery;
+                ViewBag.SerialNumber = serialNumberQuery;
 
             if (startDateQuery.HasValue)
                 ViewBag.StartMFGDate = startDateQuery.Value.ToString("d");

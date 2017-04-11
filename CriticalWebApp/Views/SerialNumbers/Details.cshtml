@@ -54,7 +54,13 @@
         <dd>
             @Html.DisplayFor(model => model.CustomerFirstName) @Html.DisplayFor(model => model.CustomerLastName)
         </dd>
+        <dt>
+            Invoice #
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceNumber) 
+        </dd>
         
         <dt>
             @Html.DisplayNameFor(model => model.MFGDate)
