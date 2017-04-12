@@ -9,30 +9,36 @@
 @using (Html.BeginForm("Index", "SerialNumbers"))
 {
     <div class="form-inline">
-        <div class="text-primary">Search for a Serial #: <b class="text-info">@ViewBag.UserInput </b></div>
+        <div class="text-primary">Serial #: <b class="text-info">@ViewBag.Number </b></div>
         <input class="form-control" autocomplete="off" type="text" name="serialNumberQuery" id="serialNumberQuery" placeholder="2r1234" />
     </div>
 
 
 
     <div class="form-inline">
-        <div class="text-primary">Search Customer: <b class="text-info">@ViewBag.CustomerFirstName @ViewBag.CustomerLastName</b> </div>
+        <div class="text-primary">Customer: <b class="text-info">@ViewBag.CustomerFirstName @ViewBag.CustomerLastName</b> </div>
         <input class="form-control" type="text" name="customerFirstNameQuery" id="customerFirstNameQuery" placeholder="First or Company Name" />
         <input class="form-control" type="text" name="customerLastNameQuery" id="customerFirstNameQuery" placeholder="Last Name" />
+    </div>
+
+
+    <div class="form-inline">
+        <div class="text-primary">Invoice #: <b class="text-info">@ViewBag.InvoiceNumber</b> </div>
+        <input class="form-control" type="text" name="invoiceNumberQuery" id="invoiceNumberQuery" placeholder="#########" />
     </div>
 
 
 
 
     <div class="form-inline">
-        <div class="text-primary">Search MFG Date Range:<b class="text-info"> @ViewBag.StartMFGDate @ViewBag.EndMFGDate</b></div>
+        <div class="text-primary">MFG Date Range:<b class="text-info"> @ViewBag.StartMFGDate @ViewBag.EndMFGDate</b></div>
         <input class="form-control" type="date" name="startDateQuery" id="startDateQueryInput" />
         <input class="form-control" type="date" name="endDateQuery" id="endDateQueryInput" />
     </div>
 
 
     <div class="form-inline">
-        <div class="text-primary">Search Ship Date Range: <b class="text-info">@ViewBag.StartShipDate @ViewBag.EndShipDate</b></div>
+        <div class="text-primary">Ship Date Range: <b class="text-info">@ViewBag.StartShipDate @ViewBag.EndShipDate</b></div>
         <input class="form-control" type="date" name="startShipDateQuery" id="startShipDateQueryInput" />
         <input class="form-control" type="date" name="endShipDateQuery" id="endShipDateQueryInput" />
 
@@ -69,8 +75,12 @@
                             Customer
                         </th>
                         <th>
+                            Invoice #
+                        </th>
+                        <th>
                             Ship Date
                         </th>
+                        
                         <th>
                             @Html.DisplayNameFor(model => model.Notes)
                         </th>
@@ -99,6 +109,9 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.CustomerFirstName) @Html.DisplayFor(modelItem => item.CustomerLastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InvoiceNumber)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.ShipDate)
