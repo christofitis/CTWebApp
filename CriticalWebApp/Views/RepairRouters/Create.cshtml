@@ -27,7 +27,7 @@
         </div>
         <div class="container" style="border:2px solid darkgrey;">
             <div class="form-group-sm">
-                <div class="pull-right" style="border:solid; border-right-color: white; border-style: dotted; padding: 4px">
+                <div class="pull-right" style="border:solid; border-right-color: white; border-style: dotted; padding: 4px; margin: 0px 100px 0px 0px">
                     <h3>C.O.D.</h3>
                     @Html.LabelFor(model => model.isCODProduct, htmlAttributes: new { @class = "control-label" }):
                     @Html.EditorFor(model => model.isCODProduct, new { htmlAttributes = new { @class = "form-control" } })
@@ -163,7 +163,8 @@
                     @*@Html.EditorFor(model => model.ProductModel, new { htmlAttributes = new { @class = "form-control", id = "productModelInput" } })*@
                     @Html.ValidationMessageFor(model => model.ProductModel, "", new { @class = "text-danger" })
                     @Html.LabelFor(model => model.ProductSerialNumber, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.ProductSerialNumber, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", id = "productSerialNumberInput" } })
+                    @*@Html.HiddenFor(model => model.ProductSerialNumber, new { htmlAttributes = new { id = "productSerialNumberInputHidden" } })*@
+                    <input type="text" class="form-control" style="width:200px" id="productSerialNumberInput" name="ProductSerialNumber" />
                     @Html.ValidationMessageFor(model => model.ProductSerialNumber, "", new { @class = "text-danger" })
 
                 </div>
@@ -268,11 +269,8 @@
                 </div>
                 <div class="col-xs-12">
                     @Html.LabelFor(model => model.CustomerComplaint, htmlAttributes: new { @class = "control-label " }):
-                    @*@Html.TextAreaFor(model => model.CustomerComplaint, new { htmlAttributes = new { @class = "form-control", id = "customerComplaintUserInput" } })*@
-                    <textarea id="myTextarea">
-                        342 Alvin Road
-                        Ducksburg
-                    </textarea>
+                    @Html.TextAreaFor(model => model.CustomerComplaint, new { htmlAttributes = new { @class = "form-control", id = "customerComplaintUserInput" } })
+                
                     @Html.ValidationMessageFor(model => model.CustomerComplaint, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-xs-12">
@@ -355,8 +353,6 @@
 
     <script type="text/javascript">
         function myFunction() {
-            document.getElementById("customerComplaintUserInput").value = "Fifth Avenue, New York City";
-            console.log(document.getElementById("customerComplaintUserInput").value);
 
         }
         $(document).ready(function () {
@@ -512,6 +508,8 @@ selected
                 + $('#customerLastNameInput').val()
                 + ". Are you sure?")) {
                 document.getElementById('productModelHidden').value = (document.getElementById('productList').value);
+
+                
                 return true;
 
             }
@@ -521,9 +519,41 @@ selected
                 return false;
             }
 
+       
+
+        });
+        var serialNumbers = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Number'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+
+            remote: {
+                url: '/api/serialnumbers?numberQuery=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
+        //single serial add typeahead box
+        $('#productSerialNumberInput').typeahead({
+            minLength: 2,
+            highlight: true
+        }, {
+            name: 'SerialNumbers',
+            display: 'Number',
+            source: serialNumbers
+        }).on("typeahead:select", function (e, serialNumber) {
+
         });
 
     </script>
+
+
+
+
+
+
+
+
+
+
 
 }
 @*changes color of all input boxes, i didnt like it*@
@@ -549,7 +579,7 @@ selected
     }
 
     .control-label {
-        text-decoration: underline;
+       
         color: lightslategray;
     }
 </style>
