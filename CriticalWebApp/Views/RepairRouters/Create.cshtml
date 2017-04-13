@@ -97,12 +97,12 @@
                 </div>
                 <div class="col-sm-4">
                     @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control ", id="phoneNumberUserInput" } })
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control ", id = "phoneNumberUserInput" } })
                     @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-sm-4">
                     @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control ", @style = "width:700px", id="emailUserInput" } })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control ", @style = "width:700px", id = "emailUserInput" } })
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-xs-12">
@@ -163,7 +163,6 @@
                     @*@Html.EditorFor(model => model.ProductModel, new { htmlAttributes = new { @class = "form-control", id = "productModelInput" } })*@
                     @Html.ValidationMessageFor(model => model.ProductModel, "", new { @class = "text-danger" })
                     @Html.LabelFor(model => model.ProductSerialNumber, htmlAttributes: new { @class = "control-label " }):
-                    @*@Html.HiddenFor(model => model.ProductSerialNumber, new { htmlAttributes = new { id = "productSerialNumberInputHidden" } })*@
                     <input type="text" class="form-control" style="width:200px" id="productSerialNumberInput" name="ProductSerialNumber" />
                     @Html.ValidationMessageFor(model => model.ProductSerialNumber, "", new { @class = "text-danger" })
 
@@ -246,102 +245,96 @@
             <h2><u>3. Repair</u></h2>
         </div>
         <div class="container" style="border:2px solid darkgrey;">
-            <div class="form-group-sm">
-                <div class="col-xs-4">
-
-                    @Html.Label("Name: ", htmlAttributes: new { @class = "control-label " })
-                </div>
-                <div class="col-xs-4">
-                    @Html.LabelFor(model => model.IsWithinTheUSA, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.IsWithinTheUSA, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.IsWithinTheUSA, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-xs-4">
-                    @Html.Label("RMA Received By: ", htmlAttributes: new { @class = "control-label " })
-                    <p id="rmaReceivedBy"></p>
-                </div>
+            <div class="form-group-sm" style="padding:10px">
 
 
-                <div class="col-xs-12">
-                    @Html.Label("Product Model: ", htmlAttributes: new { @class = "control-label col-xs-4", id = "repairProductModel" })
 
-                    @Html.Label("Serial #: ", htmlAttributes: new { @class = "control-label ", id = "repairSerialNumber" })
+
+
+                <div class="col-xs-6">
+                    @Html.Label("Product Model: ", htmlAttributes: new { @class = "control-label" })
+                    <span id="repairProductModel"></span>
+
+                    @Html.Label("Serial #: ", htmlAttributes: new { @class = "control-label " })
+                    <text id="repairSerialNumber"></text>
+
                 </div>
                 <div class="col-xs-12">
                     @Html.LabelFor(model => model.CustomerComplaint, htmlAttributes: new { @class = "control-label " }):
-                    @Html.TextAreaFor(model => model.CustomerComplaint, new { htmlAttributes = new { @class = "form-control", id = "customerComplaintUserInput" } })
-                
+                    @Html.TextArea("CustomerComplaint", new { htmlAttributes = new {id = "CustomerComplaint" } })
                     @Html.ValidationMessageFor(model => model.CustomerComplaint, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-xs-12">
                     @Html.LabelFor(model => model.SpecialInstructions, htmlAttributes: new { @class = "control-label " }):
-                    @Html.TextAreaFor(model => model.SpecialInstructions, new { htmlAttributes = new { @class = "form-control", id= "specialInstructionsUserInput" } })
+                    @Html.TextAreaFor(model => model.SpecialInstructions, new { htmlAttributes = new { @class = "form-control", id = "specialInstructionsUserInput" } })
                     @Html.ValidationMessageFor(model => model.SpecialInstructions, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-xs-12">
                     <p>
-                        Repair Notes:
+                        <h3><u>Repair Notes:</u></h3>
                         @Html.LabelFor(model => model.WasRepaired, htmlAttributes: new { @class = "control-label " }):
-                        @Html.EditorFor(model => model.WasRepaired, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.WasRepaired, "", new { @class = "text-danger" })
-                        @Html.LabelFor(model => model.WasReplaced, htmlAttributes: new { @class = "control-label " }):
-                        @Html.EditorFor(model => model.WasReplaced, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.WasReplaced, "", new { @class = "text-danger" })
-                    </p>
-                </div>
-                <div class="col-xs-12">
-                    @Html.LabelFor(model => model.RepairNotes, htmlAttributes: new { @class = "control-label " }):
-                    @Html.TextAreaFor(model => model.RepairNotes, new { htmlAttributes = new { @style = "background-color: red;" } })
-                    @Html.ValidationMessageFor(model => model.RepairNotes, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-xs-3">
-                    @Html.LabelFor(model => model.RepairDoneBy, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.RepairDoneBy, new { htmlAttributes = new { @class = "form-control", @style = "width:120px" } })
-                    @Html.ValidationMessageFor(model => model.RepairDoneBy, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-xs-3">
-                    @Html.LabelFor(model => model.RepairDate, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.RepairDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", @Value = DateTime.Now.ToShortDateString(), id = "repairDatePicker" } })
-                    @Html.ValidationMessageFor(model => model.RepairDate, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-xs-6">
+                        @Html.EditorFor(model => model.WasRepaired, new
+                        {
+                            htmlAttributes = new { @class = "form-control" } })
+@Html.ValidationMessageFor(model => model.WasRepaired, "", new { @class = "text-danger" })
+@Html.LabelFor(model => model.WasReplaced, htmlAttributes: new { @class = "control-label " }):
+@Html.EditorFor(model => model.WasReplaced, new { htmlAttributes = new { @class = "form-control" } })
+@Html.ValidationMessageFor(model => model.WasReplaced, "", new { @class = "text-danger" })
+</p>
+</div>
+<div class="col-xs-12">
+    @Html.LabelFor(model => model.RepairNotes, htmlAttributes: new { @class = "control-label " }):
+    @Html.TextAreaFor(model => model.RepairNotes, new { htmlAttributes = new { @style = "background-color: red;" } })
+    @Html.ValidationMessageFor(model => model.RepairNotes, "", new { @class = "text-danger" })
+</div>
+<div class="col-xs-3">
+    @Html.LabelFor(model => model.RepairDoneBy, htmlAttributes: new { @class = "control-label " }):
+    @Html.EditorFor(model => model.RepairDoneBy, new { htmlAttributes = new { @class = "form-control", @style = "width:120px" } })
+    @Html.ValidationMessageFor(model => model.RepairDoneBy, "", new { @class = "text-danger" })
+</div>
+<div class="col-xs-3">
+    @Html.LabelFor(model => model.RepairDate, htmlAttributes: new { @class = "control-label " }):
+    @Html.EditorFor(model => model.RepairDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", @Value = DateTime.Now.ToShortDateString(), id = "repairDatePicker" } })
+    @Html.ValidationMessageFor(model => model.RepairDate, "", new { @class = "text-danger" })
+</div>
+<div class="col-xs-6">
 
-                </div>
-                <div class="col-xs-12">
-                    @Html.LabelFor(model => model.OutSerialNumber, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.OutSerialNumber, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.OutSerialNumber, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-xs-12">
-                    @Html.LabelFor(model => model.FirstTester, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.FirstTester, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FirstTester, "", new { @class = "text-danger" })
-                    @Html.LabelFor(model => model.SecondTester, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.SecondTester, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SecondTester, "", new { @class = "text-danger" })
-                </div>
-
-
-            </div>
-
-        </div>
+</div>
+<div class="col-xs-6">
+    @Html.LabelFor(model => model.OutSerialNumber, htmlAttributes: new { @class = "control-label " }):
+    @Html.EditorFor(model => model.OutSerialNumber, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.OutSerialNumber, "", new { @class = "text-danger" })
+</div>
+<div class="col-xs-6">
+    @Html.LabelFor(model => model.FirstTester, htmlAttributes: new { @class = "control-label " }):
+    @Html.EditorFor(model => model.FirstTester, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.FirstTester, "", new { @class = "text-danger" })
+    @Html.LabelFor(model => model.SecondTester, htmlAttributes: new { @class = "control-label " }):
+    @Html.EditorFor(model => model.SecondTester, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.SecondTester, "", new { @class = "text-danger" })
+</div>
 
 
-        <hr style="width: 100%; margin-top:25px; color: black; height: 1px; padding-top:4px; background-color:black;" />
-        <div class="col-xs-12">
-            @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label " }):
-            @Html.TextAreaFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
-        </div>
+</div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" id="submitButton" />
-            </div>
-        </div>
+</div>
+
+
+<hr style="width: 100%; margin-top:25px; color: black; height: 1px; padding-top:4px; background-color:black;" />
+<div class="col-xs-12" style="padding:10px">
+    @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label " }):
+    @Html.TextAreaFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Create" class="btn btn-default" id="submitButton" />
     </div>
+</div>
+</div>
 
-    <button type="button" onclick="myFunction()">Press me</button>
+
 }
 
 <div>
@@ -349,136 +342,128 @@
 </div>
 
 @section scripts {
-                        @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
-        function myFunction() {
-
-        }
-        $(document).ready(function () {
-           
 
 
+        //---------------autofill form with email-----------------------------
+        $('#getEmailButton').on('click', function () {
+            console.log("here we go!");
+
+            var rawEmailData = $('#rawEmailData').val();
+            var parsedEmail = {
+            };
+
+            console.log(rawEmailData.substring(rawEmailData.indexOf("Email:") + 6, rawEmailData.indexOf("Product Model:")));
 
 
-            //---------------autofill form with email-----------------------------
-            $('#getEmailButton').on('click', function () {
-                console.log("here we go!");
-                
-                var rawEmailData = $('#rawEmailData').val();
-                var parsedEmail = {
-                };
-
-                console.log(rawEmailData.substring(rawEmailData.indexOf("Email:") + 6, rawEmailData.indexOf("Product Model:")));
-
-
-                parsedEmail.Name = rawEmailData.substring(rawEmailData.indexOf("Name:") + 5, rawEmailData.indexOf("Shop Name:"));
-                parsedEmail.ShopName = rawEmailData.substring(rawEmailData.indexOf("Shop Name:") + 10, rawEmailData.indexOf("Shop Address:"));
-                parsedEmail.ShopAddress = rawEmailData.substring(rawEmailData.indexOf("Shop Address:") + 13, rawEmailData.indexOf("Billing Address (If different than shop address):"));
-                parsedEmail.BillingAddress = rawEmailData.substring(rawEmailData.indexOf("Billing Address (If different than shop address):") + 49, rawEmailData.indexOf("Phone Number:"));
-                parsedEmail.PhoneNumber = rawEmailData.substring(rawEmailData.indexOf("Phone Number:") + 13, rawEmailData.indexOf("Email:"));
-                parsedEmail.Email = rawEmailData.substring(rawEmailData.indexOf("Email:") + 6, rawEmailData.indexOf("Product Model:"));
-                parsedEmail.ProductModel = rawEmailData.substring(rawEmailData.indexOf("Product Model:") + 14, rawEmailData.indexOf("Serial Number:"));
-                parsedEmail.SerialNumber = rawEmailData.substring(rawEmailData.indexOf("Serial Number:") + 14, rawEmailData.indexOf("Detailed Explanation of Issue:"));
-                parsedEmail.ExplinationOfIssue = rawEmailData.substring(rawEmailData.indexOf("Detailed Explanation of Issue:") + 30, rawEmailData.indexOf("Comments / Special Instructions:"));
-                parsedEmail.Comments = rawEmailData.substring(rawEmailData.indexOf("Comments / Special Instructions:") + 32, rawEmailData.indexOf("Receipt Upload"));
-                parsedEmail.ReceiptUpload = rawEmailData.substring(rawEmailData.indexOf("Receipt Upload") + 14, rawEmailData.indexOf("I have read and agree to the above Warranty Terms of Service."));
-                parsedEmail.AgreeToWarrantyTermsOfService = rawEmailData.substring(rawEmailData.indexOf("I have read and agree to the above Warranty Terms of Service.") + 61, rawEmailData.indexOf("Shop Address:"));
+            parsedEmail.Name = rawEmailData.substring(rawEmailData.indexOf("Name:") + 5, rawEmailData.indexOf("Shop Name:"));
+            parsedEmail.ShopName = rawEmailData.substring(rawEmailData.indexOf("Shop Name:") + 10, rawEmailData.indexOf("Shop Address:"));
+            parsedEmail.ShopAddress = rawEmailData.substring(rawEmailData.indexOf("Shop Address:") + 13, rawEmailData.indexOf("Billing Address (If different than shop address):"));
+            parsedEmail.BillingAddress = rawEmailData.substring(rawEmailData.indexOf("Billing Address (If different than shop address):") + 49, rawEmailData.indexOf("Phone Number:"));
+            parsedEmail.PhoneNumber = rawEmailData.substring(rawEmailData.indexOf("Phone Number:") + 13, rawEmailData.indexOf("Email:"));
+            parsedEmail.Email = rawEmailData.substring(rawEmailData.indexOf("Email:") + 6, rawEmailData.indexOf("Product Model:"));
+            parsedEmail.ProductModel = rawEmailData.substring(rawEmailData.indexOf("Product Model:") + 14, rawEmailData.indexOf("Serial Number:"));
+            parsedEmail.SerialNumber = rawEmailData.substring(rawEmailData.indexOf("Serial Number:") + 14, rawEmailData.indexOf("Detailed Explanation of Issue:"));
+            parsedEmail.ExplinationOfIssue = rawEmailData.substring(rawEmailData.indexOf("Detailed Explanation of Issue:") + 30, rawEmailData.indexOf("Comments / Special Instructions:"));
+            parsedEmail.Comments = rawEmailData.substring(rawEmailData.indexOf("Comments / Special Instructions:") + 32, rawEmailData.indexOf("Receipt Upload"));
+            parsedEmail.ReceiptUpload = rawEmailData.substring(rawEmailData.indexOf("Receipt Upload") + 14, rawEmailData.indexOf("I have read and agree to the above Warranty Terms of Service."));
+            parsedEmail.AgreeToWarrantyTermsOfService = rawEmailData.substring(rawEmailData.indexOf("I have read and agree to the above Warranty Terms of Service.") + 61, rawEmailData.indexOf("Shop Address:"));
 
 
 
-                $('#customerFirstNameInput').val(parsedEmail.Name);
-                $('#shopNameUserInput').val(parsedEmail.ShopName);
-                $('#shopAddressUserInput').val(parsedEmail.ShopAddress); //parse this out for city, state, zip
-                $('#phoneNumberUserInput').val(parsedEmail.PhoneNumber);
-                $('#emailUserInput').val(parsedEmail.Email);
-                $('#productList').val(parsedEmail.ProductModel);
-                document.getElementById('productModelHidden').value = parsedEmail.ProductModel;
-                $('#productSerialNumberInput').val(parsedEmail.SerialNumber);
-                console.log(parsedEmail.ExplinationOfIssue);
-                document.getElementById('customerComplaintUserInput').innerHTML = parsedEmail.ExplinationOfIssue;
-                
-                $('#specialInstructionsUserInput').val(parsedEmail.Comments);
-
-
-                
-
-
-                @*
-                    To:
-Webmaster
-
-Name:
-Chris Bryant
-
-Shop Name:
-Indiana Jones
-
-Shop Address:
-42 Wallaby Way Sydney Australia
-
-Billing Address (If different than shop address):
-same
-
-Phone Number:
-7757204057
-
-Email:
-chris13ryant@gmail.com
-
-Product Model:
-Power Supply CX-2R G2
-
-Serial Number:
-2R9999
-
-Detailed Explanation of Issue:
-It wont sync
-
-Comments / Special Instructions:
-
-
-Receipt Upload
- No file attached
-
-I have read and agree to the above Warranty Terms of Service.
-selected
+            $('#customerFirstNameInput').val(parsedEmail.Name);
+            $('#shopNameUserInput').val(parsedEmail.ShopName);
+            $('#shopAddressUserInput').val(parsedEmail.ShopAddress); //parse this out for city, state, zip
+            $('#phoneNumberUserInput').val(parsedEmail.PhoneNumber);
+            $('#emailUserInput').val(parsedEmail.Email);
+            $('#productList').val(parsedEmail.ProductModel);
+            $('#productSerialNumberInput').val(parsedEmail.SerialNumber);
+            $('#CustomerComplaint').val(parsedEmail.ExplinationOfIssue);
+            $('#specialInstructionsUserInput').val(parsedEmail.Comments);
 
 
 
-                    *@
+
+
+            @*
+            To:
+            Webmaster
+
+            Name:
+                Chris Bryant
+
+            Shop Name:
+                Indiana Jones
+
+            Shop Address:
+                42 Wallaby Way Sydney Australia
+
+            Billing Address (If different than shop address):
+            same
+
+            Phone Number:
+                7757204057
+
+            Email:
+                chris13ryant@gmail.com
+
+            Product Model:
+                Power Supply CX-2R G2
+
+            Serial Number:
+                2R9999
+
+            Detailed Explanation of Issue:
+                It wont sync
+
+            Comments / Special Instructions:
+
+
+                Receipt Upload
+            No file attached
+
+            I have read and agree to the above Warranty Terms of Service.
+            selected
+
+
+
+                                *@
 
 
 
 
             });
-            //------------------------------------------------------------------------
+        //------------------------------------------------------------------------
 
+
+
+
+        $(document).ready(function () {
+
+
+
+
+
+           
             document.getElementById('ContactDatePicker').valueAsDate = new Date();
 
-            $('#productModelInput').on('change', function () {
-                document.getElementById('productModelReceived').innerHTML = (document.getElementById('productModelInput').value);
-                document.getElementById('repairProductModel').innerHTML = ("Product Model: " + document.getElementById('productModelInput').value);
+            $('#productList').on('change', function () {
+                document.getElementById('productModelReceived').innerHTML = ($('#productList').val());
+                document.getElementById('repairProductModel').innerHTML = ($('#productList').val());
 
             });
             $('#productSerialNumberInput').on('change', function () {
                 document.getElementById('productSerialNumbeReceived').innerHTML = (document.getElementById('productSerialNumberInput').value);
-                document.getElementById('repairSerialNumber').innerHTML = ("Serial #: " + document.getElementById('productSerialNumberInput').value);
+                document.getElementById('repairSerialNumber').innerHTML = (document.getElementById('productSerialNumberInput').value);
 
             });
             $('#rmaReceivedByInput').on('change', function () {
                 document.getElementById('rmaReceivedBy').innerHTML = (document.getElementById('rmaReceivedByInput').value);
 
             });
-            $('#didSendPowerAdapterInput').on('change', function () {
-                if ($('#didSendPowerAdapterInput').is(':checked')) {
-                    document.getElementById('didSendPowerAdapterReceived').innerHTML = ("Power adapter");
-                }
-                else {
-                    document.getElementById('didSendPowerAdapterReceived').innerHTML = ("");
-                }
 
-            });
 
             var productListDropdown = $("#productList");
             $.getJSON("/Api/Products", null, function (data) {
@@ -509,7 +494,7 @@ selected
                 + ". Are you sure?")) {
                 document.getElementById('productModelHidden').value = (document.getElementById('productList').value);
 
-                
+
                 return true;
 
             }
@@ -519,7 +504,7 @@ selected
                 return false;
             }
 
-       
+
 
         });
         var serialNumbers = new Bloodhound({
@@ -540,7 +525,7 @@ selected
             display: 'Number',
             source: serialNumbers
         }).on("typeahead:select", function (e, serialNumber) {
-
+            toastr.success("Serial #: " + serialNumber.Number + " found!");
         });
 
     </script>
@@ -578,8 +563,11 @@ selected
         width: 100%;
     }
 
+    #repairProductModel {
+        text-align: left;
+    }
+
     .control-label {
-       
         color: lightslategray;
     }
 </style>
