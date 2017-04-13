@@ -54,7 +54,7 @@
     </p>
 </div>
 
-<table class="table table-hover">
+<table class="table table-hover" id="repairRouterTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Id)
@@ -124,10 +124,25 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
-
+           
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                @if (item.Status == "Waiting to Receive")
+                {
+                    @Html.ActionLink("Receive", "Edit", new { id = item.Id }); 
+                }
+                else if (item.Status == "Waiting to be Repaired")
+                {
+                    @Html.ActionLink("Repair", "Edit", new { id = item.Id });
+
+                }
+                else
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id });
+
+                }
+
+
+                |@Html.ActionLink("Details", "Details", new { id = item.Id })
 
             </td>
         </tr>
@@ -137,10 +152,21 @@
 
 @section scripts{
     <script>
-        $(document).ready(function () {
-
+        $('#repairRouterTable > tbody > tr').click(function () {
+            // row was clicked
+            console.log($('#repairRouterTable > tbody > tr').val());
+            
 
         });
+
+
+        $(document).ready(function () {
+
+          
+
+        });
+
+
 
     </script>
 }

@@ -135,5 +135,6 @@ namespace CriticalWebApp.Models
         public string SecondTester { get; set; }
         public string Notes { get; set; }
         public string Status { get; set; }
+        public string ProductCondition { get; set; }
     }
 }

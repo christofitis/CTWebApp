@@ -206,7 +206,7 @@
                         @Html.EditorFor(model => model.RMAReceivedBy, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", id = "rmaReceivedByInput" } })
                         @Html.ValidationMessageFor(model => model.RMAReceivedBy, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-xs-3" style="border:2px dashed black; height:160px">
+                    <div class="col-xs-4" style="border:2px dashed black; height:160px">
                         <p>Was the below product received? </p>
                         @Html.LabelFor(model => model.ProductReceived, htmlAttributes: new { @class = "control-label " }):
                         @Html.EditorFor(model => model.ProductReceived, new { htmlAttributes = new { @class = "form-control" } })
@@ -216,12 +216,20 @@
                         @Html.LabelFor(model => model.ProductSerialNumber, new { @class = "control-label" }):
                         @Html.DisplayFor(model => model.ProductSerialNumber, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-                    <div class="col-xs-3" style="border:2px dashed black; height:160px;">
+                    <div class="col-xs-4" style="border:2px dashed black; height:160px;">
                         <p>What else was received?</p>
                         <p style="color:darkgray">(seporate items by comma's)</p>
                         @Html.LabelFor(model => model.OtherReceived, htmlAttributes: new { @class = "control-label " }):
                         @Html.TextAreaFor(model => model.OtherReceived, new { htmlAttributes = new { @class = "form-control", rows = "4" } })
                         @Html.ValidationMessageFor(model => model.OtherReceived, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="col-xs-4" style="border:2px dashed black; height:160px;">
+                        <p>Note any physical defects/blemishes on received product.</p>
+                        
+                        @Html.LabelFor(model => model.ProductCondition, htmlAttributes: new { @class = "control-label " }):
+                        @Html.TextAreaFor(model => model.ProductCondition, new { htmlAttributes = new { @class = "form-control", rows = "4" } })
+                        @Html.ValidationMessageFor(model => model.ProductCondition, "", new { @class = "text-danger" })
 
                     </div>
 
