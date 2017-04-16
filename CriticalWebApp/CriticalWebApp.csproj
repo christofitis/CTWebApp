@@ -229,12 +229,15 @@
     <Compile Include="Controllers\RepairsController.cs" />
     <Compile Include="Controllers\SerialNumbersController.cs" />
     <Compile Include="Controllers\SqlCommanderController.cs" />
+    <Compile Include="FileHandler.ashx.cs">
+      <DependentUpon>FileHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704131519001_initialie.cs" />
-    <Compile Include="Migrations\201704131519001_initialie.Designer.cs">
-      <DependentUpon>201704131519001_initialie.cs</DependentUpon>
+    <Compile Include="Migrations\201704162310500_receiptName.cs" />
+    <Compile Include="Migrations\201704162310500_receiptName.Designer.cs">
+      <DependentUpon>201704162310500_receiptName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -279,6 +282,7 @@
     </Content>
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="FileHandler.ashx" />
     <None Include="Properties\PublishProfiles\fileOutToInsightServer.pubxml" />
     <None Include="Properties\PublishProfiles\PublishToCbDesktop.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -368,6 +372,7 @@
     <Content Include="Views\ProductReceiveds\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\ReceiptUploads\" />
     <Folder Include="Images\" />
     <Folder Include="Views\Uploads\" />
   </ItemGroup>
@@ -380,8 +385,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704131519001_initialie.resx">
-      <DependentUpon>201704131519001_initialie.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704162310500_receiptName.resx">
+      <DependentUpon>201704162310500_receiptName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

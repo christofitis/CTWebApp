@@ -136,5 +136,7 @@ namespace CriticalWebApp.Models
         public string Notes { get; set; }
         public string Status { get; set; }
         public string ProductCondition { get; set; }
+        public string ReceiptFileName { get; set; }
+
     }
 }

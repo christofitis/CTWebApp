@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
 <h2>Create</h2>
 <div>
     <textarea id="rawEmailData" placeholder="Paste email here to autofill the form with that information."></textarea>
@@ -59,7 +61,7 @@
 
                 </div>
 
-                <div class="col-xs-2">
+                <div class="col-xs-2" style="border:dotted 1px green">
                     @Html.LabelFor(model => model.TalkedTo, htmlAttributes: new { @class = "control-label " }):
                     @Html.EditorFor(model => model.TalkedTo, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.TalkedTo, "", new { @class = "text-danger" })
@@ -130,70 +132,81 @@
 
 
             <div class="form-group-sm">
+                <form id="receiptForm">
+                    <div class="col-xs-1">
+                        <div id="receiptUploadBox" style="margin-top:10px; margin-bottom:5px; margin-left:auto; margin-right:auto; border:2px dashed black;">
+                            <u>Receipt:</u>
 
-                <div class="col-xs-3" style="margin-top:10px; margin-bottom:5px; margin-left:auto; margin-right:auto; border:2px dashed black;">
-                    <p style="font-size:large">
-                        <u>Warranty Status</u>
-                        @Html.LabelFor(model => model.ProdInQB, htmlAttributes: new { @class = "control-label", @style = "margin-left: 20px; margin-right:auto; font-size:small" }):
-                        @Html.EditorFor(model => model.ProdInQB, new { htmlAttributes = new { @class = "form-control " } })
-                        @Html.ValidationMessageFor(model => model.ProdInQB, "", new { @class = "text-danger" })
-                    </p>
+                            <span id="uploadIcon" class="glyphicon glyphicon-save " style="font-size:50px" aria-hidden="true"></span>
+                            <p style="font-size:8pt">(Drag & Drop Receipt File)</p>
+                        </div>
+                        <button id="receiptUploadButton" style="visibility:hidden" class="btn btn-sm btn-primary" type="button">Upload</button>
+                    </div>
+                </form>
+
+                    <div class="col-xs-3" style="margin-top:10px; margin-bottom:5px; margin-left:auto; margin-right:auto; border:2px dashed black;">
+                        <p style="font-size:large">
+                            <u>Warranty Status</u>
+                            @Html.LabelFor(model => model.ProdInQB, htmlAttributes: new { @class = "control-label", @style = "margin-left: 20px; margin-right:auto; font-size:small" }):
+                            @Html.EditorFor(model => model.ProdInQB, new { htmlAttributes = new { @class = "form-control " } })
+                            @Html.ValidationMessageFor(model => model.ProdInQB, "", new { @class = "text-danger" })
+                        </p>
 
 
-                    @Html.LabelFor(model => model.DateOfPurchase, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.DateOfPurchase, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", @type = "Date", @Value = DateTime.Now.ToShortDateString(), id = "dateOfPurchasePicker" } })
-                    @Html.ValidationMessageFor(model => model.DateOfPurchase, "", new { @class = "text-danger" })
-                    @Html.LabelFor(model => model.PlaceOfPurchase, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.PlaceOfPurchase, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
-                    @Html.ValidationMessageFor(model => model.PlaceOfPurchase, "", new { @class = "text-danger" })
-                    @Html.LabelFor(model => model.CoveredUnderWarranty, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.CoveredUnderWarranty, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CoveredUnderWarranty, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DateOfPurchase, htmlAttributes: new { @class = "control-label " }):
+                        @Html.EditorFor(model => model.DateOfPurchase, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", @type = "Date", @Value = DateTime.Now.ToShortDateString(), id = "dateOfPurchasePicker" } })
+                        @Html.ValidationMessageFor(model => model.DateOfPurchase, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.PlaceOfPurchase, htmlAttributes: new { @class = "control-label " }):
+                        @Html.EditorFor(model => model.PlaceOfPurchase, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
+                        @Html.ValidationMessageFor(model => model.PlaceOfPurchase, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.CoveredUnderWarranty, htmlAttributes: new { @class = "control-label " }):
+                        @Html.EditorFor(model => model.CoveredUnderWarranty, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CoveredUnderWarranty, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="col-xs-3" style="margin-top:10px; margin-bottom:20px; margin-left:30px; margin-right:auto; border:2px dashed green; padding-bottom:9px">
+                        <p style="font-size:large"><u>Product Info</u></p>
+                        @Html.LabelFor(model => model.ProductModel, htmlAttributes: new { @class = "control-label " }):
+                        <select class="form-control" id="productList">
+                            <option value="" disabled selected>Select a product</option>
+
+                        </select>
+                        @Html.HiddenFor(model => model.ProductModel, htmlAttributes: new { id = "productModelHidden" })
+                        @*@Html.EditorFor(model => model.ProductModel, new { htmlAttributes = new { @class = "form-control", id = "productModelInput" } })*@
+                        @Html.ValidationMessageFor(model => model.ProductModel, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.ProductSerialNumber, htmlAttributes: new { @class = "control-label " }):
+                        <input type="text" class="form-control" style="width:200px" id="productSerialNumberInput" name="ProductSerialNumber" />
+                        @Html.ValidationMessageFor(model => model.ProductSerialNumber, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="col-xs-3" style="margin-top:10px; margin-bottom:auto; margin-left:30px; margin-right:auto; border:2px dashed black; padding-bottom:12px">
+                        <p style="font-size:large"><u>Services</u></p>
+                        @Html.LabelFor(model => model.IsWarrentyRepair, htmlAttributes: new { @class = "control-label " }):
+                        @Html.EditorFor(model => model.IsWarrentyRepair, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.IsWarrentyRepair, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.IsReplaceRepackage, htmlAttributes: new { @class = "control-label " }):
+                        @Html.EditorFor(model => model.IsReplaceRepackage, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.IsReplaceRepackage, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.IsReferbishPkg, htmlAttributes: new { @class = "control-label " }):
+                        @Html.EditorFor(model => model.IsReferbishPkg, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.IsReferbishPkg, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.PaidRepairAmount, htmlAttributes: new { @class = "control-label " }):
+                        @Html.EditorFor(model => model.PaidRepairAmount, new { htmlAttributes = new { @class = "form-control", @placeholder = "$", @style = "width:75px" } })
+                        @Html.ValidationMessageFor(model => model.PaidRepairAmount, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-xs-12">
+                        @Html.LabelFor(model => model.ReturnLabel, htmlAttributes: new { @class = "control-label " }):
+                        @Html.EditorFor(model => model.ReturnLabel, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
+                        @Html.ValidationMessageFor(model => model.ReturnLabel, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.ShipType, htmlAttributes: new { @class = "control-label " }):
+                        @Html.EditorFor(model => model.ShipType, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
+                        @Html.ValidationMessageFor(model => model.ShipType, "", new { @class = "text-danger" })
+
+                    </div>
                 </div>
-
-
-                <div class="col-xs-3" style="margin-top:10px; margin-bottom:20px; margin-left:30px; margin-right:auto; border:2px dashed black; padding-bottom:9px">
-                    <p style="font-size:large"><u>Product Info</u></p>
-                    @Html.LabelFor(model => model.ProductModel, htmlAttributes: new { @class = "control-label " }):
-                    <select class="form-control" id="productList">
-                        <option value="" disabled selected>Select a product</option>
-
-                    </select>
-                    @Html.HiddenFor(model => model.ProductModel, htmlAttributes: new { id = "productModelHidden" })
-                    @*@Html.EditorFor(model => model.ProductModel, new { htmlAttributes = new { @class = "form-control", id = "productModelInput" } })*@
-                    @Html.ValidationMessageFor(model => model.ProductModel, "", new { @class = "text-danger" })
-                    @Html.LabelFor(model => model.ProductSerialNumber, htmlAttributes: new { @class = "control-label " }):
-                    <input type="text" class="form-control" style="width:200px" id="productSerialNumberInput" name="ProductSerialNumber" />
-                    @Html.ValidationMessageFor(model => model.ProductSerialNumber, "", new { @class = "text-danger" })
-
-                </div>
-
-                <div class="col-xs-3" style="margin-top:10px; margin-bottom:auto; margin-left:30px; margin-right:auto; border:2px dashed black; padding-bottom:12px">
-                    <p style="font-size:large"><u>Services</u></p>
-                    @Html.LabelFor(model => model.IsWarrentyRepair, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.IsWarrentyRepair, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.IsWarrentyRepair, "", new { @class = "text-danger" })
-                    @Html.LabelFor(model => model.IsReplaceRepackage, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.IsReplaceRepackage, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.IsReplaceRepackage, "", new { @class = "text-danger" })
-                    @Html.LabelFor(model => model.IsReferbishPkg, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.IsReferbishPkg, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.IsReferbishPkg, "", new { @class = "text-danger" })
-                    @Html.LabelFor(model => model.PaidRepairAmount, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.PaidRepairAmount, new { htmlAttributes = new { @class = "form-control", @placeholder = "$", @style = "width:75px" } })
-                    @Html.ValidationMessageFor(model => model.PaidRepairAmount, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="col-xs-12">
-                    @Html.LabelFor(model => model.ReturnLabel, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.ReturnLabel, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
-                    @Html.ValidationMessageFor(model => model.ReturnLabel, "", new { @class = "text-danger" })
-                    @Html.LabelFor(model => model.ShipType, htmlAttributes: new { @class = "control-label " }):
-                    @Html.EditorFor(model => model.ShipType, new { htmlAttributes = new { @class = "form-control", @style = "width:200px" } })
-                    @Html.ValidationMessageFor(model => model.ShipType, "", new { @class = "text-danger" })
-
-                </div>
-            </div>
         </div>
         <hr style="width: 100%; margin-top:25px; color: black; height: 1px; padding-top:4px; background-color:black;" />
         @*--------------------------------------------Receive-------------------------------------------------------------------------------------*@
@@ -327,7 +340,8 @@
     @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
 </div>
 
-<div class="form-group">
+<div class="form-group ">
+    @Html.HiddenFor(model => model.ReceiptFileName, htmlAttributes: new { id = "receiptFileNameHidden" })
     <div class="col-md-offset-2 col-md-10">
         <input type="submit" value="Create" class="btn btn-default" id="submitButton" />
     </div>
@@ -345,6 +359,65 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
+        //--------------------------receipt upload drag and drop -----------------------------
+        $(document).ready(function () {
+            var receiptUploadBox;
+            box = document.getElementById("receiptUploadBox");
+            box.addEventListener("dragenter", OnDragEnter, false);
+            box.addEventListener("dragover", OnDragOver, false);
+            box.addEventListener("drop", OnDrop, false);
+        });
+
+        function OnDragEnter(e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+
+        function OnDragOver(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            $('#uploadIcon').css("color", "blue");
+
+        }
+
+        function OnDrop(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            selectedFiles = e.dataTransfer.files;
+            console.log(selectedFiles[0].name);
+            $('#receiptFileNameHidden').val(selectedFiles[0].name);
+            console.log("upload");
+
+            var receiptData = new FormData();
+            for (var i = 0; i < selectedFiles.length; i++) {
+                receiptData.append(selectedFiles[i].name, selectedFiles[i]);
+            }
+            $.ajax({
+                type: "POST",
+                url: '@Url.Content("~/FileHandler.ashx")',
+                contentType: false,
+                processData: false,
+                data: receiptData,
+                success: function (result) {
+                    toastr.success("Receipt uploaded succesfully");
+                    $("#receiptUploadBox").html("<u>Receipt:</u><span class='glyphicon glyphicon-check ' style='font-size:50px; color:green' aria-hidden='true'></span><p style='font-size:8pt'>(Uploaded!)</p>");
+
+
+                },
+                error: function () {
+                    toastr.warning("There was error uploading files!");
+                }
+            });
+
+
+            $("#receiptUploadBox").html("<u>Receipt:</u><span class='glyphicon glyphicon-check ' style='font-size:50px' aria-hidden='true'></span><p style='font-size:8pt'>(File Added)</p>");
+            $('#receiptUploadButton').css("visibility", "visible");
+
+        }
+
+
+
+
 
 
         //---------------autofill form with email-----------------------------
@@ -378,7 +451,7 @@
             $('#shopAddressUserInput').val(parsedEmail.ShopAddress); //parse this out for city, state, zip
             $('#phoneNumberUserInput').val(parsedEmail.PhoneNumber);
             $('#emailUserInput').val(parsedEmail.Email);
-            $('#productList').val(parsedEmail.ProductModel);
+            $('#productModelHidden').val(parsedEmail.ProductModel);
             $('#productSerialNumberInput').val(parsedEmail.SerialNumber);
             $('#CustomerComplaint').val(parsedEmail.ExplinationOfIssue);
             $('#specialInstructionsUserInput').val(parsedEmail.Comments);
@@ -446,7 +519,7 @@
 
 
 
-           
+
             document.getElementById('ContactDatePicker').valueAsDate = new Date();
 
             $('#productList').on('change', function () {
@@ -487,26 +560,56 @@
 
         });
         $("#repairRouterForm").submit(function (event) {
-            if (confirm("Create a RMA for "
-                + $('#customerFirstNameInput').val()
-                + " "
-                + $('#customerLastNameInput').val()
-                + ". Are you sure?")) {
-                document.getElementById('productModelHidden').value = (document.getElementById('productList').value);
-
-
-                return true;
-
-            }
-
-            else {
-                event.preventDefault();
-                return false;
-            }
+           
+                    if (confirm("Create a RMA for "
+               + $('#customerFirstNameInput').val()
+               + " "
+               + $('#customerLastNameInput').val()
+               + ". Are you sure?")) {
+                        document.getElementById('productModelHidden').value = (document.getElementById('productList').value);
+                        return true;
+                    }
+                    else {
+                        event.preventDefault();
+                        return false;
+                    }
+                
 
 
 
         });
+
+
+        $("#receiptUploadButton").click(function (event) {
+            console.log("upload");
+            
+          var receiptData = new FormData();
+            for (var i = 0; i < selectedFiles.length; i++) {
+                receiptData.append(selectedFiles[i].name, selectedFiles[i]);
+            }
+            $.ajax({
+                type: "POST",
+                url: '@Url.Content("~/FileHandler.ashx")',
+                contentType: false,
+                processData: false,
+                data: receiptData,
+                success: function (result) {
+                    toastr.success("Receipt uploaded succesfully");
+                    $("#receiptUploadBox").html("<u>Receipt:</u><span class='glyphicon glyphicon-check ' style='font-size:50px; color:green' aria-hidden='true'></span><p style='font-size:8pt'>(Uploaded!)</p>");
+
+
+                },
+                error: function () {
+                    toastr.warning("There was error uploading files!");
+                }
+            });
+
+
+
+        });
+
+
+
         var serialNumbers = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Number'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
