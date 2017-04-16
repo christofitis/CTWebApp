@@ -7,13 +7,13 @@ namespace CriticalWebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class bfris : IMigrationMetadata
+    public sealed partial class initialie : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(bfris));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initialie));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704130422467_bfris"; }
+            get { return "201704131519001_initialie"; }
         }
         
         string IMigrationMetadata.Source

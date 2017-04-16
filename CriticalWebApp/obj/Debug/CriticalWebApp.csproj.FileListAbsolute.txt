@@ -951,7 +951,7 @@ C:\Users\C13\Documents\GitHub\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.d
 C:\Users\C13\Documents\GitHub\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.pdb
 C:\Users\C13\Documents\GitHub\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.required.resources
 C:\Users\C13\Documents\GitHub\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
-C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initiaifbsjk.resources
-C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.bfris.resources
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
+C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initialie.resources
+C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache

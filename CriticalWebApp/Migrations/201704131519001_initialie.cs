@@ -3,7 +3,7 @@ namespace CriticalWebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class bfris : DbMigration
+    public partial class initialie : DbMigration
     {
         public override void Up()
         {
