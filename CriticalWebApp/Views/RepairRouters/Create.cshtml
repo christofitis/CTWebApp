@@ -140,7 +140,6 @@
                             <span id="uploadIcon" class="glyphicon glyphicon-save " style="font-size:50px" aria-hidden="true"></span>
                             <p style="font-size:8pt">(Drag & Drop Receipt File)</p>
                         </div>
-                        <button id="receiptUploadButton" style="visibility:hidden" class="btn btn-sm btn-primary" type="button">Upload</button>
                     </div>
                 </form>
 
@@ -360,13 +359,7 @@
 
     <script type="text/javascript">
         //--------------------------receipt upload drag and drop -----------------------------
-        $(document).ready(function () {
-            var receiptUploadBox;
-            box = document.getElementById("receiptUploadBox");
-            box.addEventListener("dragenter", OnDragEnter, false);
-            box.addEventListener("dragover", OnDragOver, false);
-            box.addEventListener("drop", OnDrop, false);
-        });
+     
 
         function OnDragEnter(e) {
             e.stopPropagation();
@@ -515,7 +508,11 @@
 
         $(document).ready(function () {
 
-
+            var receiptUploadBox;
+            box = document.getElementById("receiptUploadBox");
+            box.addEventListener("dragenter", OnDragEnter, false);
+            box.addEventListener("dragover", OnDragOver, false);
+            box.addEventListener("drop", OnDrop, false);
 
 
 
@@ -580,33 +577,6 @@
         });
 
 
-        $("#receiptUploadButton").click(function (event) {
-            console.log("upload");
-            
-          var receiptData = new FormData();
-            for (var i = 0; i < selectedFiles.length; i++) {
-                receiptData.append(selectedFiles[i].name, selectedFiles[i]);
-            }
-            $.ajax({
-                type: "POST",
-                url: '@Url.Content("~/FileHandler.ashx")',
-                contentType: false,
-                processData: false,
-                data: receiptData,
-                success: function (result) {
-                    toastr.success("Receipt uploaded succesfully");
-                    $("#receiptUploadBox").html("<u>Receipt:</u><span class='glyphicon glyphicon-check ' style='font-size:50px; color:green' aria-hidden='true'></span><p style='font-size:8pt'>(Uploaded!)</p>");
-
-
-                },
-                error: function () {
-                    toastr.warning("There was error uploading files!");
-                }
-            });
-
-
-
-        });
 
 
 
