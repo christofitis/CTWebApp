@@ -7,13 +7,13 @@ namespace CriticalWebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class receiptName : IMigrationMetadata
+    public sealed partial class receitUpload : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(receiptName));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(receitUpload));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704162310500_receiptName"; }
+            get { return "201704170018222_receitUpload"; }
         }
         
         string IMigrationMetadata.Source

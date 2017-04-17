@@ -3,7 +3,7 @@ namespace CriticalWebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class receiptName : DbMigration
+    public partial class receitUpload : DbMigration
     {
         public override void Up()
         {
