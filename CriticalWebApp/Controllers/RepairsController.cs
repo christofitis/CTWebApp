@@ -59,7 +59,7 @@ namespace CriticalWebApp.Controllers
                         return View(repairs);
                 }
             }
-            return View(_context.Repairs.ToList());
+            return View(_context.Repairs.ToList().OrderByDescending(o => o.Id));
         }
 
         public ActionResult Details(int id)

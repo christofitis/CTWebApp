@@ -126,7 +126,8 @@
         <div class="col-xs-1">
             <div id="receiptUploadBox" style="margin-top:10px; margin-bottom:5px; margin-left:auto; margin-right:auto; border:2px dashed black;">
                 <u>Receipt:</u>
-                @if (Model.ReceiptFileName.Length > 0)
+                
+                @if (Model.ReceiptFileName != null)
                 {
                     if (Model.ReceiptFileName.Substring(Model.ReceiptFileName.Length - 3) == "pdf")
                     {
@@ -140,6 +141,9 @@
                     }
 
                 }
+
+
+              
                 
             </div>
             <button id="receiptUploadButton" style="visibility:hidden" class="btn btn-sm btn-primary" type="button">Upload</button>
