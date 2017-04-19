@@ -222,6 +222,7 @@
     <Compile Include="Controllers\Api\SerialNumbersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OffsiteJobController.cs" />
     <Compile Include="Controllers\ProductionOutputTotalsController.cs" />
     <Compile Include="Controllers\ProductReceivedsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -235,17 +236,33 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704181819117_initializeHome.cs" />
-    <Compile Include="Migrations\201704181819117_initializeHome.Designer.cs">
-      <DependentUpon>201704181819117_initializeHome.cs</DependentUpon>
+    <Compile Include="Migrations\201704190252437_initializebootcamp.cs" />
+    <Compile Include="Migrations\201704190252437_initializebootcamp.Designer.cs">
+      <DependentUpon>201704190252437_initializebootcamp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704190256240_perQtyPerProduct.cs" />
+    <Compile Include="Migrations\201704190256240_perQtyPerProduct.Designer.cs">
+      <DependentUpon>201704190256240_perQtyPerProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704190258535_jobinventory.cs" />
+    <Compile Include="Migrations\201704190258535_jobinventory.Designer.cs">
+      <DependentUpon>201704190258535_jobinventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704190308521_qtyAtJobSite.cs" />
+    <Compile Include="Migrations\201704190308521_qtyAtJobSite.Designer.cs">
+      <DependentUpon>201704190308521_qtyAtJobSite.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AssemblyHouse.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\JobInventory.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OffsiteJob.cs" />
     <Compile Include="Models\Part.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductAssembly.cs" />
     <Compile Include="Models\ProductionAverageTotals.cs" />
     <Compile Include="Models\ProductionOutputTotals.cs" />
     <Compile Include="Models\ProductionTotals.cs" />
@@ -257,6 +274,8 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CreateSerialNumberViewModel.cs" />
     <Compile Include="ViewModels\LogShipmentViewModel.cs" />
+    <Compile Include="ViewModels\OffsiteJobCreateViewModel.cs" />
+    <Compile Include="ViewModels\OffsiteJobDetailsViewModel.cs" />
     <Compile Include="ViewModels\ProductionOutputTotalsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -370,6 +389,9 @@
     <Content Include="Views\ProductReceiveds\Details.cshtml" />
     <Content Include="Views\ProductReceiveds\Edit.cshtml" />
     <Content Include="Views\ProductReceiveds\Index.cshtml" />
+    <Content Include="Views\OffsiteJob\Index.cshtml" />
+    <Content Include="Views\OffsiteJob\Details.cshtml" />
+    <Content Include="Views\OffsiteJob\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\ReceiptUploads\" />
@@ -385,8 +407,17 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704181819117_initializeHome.resx">
-      <DependentUpon>201704181819117_initializeHome.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704190252437_initializebootcamp.resx">
+      <DependentUpon>201704190252437_initializebootcamp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704190256240_perQtyPerProduct.resx">
+      <DependentUpon>201704190256240_perQtyPerProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704190258535_jobinventory.resx">
+      <DependentUpon>201704190258535_jobinventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704190308521_qtyAtJobSite.resx">
+      <DependentUpon>201704190308521_qtyAtJobSite.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,97 @@
+﻿@model CriticalWebApp.ViewModels.OffsiteJobDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OffsiteJob</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OffsiteJob.AssemblyHouse.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsiteJob.AssemblyHouse.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OffsiteJob.Product.SKU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsiteJob.Product.SKU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OffsiteJob.PONumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsiteJob.PONumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OffsiteJob.JobQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsiteJob.JobQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OffsiteJob.IssuedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsiteJob.IssuedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OffsiteJob.QuantityOfProductDelivered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsiteJob.QuantityOfProductDelivered)
+        </dd>
+
+    </dl>
+</div>
+
+<div class="container">
+    <table class="table table-striped">
+        <tr>
+            <th>Part</th>
+           
+            <th>Qty At Job Location</th>
+            @*Original QTY given to location*@
+          
+        </tr>
+        @foreach (var part in Model.JobInventories)
+        {
+            <tr>
+                <th>
+                    @part.Part.Name
+                </th>
+            
+                <th>
+                    @part.QuantityAtJobSite
+                </th>
+               
+            </tr>
+        }
+    </table>
+
+</div>
+
+
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OffsiteJob.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

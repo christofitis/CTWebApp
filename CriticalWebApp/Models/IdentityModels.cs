@@ -28,6 +28,12 @@ namespace CriticalWebApp.Models
         public DbSet<RepairRouter> RepairRouters { get; set; }
         public DbSet<ProductionOutputTotals> ProductionOutputTotals { get; set; }
         public DbSet<ProductReceived> ProductReceived { get; set; }
+        public DbSet<Part> Parts { get; set; }
+        public DbSet<ProductAssembly> ProductAssemblies { get; set; }
+        public DbSet<AssemblyHouse> AssemblyHouses { get; set; }
+        public DbSet<OffsiteJob> OffsiteJobs { get; set; }
+        public DbSet<JobInventory> JobInventories { get; set; }
+
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

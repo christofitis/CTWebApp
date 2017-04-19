@@ -1,0 +1,86 @@
+﻿@model CriticalWebApp.ViewModels.OffsiteJobCreateViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>OffsiteJob</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.OffsiteJob.PONumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OffsiteJob.PONumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OffsiteJob.PONumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*to be dropdown list of vendors.... or typeahead?*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.OffsiteJob.AssemblyHouseId, "AssemblyHouseId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.OffsiteJob.AssemblyHouseId, new SelectList(Model.AssemblyHouses, "Name"), "Select Product", new { @class = "form-control", id = "productDropDownList" })
+
+
+                @*@Html.DropDownListFor(model => model.OffsiteJob.AssemblyHouseId, null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.OffsiteJob.AssemblyHouseId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*to be dropdown list of products.... or typeahead?*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.OffsiteJob.ProductId, "ProductId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.OffsiteJob.ProductId, new SelectList(Model.Products, "Name"), "Select Product", new { @class = "form-control", id = "productDropDownList" })
+
+
+                @*@Html.DropDownListFor(model => model.OffsiteJob.ProductId, null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.OffsiteJob.ProductId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OffsiteJob.JobQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OffsiteJob.JobQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OffsiteJob.JobQuantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*date picker*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.OffsiteJob.IssuedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OffsiteJob.IssuedDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OffsiteJob.IssuedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*MAKE ZERO BY DEFAULT*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.OffsiteJob.QuantityOfProductDelivered, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OffsiteJob.QuantityOfProductDelivered, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OffsiteJob.QuantityOfProductDelivered, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

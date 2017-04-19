@@ -3,16 +3,16 @@ namespace CriticalWebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initializeHome : DbMigration
+    public partial class qtyAtJobSite : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.RepairRouters", "ReceiptFileName", c => c.String());
+            AddColumn("dbo.JobInventories", "QuantityAtJobSite", c => c.Int(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.RepairRouters", "ReceiptFileName");
+            DropColumn("dbo.JobInventories", "QuantityAtJobSite");
         }
     }
 }
