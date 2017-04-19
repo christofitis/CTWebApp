@@ -951,8 +951,6 @@ C:\Users\C13\Documents\GitHub\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.d
 C:\Users\C13\Documents\GitHub\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.pdb
 C:\Users\C13\Documents\GitHub\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.required.resources
 C:\Users\C13\Documents\GitHub\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
-D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.bfris.resources
-D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\bin\ApplicationInsights.config
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\bin\roslyn\csc.exe
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -1049,3 +1047,5 @@ C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\Critica
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.receitUpload.resources
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
+D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initializeHome.resources
+D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
