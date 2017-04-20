@@ -1043,8 +1043,6 @@ C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\bin\Microsoft.Owi
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csprojResolveAssemblyReference.cache
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.dll
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.pdb
-C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.receitUpload.resources
-C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initializebootcamp.resources
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.perQtyPerProduct.resources
@@ -1056,3 +1054,5 @@ D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.requiredAdded.resources
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.productiontotals.resources
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.output.resources
+C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initiazlise.resources
+C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache

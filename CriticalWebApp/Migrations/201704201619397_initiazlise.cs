@@ -3,16 +3,19 @@ namespace CriticalWebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initializeHome : DbMigration
+    public partial class initiazlise : DbMigration
     {
         public override void Up()
         {
+            DropForeignKey("dbo.ProductionOutputTotals", "ProductId", "dbo.Products");
+            DropIndex("dbo.ProductionOutputTotals", new[] { "ProductId" });
             CreateTable(
                 "dbo.AssemblyHouses",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
+                        Notes = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -77,10 +80,14 @@ namespace CriticalWebApp.Migrations
                 .Index(t => t.ProductId)
                 .Index(t => t.PartId);
             
+            AddColumn("dbo.ProductionOutputTotals", "Product", c => c.String(nullable: false));
+            AlterColumn("dbo.ProductionOutputTotals", "Employee", c => c.String(nullable: false));
+            DropColumn("dbo.ProductionOutputTotals", "ProductId");
         }
         
         public override void Down()
         {
+            AddColumn("dbo.ProductionOutputTotals", "ProductId", c => c.Int(nullable: false));
             DropForeignKey("dbo.ProductAssemblies", "ProductId", "dbo.Products");
             DropForeignKey("dbo.ProductAssemblies", "PartId", "dbo.Parts");
             DropForeignKey("dbo.JobInventories", "PartId", "dbo.Parts");
@@ -93,11 +100,15 @@ namespace CriticalWebApp.Migrations
             DropIndex("dbo.OffsiteJobs", new[] { "AssemblyHouseId" });
             DropIndex("dbo.JobInventories", new[] { "OffsiteJobId" });
             DropIndex("dbo.JobInventories", new[] { "PartId" });
+            AlterColumn("dbo.ProductionOutputTotals", "Employee", c => c.String());
+            DropColumn("dbo.ProductionOutputTotals", "Product");
             DropTable("dbo.ProductAssemblies");
             DropTable("dbo.Parts");
             DropTable("dbo.OffsiteJobs");
             DropTable("dbo.JobInventories");
             DropTable("dbo.AssemblyHouses");
+            CreateIndex("dbo.ProductionOutputTotals", "ProductId");
+            AddForeignKey("dbo.ProductionOutputTotals", "ProductId", "dbo.Products", "Id", cascadeDelete: true);
         }
     }
 }
