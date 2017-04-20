@@ -249,6 +249,14 @@
     <Compile Include="Migrations\201704201431455_requiredAdded.Designer.cs">
       <DependentUpon>201704201431455_requiredAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704201557031_productiontotals.cs" />
+    <Compile Include="Migrations\201704201557031_productiontotals.Designer.cs">
+      <DependentUpon>201704201557031_productiontotals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704201603354_output.cs" />
+    <Compile Include="Migrations\201704201603354_output.Designer.cs">
+      <DependentUpon>201704201603354_output.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AssemblyHouse.cs" />
@@ -273,7 +281,6 @@
     <Compile Include="ViewModels\LogShipmentViewModel.cs" />
     <Compile Include="ViewModels\OffsiteJobCreateViewModel.cs" />
     <Compile Include="ViewModels\OffsiteJobDetailsViewModel.cs" />
-    <Compile Include="ViewModels\ProductionOutputTotalsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\TODO.txt" />
@@ -376,11 +383,6 @@
     <Content Include="Views\SqlCommander\Index.cshtml" />
     <Content Include="Views\SerialNumbers\Details.cshtml" />
     <Content Include="Views\SerialNumbers\LogShipment.cshtml" />
-    <Content Include="Views\ProductionOutputTotals\Create.cshtml" />
-    <Content Include="Views\ProductionOutputTotals\Delete.cshtml" />
-    <Content Include="Views\ProductionOutputTotals\Details.cshtml" />
-    <Content Include="Views\ProductionOutputTotals\Edit.cshtml" />
-    <Content Include="Views\ProductionOutputTotals\Index.cshtml" />
     <Content Include="Views\ProductReceiveds\Create.cshtml" />
     <Content Include="Views\ProductReceiveds\Delete.cshtml" />
     <Content Include="Views\ProductReceiveds\Details.cshtml" />
@@ -394,6 +396,11 @@
     <Content Include="Views\AssemblyHouses\Details.cshtml" />
     <Content Include="Views\AssemblyHouses\Edit.cshtml" />
     <Content Include="Views\AssemblyHouses\Index.cshtml" />
+    <Content Include="Views\ProductionOutputTotals\Create.cshtml" />
+    <Content Include="Views\ProductionOutputTotals\Delete.cshtml" />
+    <Content Include="Views\ProductionOutputTotals\Details.cshtml" />
+    <Content Include="Views\ProductionOutputTotals\Edit.cshtml" />
+    <Content Include="Views\ProductionOutputTotals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\ReceiptUploads\" />
@@ -417,6 +424,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704201431455_requiredAdded.resx">
       <DependentUpon>201704201431455_requiredAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704201557031_productiontotals.resx">
+      <DependentUpon>201704201557031_productiontotals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704201603354_output.resx">
+      <DependentUpon>201704201603354_output.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

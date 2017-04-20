@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CriticalWebApp.Models;
-using CriticalWebApp.ViewModels;
 
 namespace CriticalWebApp.Controllers
 {
@@ -18,36 +17,7 @@ namespace CriticalWebApp.Controllers
         // GET: ProductionOutputTotals
         public ActionResult Index()
         {
-            var viewModel =  new ProductionOutputTotalsViewModel();
-            viewModel.Products = db.Products.ToList();
-            List<string> uniqueProducts = db.Products.Select(p => p.Name).Distinct().ToList(); //entire listof products sent to view model
-            viewModel.ProductionOutputTotals = db.ProductionOutputTotals.ToList(); //list of all production totals in db
-            
-            foreach (var product in uniqueProducts)
-            {
-                var productionAverageTotals = new ProductionAverageTotals();
-               
-                var singleProductTotals = db.ProductionOutputTotals.Where(t => t.Product.Name == product).ToList(); //fills list object with production totalls matching product name
-
-                for (int i = 0; i < singleProductTotals.Count; i++)
-                {
-
-
-                    productionAverageTotals.Quantity += singleProductTotals[i].Quantity;
-                    productionAverageTotals.Product = singleProductTotals[i].Product.Name;
-
-                }
-
-                viewModel.ProductionAverageTotals.Add(productionAverageTotals);
-            }
-            
-            
-            //TODO: add math to figure out production totals for month using linq entityframework
-         
-            //productionAverageTotals = db.ProductionOutputTotals.
-            //viewModel.ProductionAverageTotals.Add();
-            
-            return View(viewModel);
+            return View(db.ProductionOutputTotals.ToList());
         }
 
         // GET: ProductionOutputTotals/Details/5
@@ -68,7 +38,6 @@ namespace CriticalWebApp.Controllers
         // GET: ProductionOutputTotals/Create
         public ActionResult Create()
         {
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "SKU");
             return View();
         }
 
@@ -77,7 +46,7 @@ namespace CriticalWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductionOutputTotals productionOutputTotals)
+        public ActionResult Create([Bind(Include = "Id,Date,Product,Employee,Quantity,Notes")] ProductionOutputTotals productionOutputTotals)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +55,6 @@ namespace CriticalWebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "SKU", productionOutputTotals.ProductId);
             return View(productionOutputTotals);
         }
 
@@ -102,7 +70,6 @@ namespace CriticalWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "SKU", productionOutputTotals.ProductId);
             return View(productionOutputTotals);
         }
 
@@ -111,7 +78,7 @@ namespace CriticalWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ProductId,Employee,Quantity,Notes")] ProductionOutputTotals productionOutputTotals)
+        public ActionResult Edit([Bind(Include = "Id,Date,Product,Employee,Quantity,Notes")] ProductionOutputTotals productionOutputTotals)
         {
             if (ModelState.IsValid)
             {
@@ -119,7 +86,6 @@ namespace CriticalWebApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "SKU", productionOutputTotals.ProductId);
             return View(productionOutputTotals);
         }
 

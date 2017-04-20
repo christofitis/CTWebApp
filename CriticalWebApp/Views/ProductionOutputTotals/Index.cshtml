@@ -1,64 +1,42 @@
-﻿@model CriticalWebApp.ViewModels.ProductionOutputTotalsViewModel
+﻿@model IEnumerable<CriticalWebApp.Models.ProductionOutputTotals>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-<div class="jumbotron">
-    <h2>Monthly Totals</h2>
-    <table class="table table-striped">
-     <tr>
-         <th>
-             Product
-         </th>
-         <th>
-             Qty
-         </th>
-     </tr>
- 
-        @foreach (var total in Model.ProductionAverageTotals)
-        {
-
-
-            <tr>
-                <td>
-                    @total.Product
-                </td>
-                <td>
-                    @total.Quantity
-                </td>
-            </tr>
-        }
-    </table>
-</div>
-
+<h2>Production Output Totals</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Log", "Create", null, new { @class="btn btn-primary"})
 </p>
 <table class="table">
     <tr>
         <th>
-            Product
+            @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
-            Employee
+            @Html.DisplayNameFor(model => model.Product)
         </th>
         <th>
-            Quanitity
+            @Html.DisplayNameFor(model => model.Employee)
         </th>
         <th>
-            Notes
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model.ProductionOutputTotals) {
+@foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Product.SKU)
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Employee)
@@ -76,15 +54,3 @@
 }
 
 </table>
-
-@section scripts{
-    
-    <script type="text/javascript">
-        $(document).ready(function(){
-     
-
-        });
-
-    </script>
-    
-    }
