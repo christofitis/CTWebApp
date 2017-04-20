@@ -7,13 +7,13 @@ namespace CriticalWebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initializebootcamp : IMigrationMetadata
+    public sealed partial class notesAssemblyHouse : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initializebootcamp));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(notesAssemblyHouse));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704190252437_initializebootcamp"; }
+            get { return "201704191452302_notesAssemblyHouse"; }
         }
         
         string IMigrationMetadata.Source

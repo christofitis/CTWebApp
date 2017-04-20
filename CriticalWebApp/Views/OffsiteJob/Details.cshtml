@@ -12,7 +12,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.OffsiteJob.AssemblyHouse.Name)
+           P.O.#
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsiteJob.PONumber)
+        </dd>
+        <dt>
+            Assembly House
         </dt>
 
         <dd>
@@ -20,23 +27,17 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OffsiteJob.Product.SKU)
+            Product
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OffsiteJob.Product.SKU)
+            @Html.DisplayFor(model => model.OffsiteJob.Product.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OffsiteJob.PONumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OffsiteJob.PONumber)
-        </dd>
+     
 
         <dt>
-            @Html.DisplayNameFor(model => model.OffsiteJob.JobQuantity)
+            Job QTY
         </dt>
 
         <dd>
@@ -44,7 +45,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OffsiteJob.IssuedDate)
+            Issue Date
         </dt>
 
         <dd>
@@ -52,7 +53,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OffsiteJob.QuantityOfProductDelivered)
+            Amount Delivered
         </dt>
 
         <dd>

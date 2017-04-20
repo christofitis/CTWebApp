@@ -7,7 +7,7 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "OffsiteJob", FormMethod.Post, new { id = "createOffsiteJobForm" }))
 {
     @Html.AntiForgeryToken()
     
@@ -18,39 +18,39 @@
         <div class="form-group">
             @Html.LabelFor(model => model.OffsiteJob.PONumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.OffsiteJob.PONumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.OffsiteJob.PONumber, new { htmlAttributes = new { @class = "form-control", id="poNumber" } })
                 @Html.ValidationMessageFor(model => model.OffsiteJob.PONumber, "", new { @class = "text-danger" })
             </div>
         </div>
 
         @*to be dropdown list of vendors.... or typeahead?*@
         <div class="form-group">
-            @Html.LabelFor(model => model.OffsiteJob.AssemblyHouseId, "AssemblyHouseId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.OffsiteJob.AssemblyHouse.Name, "AssemblyHouseId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.OffsiteJob.AssemblyHouseId, new SelectList(Model.AssemblyHouses, "Name"), "Select Product", new { @class = "form-control", id = "productDropDownList" })
+                @Html.DropDownListFor(model => model.OffsiteJob.AssemblyHouse.Name, new SelectList(Model.AssemblyHouses, "AssemblyHouses.Name"), "Select Assembly House", new { @class = "form-control", id = "assemblyHouseDropdownList" })
 
 
                 @*@Html.DropDownListFor(model => model.OffsiteJob.AssemblyHouseId, null, htmlAttributes: new { @class = "form-control" })*@
-                @Html.ValidationMessageFor(model => model.OffsiteJob.AssemblyHouseId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.OffsiteJob.AssemblyHouse.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         @*to be dropdown list of products.... or typeahead?*@
         <div class="form-group">
-            @Html.LabelFor(model => model.OffsiteJob.ProductId, "ProductId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.OffsiteJob.Product.Name, "ProductId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.OffsiteJob.ProductId, new SelectList(Model.Products, "Name"), "Select Product", new { @class = "form-control", id = "productDropDownList" })
+                @Html.DropDownListFor(model => model.OffsiteJob.Product.Name, new SelectList(Model.Products, "Name"), "Select Product", new { @class = "form-control", id = "productDropDownList" })
 
 
                 @*@Html.DropDownListFor(model => model.OffsiteJob.ProductId, null, htmlAttributes: new { @class = "form-control" })*@
-                @Html.ValidationMessageFor(model => model.OffsiteJob.ProductId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.OffsiteJob.Product.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.OffsiteJob.JobQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.OffsiteJob.JobQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.OffsiteJob.JobQuantity, new { htmlAttributes = new { @class = "form-control", id="jobQuantity" } })
                 @Html.ValidationMessageFor(model => model.OffsiteJob.JobQuantity, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,23 +59,24 @@
         <div class="form-group">
             @Html.LabelFor(model => model.OffsiteJob.IssuedDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.OffsiteJob.IssuedDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.OffsiteJob.IssuedDate, new { htmlAttributes = new { @class = "form-control", @type = "Date", id = "issueDatePicker" } })
                 @Html.ValidationMessageFor(model => model.OffsiteJob.IssuedDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         @*MAKE ZERO BY DEFAULT*@
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.OffsiteJob.QuantityOfProductDelivered, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+            @Html.EditorFor(model => model.OffsiteJob.QuantityOfProductDelivered, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.EditorFor(model => model.OffsiteJob.QuantityOfProductDelivered, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.OffsiteJob.QuantityOfProductDelivered, "", new { @class = "text-danger" })
             </div>
-        </div>
-
+        </div>*@
+        @Html.HiddenFor(model => model.OffsiteJob.QuantityOfProductDelivered, new { htmlAttributes = new { id= "hiddenQuantityOfProductDelivered" } })
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" id="formSubmitButton" />
             </div>
         </div>
     </div>
@@ -84,3 +85,60 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#hiddenQuantityOfProductDelivered').val(0);
+            document.getElementById('issueDatePicker').valueAsDate = new Date();
+
+
+        });
+        
+        $('#createOffsiteJobForm').submit(function () {
+            //check for fields being populated
+            if ($('#poNumber').val() == '') {
+                toastr.warning("P.O.# not filled out!");
+                event.preventDefault();
+                return false;
+            }
+            else if ($('#assemblyHouseDropdownList').val().length <= 0) {
+                toastr.warning("Assembly House not selected!");
+                event.preventDefault();
+                return false;
+            }
+            else if ($('#productDropDownList').val().length <= 0) {
+                toastr.warning("Product not selected!");
+                event.preventDefault();
+                return false;
+            }
+            else if ($('#jobQuantity').val() == '') {
+                toastr.warning("Job QTY not filled out!");
+                event.preventDefault();
+                return false;
+            }
+            
+
+           
+            else {
+                if (confirm("About to create offsite job po#: "
+                    + $('#poNumber').val() + " for " + $('#jobQuantity').val()
+                    + " " + $('#productDropDownList').val()
+
+                    + "'s. Are you sure?")) {
+                    return true;
+                }
+
+                else {
+                    event.preventDefault();
+                    return false;
+                }
+            }
+
+
+
+
+        });
+
+    </script>
+    }

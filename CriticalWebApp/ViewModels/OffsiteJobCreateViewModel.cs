@@ -9,8 +9,14 @@ namespace CriticalWebApp.ViewModels
 {
     public class OffsiteJobCreateViewModel
     {
-        public IEnumerable<AssemblyHouse> AssemblyHouses { get; set; }
-        public IEnumerable<Product> Products { get; set; }
+        public List<string> AssemblyHouses { get; set; }
+        public List<string> Products { get; set; }
         public OffsiteJob OffsiteJob { get; set; }
+
+        public OffsiteJobCreateViewModel()
+        {
+            AssemblyHouses = new List<string>();
+            Products = new List<string>();
+        }
     }
 }

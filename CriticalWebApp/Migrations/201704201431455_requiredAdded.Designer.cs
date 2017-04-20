@@ -7,13 +7,13 @@ namespace CriticalWebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class qtyAtJobSite : IMigrationMetadata
+    public sealed partial class requiredAdded : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(qtyAtJobSite));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(requiredAdded));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704190308521_qtyAtJobSite"; }
+            get { return "201704201431455_requiredAdded"; }
         }
         
         string IMigrationMetadata.Source

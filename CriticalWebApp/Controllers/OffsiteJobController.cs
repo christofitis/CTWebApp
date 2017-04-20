@@ -37,24 +37,50 @@ namespace CriticalWebApp.Controllers
 
         public ActionResult Create()
         {
-            OffsiteJobCreateViewModel viewModel = new OffsiteJobCreateViewModel()
+            OffsiteJobCreateViewModel viewModel = new OffsiteJobCreateViewModel();
+            List<string> productNames = new List<string>(); //gets a list of all product names from db
+
+
+            foreach (var ah in _context.AssemblyHouses)
             {
-                AssemblyHouses = _context.AssemblyHouses.ToList(),
-                Products = _context.Products.ToList()
-            };
+                viewModel.AssemblyHouses.Add(ah.Name);
+            }
+            foreach (var prod in _context.Products)
+            {
+                productNames.Add(prod.Name);
+            }
+            List<string> productNamesNoDupes = productNames.Distinct().ToList();
+            foreach (var p in productNamesNoDupes)
+            {
+                viewModel.Products.Add(p);
+            }
+
+
             return View(viewModel);
         }
 
         [HttpPost]
         public ActionResult Create(OffsiteJobCreateViewModel viewModel)
         {
-            //get data from view to add to database
-           
-                _context.OffsiteJobs.Add(viewModel.OffsiteJob);
+            var offsiteJob = new OffsiteJob();
+
+            var product = new Product();
+            product = _context.Products.Where(a => a.Name == viewModel.OffsiteJob.Product.Name).FirstOrDefault();
+
+            var assemblyHouse = new AssemblyHouse();
+            assemblyHouse = _context.AssemblyHouses.Where(a => a.Name == viewModel.OffsiteJob.AssemblyHouse.Name).FirstOrDefault();
+
+            viewModel.OffsiteJob.AssemblyHouseId = assemblyHouse.Id;
+            viewModel.OffsiteJob.ProductId = product.Id;
+            viewModel.OffsiteJob.Product = product;
+            viewModel.OffsiteJob.AssemblyHouse = assemblyHouse;
+            
+
+            _context.OffsiteJobs.Add(viewModel.OffsiteJob);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             
-            return View(viewModel);
+           
         }
 
 

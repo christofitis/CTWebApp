@@ -3,7 +3,7 @@ namespace CriticalWebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initializebootcamp : DbMigration
+    public partial class initializeHome : DbMigration
     {
         public override void Up()
         {
@@ -15,6 +15,21 @@ namespace CriticalWebApp.Migrations
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.JobInventories",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        PartId = c.Int(nullable: false),
+                        OffsiteJobId = c.Int(nullable: false),
+                        QuantityAtJobSite = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.OffsiteJobs", t => t.OffsiteJobId, cascadeDelete: true)
+                .ForeignKey("dbo.Parts", t => t.PartId, cascadeDelete: true)
+                .Index(t => t.PartId)
+                .Index(t => t.OffsiteJobId);
             
             CreateTable(
                 "dbo.OffsiteJobs",
@@ -53,7 +68,7 @@ namespace CriticalWebApp.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         ProductId = c.Int(nullable: false),
                         PartId = c.Int(nullable: false),
-                        PartPerProduct = c.Int(nullable: false),
+                        QuantityPerProduct = c.Int(nullable: false),
                         LocationOnPcb = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -68,15 +83,20 @@ namespace CriticalWebApp.Migrations
         {
             DropForeignKey("dbo.ProductAssemblies", "ProductId", "dbo.Products");
             DropForeignKey("dbo.ProductAssemblies", "PartId", "dbo.Parts");
+            DropForeignKey("dbo.JobInventories", "PartId", "dbo.Parts");
+            DropForeignKey("dbo.JobInventories", "OffsiteJobId", "dbo.OffsiteJobs");
             DropForeignKey("dbo.OffsiteJobs", "ProductId", "dbo.Products");
             DropForeignKey("dbo.OffsiteJobs", "AssemblyHouseId", "dbo.AssemblyHouses");
             DropIndex("dbo.ProductAssemblies", new[] { "PartId" });
             DropIndex("dbo.ProductAssemblies", new[] { "ProductId" });
             DropIndex("dbo.OffsiteJobs", new[] { "ProductId" });
             DropIndex("dbo.OffsiteJobs", new[] { "AssemblyHouseId" });
+            DropIndex("dbo.JobInventories", new[] { "OffsiteJobId" });
+            DropIndex("dbo.JobInventories", new[] { "PartId" });
             DropTable("dbo.ProductAssemblies");
             DropTable("dbo.Parts");
             DropTable("dbo.OffsiteJobs");
+            DropTable("dbo.JobInventories");
             DropTable("dbo.AssemblyHouses");
         }
     }

@@ -8,7 +8,9 @@ namespace CriticalWebApp.Models
     public class OffsiteJob
     {
         public int Id { get; set; }
+
         public string PONumber { get; set; }
+
         public AssemblyHouse AssemblyHouse { get; set; }
         public int AssemblyHouseId { get; set; }
         public Product Product { get; set; }
