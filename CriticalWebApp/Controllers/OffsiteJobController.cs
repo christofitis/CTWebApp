@@ -29,9 +29,10 @@ namespace CriticalWebApp.Controllers
             var viewModel = new OffsiteJobDetailsViewModel()
             {
                 JobInventories = _context.JobInventories.Include(p => p.Part).Include(p => p.OffsiteJob).Where(o => o.OffsiteJobId == id),
-                OffsiteJob = _context.OffsiteJobs.Include(p => p.AssemblyHouse).FirstOrDefault(o => o.Id == id)
+                OffsiteJob = _context.OffsiteJobs.Include(p => p.AssemblyHouse).Include(p => p.Product).FirstOrDefault(o => o.Id == id)
 
-            };
+            };  
+            
             return View(viewModel);
         }
 
@@ -56,7 +57,7 @@ namespace CriticalWebApp.Controllers
             }
 
 
-            return View(viewModel);
+            return View();
         }
 
         [HttpPost]
@@ -78,9 +79,9 @@ namespace CriticalWebApp.Controllers
 
             _context.OffsiteJobs.Add(viewModel.OffsiteJob);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
-            
-           
+            return RedirectToAction("Kit");
+
+
         }
 
 

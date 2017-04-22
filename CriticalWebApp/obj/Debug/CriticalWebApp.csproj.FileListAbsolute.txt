@@ -1048,11 +1048,7 @@ C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\Critica
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.perQtyPerProduct.resources
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.jobinventory.resources
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.qtyAtJobSite.resources
-D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initializeHome.resources
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
-D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.notesAssemblyHouse.resources
-D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.requiredAdded.resources
-D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.productiontotals.resources
-D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.output.resources
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initiazlise.resources
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
+D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initiazlise.resources
