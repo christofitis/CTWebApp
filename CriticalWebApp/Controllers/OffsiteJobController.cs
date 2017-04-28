@@ -50,14 +50,14 @@ namespace CriticalWebApp.Controllers
             {
                 productNames.Add(prod.Name);
             }
-            List<string> productNamesNoDupes = productNames.Distinct().ToList();
+            List<string> productNamesNoDupes = productNames.Distinct().OrderBy(p => p).ToList();
             foreach (var p in productNamesNoDupes)
             {
                 viewModel.Products.Add(p);
             }
 
 
-            return View();
+            return View(viewModel);
         }
 
         [HttpPost]

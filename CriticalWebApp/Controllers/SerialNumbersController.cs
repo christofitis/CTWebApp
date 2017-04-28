@@ -137,7 +137,7 @@ namespace CriticalWebApp.Controllers
                 productNames.Add(prodName.Name.ToString());
             }
 
-            List<string> productNamesNoDupes = productNames.Distinct().ToList(); //sofrts through all product names and removed duplicates to add to serialNumberCreateViewModel
+            List<string> productNamesNoDupes = productNames.Distinct().OrderBy(p => p).ToList(); //sofrts through all product names and removed duplicates to add to serialNumberCreateViewModel
             foreach (var p in productNamesNoDupes)
             {
                 viewModel.ProductNames.Add(p);
