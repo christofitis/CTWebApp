@@ -12,7 +12,7 @@ namespace CriticalWebApp.Models
         public string MFGNumber { get; set; }
         public string Description { get; set; }
         public int? QuantityOnHand { get; set; }
-
+        public string Category { get; set; }
 
 
 

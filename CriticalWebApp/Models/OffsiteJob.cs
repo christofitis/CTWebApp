@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -16,6 +17,7 @@ namespace CriticalWebApp.Models
         public Product Product { get; set; }
         public int ProductId { get; set; }
         public int JobQuantity { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime IssuedDate { get; set; }
         public int QuantityOfProductDelivered { get; set; }
 

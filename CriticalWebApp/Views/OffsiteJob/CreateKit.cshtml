@@ -1,0 +1,141 @@
+﻿@model CriticalWebApp.ViewModels.OffsiteJobDetailsViewModel
+
+@{
+    ViewBag.Title = "CreateKit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreateKit</h2>
+
+<div>
+    <h4>OffsiteJob</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            P.O.#
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsiteJob.PONumber)
+        </dd>
+        <dt>
+            Assembly House
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsiteJob.AssemblyHouse.Name)
+        </dd>
+
+        <dt>
+            Product
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsiteJob.Product.Name) Rev:  @Html.DisplayFor(model => model.OffsiteJob.Product.HardwareRevision)
+        </dd>
+
+
+
+        <dt>
+            Job QTY
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsiteJob.JobQuantity)
+        </dd>
+
+        <dt>
+            Issue Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsiteJob.IssuedDate)
+        </dd>
+
+        <dt>
+            Amount Delivered
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OffsiteJob.QuantityOfProductDelivered)
+        </dd>
+
+    </dl>
+</div>
+
+<div class="container">
+    <table class="table table">
+        <tr>
+            <th>Part</th>
+            <th>Description</th>
+
+            <th>Qty At Job Location</th>
+            @*Original QTY given to location*@
+
+        </tr>
+        @foreach (var part in Model.ProductAssemblies)
+        {
+            <tr>
+                <th>
+                    @part.Part.Name
+                </th>
+                <th>
+                    @part.Part.Description
+                </th>
+                <th>
+                    <input type="text" value="0" class="small col-xs-5 text-center" autocomplete="off" />
+                </th>
+
+            </tr>
+        }
+    </table >
+
+</div>
+
+
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+
+            //changes color of row on section
+            var color = '#fffff';
+            $('input').focusin(function () {
+                color = $(this).css('background-color');
+                $(this.parentElement.parentElement).css('background', '#585858');
+            });
+            $('input').focusout(function () {
+                $(this.parentElement.parentElement).css('background', color);
+            });
+
+        });
+
+        
+
+    </script>
+
+
+
+}
+
+<style>
+    input[type=text] {
+        color: white;
+      
+        background-color: #2E3338;
+        border: solid 1px black;
+     
+    }
+
+    input[type=date] {
+        color: white;
+        background-color: #2E3338;
+    }
+
+
+</style>

@@ -10,6 +10,7 @@ namespace CriticalWebApp.ViewModels
     {
         public IEnumerable<JobInventory> JobInventories { get; set; }
         public OffsiteJob OffsiteJob { get; set; }
-      
+        public IEnumerable<ProductAssembly> ProductAssemblies { get; set; }
+
     }
 }
