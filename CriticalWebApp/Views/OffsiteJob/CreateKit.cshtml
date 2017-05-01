@@ -88,7 +88,7 @@
                 <td>
                     @part.Part.Description
                 </td>
-                @if (part.QuantityAtJobSite >= (Model.ProductAssemblies.FirstOrDefault(p => p.PartId == part.PartId).QuantityPerProduct * (Model.OffsiteJob.JobQuantity - Model.OffsiteJob.QuantityOfProductDelivered)))
+                @if ((part.QuantityAtJobSite) >= (Model.ProductAssemblies.FirstOrDefault(p => p.PartId == part.PartId).QuantityPerProduct * (Model.OffsiteJob.JobQuantity - Model.OffsiteJob.QuantityOfProductDelivered)))
                 {
                     <td >
                         <input type="text" style="color:green" id='@part.PartId' value="@part.QuantityAtJobSite" class="qtyInput small col-xs-5 text-center" autocomplete="off" />
@@ -136,22 +136,22 @@
             $('input[type=text]').on('change', function(){
                 var $this = $(this);
                 var tr = $this.closest('tr');
-                var qtyNeeded = tr.find('td:last').text().replace(/\s/g, "");;
-                if (qtyNeeded > $(this).val()){
+                var qtyNeeded = tr.find('td:last').text().replace(/\s/g, "");
+                
+                if (parseInt(qtyNeeded) > parseInt($(this).val())){
                     $(this).css('color', 'orange');
+                    console.log(qtyNeeded + " more " + $(this).val());
                 }
                 
             else{
-                $(this).css('color', 'green')
+                    $(this).css('color', 'green')
+                    console.log(qtyNeeded + " less " + $(this).val());
                 }
                  //change color of edited box to show not saved
 
             });
             
-            $('#jobInventoriesTable tr').each(function (i, data) {
-                console.log(data);
-            
-            });
+     
            
 
             //changes color of row on section
@@ -215,7 +215,7 @@
 
 <style>
     input[type=text] {
-        color: white;
+       
       
         background-color: #2E3338;
         border: solid 1px black;
