@@ -217,6 +217,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\JobInventoriesController.cs" />
     <Compile Include="Controllers\Api\ProductsController.cs" />
     <Compile Include="Controllers\Api\RepairsController.cs" />
     <Compile Include="Controllers\Api\SerialNumbersController.cs" />
@@ -390,6 +391,7 @@
     <Content Include="Views\ProductionOutputTotals\Edit.cshtml" />
     <Content Include="Views\ProductionOutputTotals\Index.cshtml" />
     <Content Include="Views\OffsiteJob\CreateKit.cshtml" />
+    <Content Include="Views\OffsiteJob\Receive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\ReceiptUploads\" />

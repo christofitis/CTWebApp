@@ -64,34 +64,36 @@
 </div>
 
 <div class="container">
-    <table class="table table">
+    <input type="button" value="SAVE" class="btn btn-primary saveChangesButton" />
+    <table class="table table" id="jobInventoriesTable">
         <tr>
             <th>Part</th>
             <th>Description</th>
 
-            <th>Qty At Job Location</th>
+            <th class="qtyCell">Qty At Job Location</th>
             @*Original QTY given to location*@
 
         </tr>
-        @foreach (var part in Model.ProductAssemblies)
+        @foreach (var part in Model.JobInventories)
         {
             <tr>
-                <th>
+                <td class="jobInventoryId" id="@part.Id">
                     @part.Part.Name
-                </th>
-                <th>
+                    
+                </td>
+                <td>
                     @part.Part.Description
-                </th>
-                <th>
-                    <input type="text" value="0" class="small col-xs-5 text-center" autocomplete="off" />
-                </th>
+                </td>
+                <td>
+                    <input type="text" id='@part.PartId' value="@part.QuantityAtJobSite" class="qtyInput small col-xs-5 text-center" autocomplete="off" />
+                </td>
 
             </tr>
         }
     </table >
+    <input type="button" value="SAVE" class="btn btn-primary saveChangesButton" />
 
 </div>
-
 
 
 
@@ -102,15 +104,64 @@
 @section scripts {
     <script>
         $(document).ready(function () {
+            var vm = {
+                id: 0,
+                PartId: 0,
+                OffsiteJobId: 0,
+                QuantityAtJobSite: 0
+            };
+
+
+            
+         
+
 
             //changes color of row on section
             var color = '#fffff';
-            $('input').focusin(function () {
+            $('input[type=text]').focusin(function () {
                 color = $(this).css('background-color');
                 $(this.parentElement.parentElement).css('background', '#585858');
             });
-            $('input').focusout(function () {
+            $('input[type=text]').focusout(function () {
                 $(this.parentElement.parentElement).css('background', color);
+            });
+
+            $('.saveChangesButton').on('click', function () {
+
+                $('#jobInventoriesTable tr').each(function (i, data) {
+                    var value = $(this).find("input").val();
+                    var offsiteJobId = @Model.OffsiteJob.Id;
+                    var partId =  $(this).find("input").attr("id");
+                    var id =  $(this).find(".jobInventoryId").attr("id");
+                    if (value >= 0){
+                        //console.log("SAVING - ID: " + partId + " Value: " + value + " offsiteJobId: " + offsiteJobId);
+                        vm.id = id;
+                        vm.PartId = partId;
+                        vm.OffsiteJobId =  offsiteJobId;
+                        vm.QuantityAtJobSite = value;
+                        console.log(vm);
+
+                        $.ajax({
+                            url: "/api/jobinventories/" + id,
+                            method: "put",
+                            data: vm
+                        })
+              .done(function () {
+                  console.log("DONE");
+
+              })
+              .fail(function () {
+                  console.log("FAIL");
+              });
+                    }
+                    
+                });
+
+                //console.log(vm);
+          
+
+
+
             });
 
         });
