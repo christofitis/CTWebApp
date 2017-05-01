@@ -74,6 +74,7 @@
             <th>Description</th>
 
             <th class="qtyCell">Qty At Job Location</th>
+            <th> Qty need to complete kit</th>
             @*Original QTY given to location*@
 
         </tr>
@@ -82,14 +83,32 @@
             <tr>
                 <td class="jobInventoryId" id="@part.Id">
                     @part.Part.Name
-                    
+
                 </td>
                 <td>
                     @part.Part.Description
                 </td>
-                <td>
-                    <input type="text" id='@part.PartId' value="@part.QuantityAtJobSite" class="qtyInput small col-xs-5 text-center" autocomplete="off" />
+                @if (part.QuantityAtJobSite >= (Model.ProductAssemblies.FirstOrDefault(p => p.PartId == part.PartId).QuantityPerProduct * (Model.OffsiteJob.JobQuantity - Model.OffsiteJob.QuantityOfProductDelivered)))
+                {
+                    <td >
+                        <input type="text" style="color:green" id='@part.PartId' value="@part.QuantityAtJobSite" class="qtyInput small col-xs-5 text-center" autocomplete="off" />
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <input type="text" style="color:orange" id='@part.PartId' value="@part.QuantityAtJobSite" class="qtyInput small col-xs-5 text-center" autocomplete="off" />
+                    </td>
+                }
+
+
+                <td class="qtyNeeded">
+
+                    @((Model.ProductAssemblies.FirstOrDefault(p => p.PartId == part.PartId).QuantityPerProduct * (Model.OffsiteJob.JobQuantity - Model.OffsiteJob.QuantityOfProductDelivered)))
+
+
                 </td>
+
 
             </tr>
         }
@@ -113,11 +132,27 @@
                 OffsiteJobId: 0,
                 QuantityAtJobSite: 0
             };
+          
+            $('input[type=text]').on('change', function(){
+                var $this = $(this);
+                var tr = $this.closest('tr');
+                var qtyNeeded = tr.find('td:last').text().replace(/\s/g, "");;
+                if (qtyNeeded > $(this).val()){
+                    $(this).css('color', 'orange');
+                }
+                
+            else{
+                $(this).css('color', 'green')
+                }
+                 //change color of edited box to show not saved
 
-
+            });
             
-         
-
+            $('#jobInventoriesTable tr').each(function (i, data) {
+                console.log(data);
+            
+            });
+           
 
             //changes color of row on section
             var color = '#fffff';
@@ -162,6 +197,7 @@
 
                 //console.log(vm);
           
+                window.location.reload()
 
 
 

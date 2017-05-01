@@ -110,7 +110,7 @@ namespace CriticalWebApp.Controllers
                 var jobInventory = new JobInventory();
                 jobInventory.OffsiteJobId = viewModel.OffsiteJob.Id;
                 jobInventory.PartId = part.PartId;
-                jobInventory.QuantityAtJobSite = 10;
+                jobInventory.QuantityAtJobSite = 0;
                 _context.JobInventories.Add(jobInventory);
 
 

@@ -102,7 +102,7 @@
                 <td class="text-center">
                     @part.QuantityAtJobSite
                 </td>
-                <td>@Model.ProductAssemblies.FirstOrDefault(p => p.PartId == part.PartId).QuantityPerProduct
+                <td>@*@Model.ProductAssemblies.FirstOrDefault(p => p.PartId == part.PartId).QuantityPerProduct*@
                     <input type="text" id='@part.PartId' data-originalValue='@part.QuantityAtJobSite' data-qtyPerBoard='@Model.ProductAssemblies.FirstOrDefault(p => p.PartId == part.PartId).QuantityPerProduct' value="0" class="qtyInput small col-xs-5 text-center" autocomplete="off" />
                 </td>
                
