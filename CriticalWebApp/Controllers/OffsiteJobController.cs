@@ -137,26 +137,28 @@ namespace CriticalWebApp.Controllers
                 ProductAssemblies = _context.ProductAssemblies.Include(p => p.Part).Where(a => a.ProductId == product.Id && a.Part.Category == "Electronics SMT").ToList()
 
             };
-
-            //auto creates part list in database but double does it if someone refreshes page
-            //foreach(var part in viewModel.ProductAssemblies)
-            //{
-            //    var jobInventory = new JobInventory();
-            //    jobInventory.OffsiteJobId = viewModel.OffsiteJob.Id;
-            //    jobInventory.PartId = part.PartId;
-            //    jobInventory.QuantityAtJobSite = 10;
-            //    _context.JobInventories.Add(jobInventory);
-
-
-            //    _context.SaveChanges();
-               
-            //}
-
-           
-
             return View(viewModel);
 
 
+        }
+
+
+        public ActionResult Receive(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var offsiteJob = _context.OffsiteJobs.FirstOrDefault(j => j.Id == id);
+            var product = _context.Products.FirstOrDefault(o => o.Id == offsiteJob.ProductId);
+            var viewModel = new OffsiteJobDetailsViewModel()
+            {
+                JobInventories = _context.JobInventories.Include(p => p.Part).Include(p => p.OffsiteJob).Where(o => o.OffsiteJobId == id),
+                OffsiteJob = _context.OffsiteJobs.Include(p => p.AssemblyHouse).Include(p => p.Product).FirstOrDefault(o => o.Id == id),
+                ProductAssemblies = _context.ProductAssemblies.Include(p => p.Part).Where(a => a.ProductId == product.Id && a.Part.Category == "Electronics SMT").ToList()
+
+            };
+            return View(viewModel);
         }
 
 
