@@ -22,7 +22,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/06/2017 19:28:20</publishTime>
     </File>
     <File Include="bin/CriticalWebApp.dll">
-      <publishTime>04/20/2017 09:20:32</publishTime>
+      <publishTime>05/01/2017 07:55:20</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 08:32:26</publishTime>
@@ -373,13 +373,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/06/2017 19:28:15</publishTime>
     </File>
     <File Include="Views/OffsiteJob/Create.cshtml">
-      <publishTime>04/20/2017 09:12:05</publishTime>
+      <publishTime>05/01/2017 07:28:32</publishTime>
+    </File>
+    <File Include="Views/OffsiteJob/CreateKit.cshtml">
+      <publishTime>05/01/2017 07:28:32</publishTime>
     </File>
     <File Include="Views/OffsiteJob/Details.cshtml">
-      <publishTime>04/20/2017 09:12:05</publishTime>
+      <publishTime>05/01/2017 07:28:32</publishTime>
     </File>
     <File Include="Views/OffsiteJob/Index.cshtml">
-      <publishTime>04/19/2017 07:22:54</publishTime>
+      <publishTime>05/01/2017 07:28:32</publishTime>
+    </File>
+    <File Include="Views/OffsiteJob/Receive.cshtml">
+      <publishTime>05/01/2017 07:28:32</publishTime>
     </File>
     <File Include="Views/ProductionOutputTotals/Create.cshtml">
       <publishTime>04/20/2017 09:12:05</publishTime>
@@ -493,7 +499,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/06/2017 19:28:11</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/20/2017 09:20:33</publishTime>
+      <publishTime>05/01/2017 07:55:21</publishTime>
     </File>
   </ItemGroup>
 </Project>

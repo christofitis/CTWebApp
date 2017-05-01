@@ -140,12 +140,12 @@
                 
                 if (parseInt(qtyNeeded) > parseInt($(this).val())){
                     $(this).css('color', 'orange');
-                    console.log(qtyNeeded + " more " + $(this).val());
+                   // console.log(qtyNeeded + " more " + $(this).val());
                 }
                 
             else{
                     $(this).css('color', 'green')
-                    console.log(qtyNeeded + " less " + $(this).val());
+                   // console.log(qtyNeeded + " less " + $(this).val());
                 }
                  //change color of edited box to show not saved
 
@@ -182,14 +182,15 @@
                         $.ajax({
                             url: "/api/jobinventories/" + id,
                             method: "put",
+                            async: false,
                             data: vm
                         })
               .done(function () {
-                  console.log("DONE");
+                  console.log("DONE: " + vm);
 
               })
               .fail(function () {
-                  console.log("FAIL");
+                  console.log("FAIL: " + vm);
               });
                     }
                     

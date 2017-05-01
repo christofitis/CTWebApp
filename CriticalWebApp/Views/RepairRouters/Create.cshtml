@@ -537,7 +537,8 @@
 
             var productListDropdown = $("#productList");
             $.getJSON("/Api/Products", null, function (data) {
-                $("#productList option").remove(); // Remove all <option> child tags.
+                //$("#productList option").remove(); // Remove all <option> child tags.
+                
                 var allProducts = [];
                 var products = [];
                 $.each(data, function (index, item) { // Iterates through a collection

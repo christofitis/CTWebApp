@@ -72,7 +72,7 @@
     <input type="button" value="SAVE" class="btn btn-primary saveChangesButton" />
     <div class="container" style="border: dotted white 2px; padding:4px ">
         @Html.Label("Qty of " + Model.OffsiteJob.Product.Name + " received", new { @class="control-label col-xs-3" })
-        <input type="text" id='completedPartQty' data-originalValue='@Model.OffsiteJob.QuantityOfProductDelivered' value="" class="text-center form-control col-xs-5" autocomplete="off" />
+        <input type="text" id='completedPartQty' data-originalValue='@Model.OffsiteJob.QuantityOfProductDelivered' value="0" class="text-center form-control col-xs-5" autocomplete="off" />
     </div>
     
 
@@ -131,8 +131,8 @@
             };
 
 
-            
-          
+
+
 
             var offsiteJob = {
                 Id: @Model.OffsiteJob.Id,
@@ -144,7 +144,7 @@
                 JobQuantity:  @Model.OffsiteJob.JobQuantity,
                 IssuedDate: "@Model.OffsiteJob.IssuedDate",
                 QuantityOfProductDelivered: @Model.OffsiteJob.QuantityOfProductDelivered
-            };
+                };
 
 
 
@@ -161,80 +161,60 @@
             });
 
             $('.saveChangesButton').on('click', function () {
+                toastr.warning("Working... Please wait.");
+                var initialQty = parseInt($('#completedPartQty').attr('data-originalValue'));
+                var receivedQty = parseInt($('#completedPartQty').val());
+                var finalQty = receivedQty + initialQty;
+                offsiteJob.QuantityOfProductDelivered = finalQty;
+                if ($('#completedPartQty').val() >= 0){
 
+                    $.ajax({
+                        url: "/api/offsitejobs/" + @Model.OffsiteJob.Id,
+                        method: "put",
+                        async: false,
+                        data: offsiteJob
+                    })
+              .done(function () {
+                  console.log("DONE");
+              })
+              .fail(function () {
+                  console.log("FAIL");
+              });
+                }
 
-                if (confirm("Are you sure?")) {
+                $('#jobInventoriesTable tr').each(function (i, data) {
+                    var value = $(this).find("input").val();
+                    var offsiteJobId = @Model.OffsiteJob.Id;
+                    var partId =  $(this).find("input").attr("id");
+                    var qtyAtJobSite =  $(this).find("input").attr("data-originalValue");
+                    var id =  $(this).find(".jobInventoryId").attr("id");
+                    if (value >= 0){
+                        //console.log("SAVING - ID: " + partId + " Value: " + value + " offsiteJobId: " + offsiteJobId);
+                        vm.id = id;
+                        vm.PartId = partId;
+                        vm.OffsiteJobId =  offsiteJobId;
+                        vm.QuantityAtJobSite = (qtyAtJobSite - value) - (parseInt($('#completedPartQty').val()) *  $(this).find("input").attr("data-qtyPerBoard"));
+                        console.log(vm);
 
-                    
-                    var initialQty = parseInt($('#completedPartQty').attr('data-originalValue'));
-                    var receivedQty = parseInt($('#completedPartQty').val());
-                    var finalQty = receivedQty + initialQty;
-                    offsiteJob.QuantityOfProductDelivered = finalQty;
-                    if ($('#completedPartQty').val() >= 0){
                         $.ajax({
-                            url: "/api/offsitejobs/" + @Model.OffsiteJob.Id,
+                            url: "/api/jobinventories/" + id,
                             method: "put",
-                            async: true,
-                            data: offsiteJob,
-                        
+                            async: false,
+                            data: vm
                         })
-                  .done(function () {
-                      console.log("DONE");
+              .done(function () {
+                  console.log("DONE");
 
+              })
+              .fail(function () {
+                  console.log("FAIL");
 
-                  })
-                  .fail(function () {
-                      console.log("FAIL");
-                  });
+              });
                     }
+                });
+                window.location.reload()
 
-                    $('#jobInventoriesTable tr').each(function (i, data) {
-                        var value = $(this).find("input").val();
-                        var offsiteJobId = @Model.OffsiteJob.Id;
-                        var partId =  $(this).find("input").attr("id");
-                        var qtyAtJobSite =  $(this).find("input").attr("data-originalValue");
-                        var id =  $(this).find(".jobInventoryId").attr("id");
-                        if (value >= 0){
-                            //console.log("SAVING - ID: " + partId + " Value: " + value + " offsiteJobId: " + offsiteJobId);
-                            vm.id = id;
-                            vm.PartId = partId;
-                            vm.OffsiteJobId =  offsiteJobId;
-                            vm.QuantityAtJobSite = (qtyAtJobSite - value) - (parseInt($('#completedPartQty').val()) *  $(this).find("input").attr("data-qtyPerBoard"));
-                            console.log(vm);
-
-                            $.ajax({
-                                url: "/api/jobinventories/" + id,
-                                method: "put",
-                                data: vm
-                            })
-                  .done(function () {
-                      console.log("DONE");
-
-                  })
-                  .fail(function () {
-                      console.log("FAIL");
-
-                  });
-                        }
-                    });
-                    window.location.reload()
-
-                    //console.log(vm);
-
-
-
-                    return true;
-                }
-                else {
-                    event.preventDefault();
-                    return false;
-                }
-                
-
-
-
-
-
+                //console.log(vm);
             });
 
         });
