@@ -65,12 +65,14 @@
 
 <div class="container">
     <p>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Index") |
+        @Html.ActionLink("Details", "Details", new { id = Model.OffsiteJob.Id })
+
     </p>
     <input type="button" value="SAVE" class="btn btn-primary saveChangesButton" />
     <div class="container" style="border: dotted white 2px; padding:4px ">
         @Html.Label("Qty of " + Model.OffsiteJob.Product.Name + " received", new { @class="control-label col-xs-3" })
-        <input type="text" id='completedPartQty' value="0" class="text-center form-control col-xs-4" autocomplete="off" />
+        <input type="text" id='completedPartQty' data-originalValue='@Model.OffsiteJob.QuantityOfProductDelivered' value="" class="text-center form-control col-xs-5" autocomplete="off" />
     </div>
     
 
@@ -80,8 +82,9 @@
         <tr>
             <th>Part</th>
             <th>Description</th>
-
-            <th class="qtyCell">Qty At Job Location</th>
+            <th class="text-center">Qty @@ @Model.OffsiteJob.AssemblyHouse.Name</th>
+            <th class="qtyCell">Qty of part received</th>
+            
             @*Original QTY given to location*@
 
         </tr>
@@ -96,9 +99,13 @@
                 <td>
                     @part.Part.Description
                 </td>
-                <td>
-                    <input type="text" id='@part.PartId' data-originalValue='@part.QuantityAtJobSite' value="0" class="qtyInput small col-xs-5 text-center" autocomplete="off" />
+                <td class="text-center">
+                    @part.QuantityAtJobSite
                 </td>
+                <td>@Model.ProductAssemblies.FirstOrDefault(p => p.PartId == part.PartId).QuantityPerProduct
+                    <input type="text" id='@part.PartId' data-originalValue='@part.QuantityAtJobSite' data-qtyPerBoard='@Model.ProductAssemblies.FirstOrDefault(p => p.PartId == part.PartId).QuantityPerProduct' value="0" class="qtyInput small col-xs-5 text-center" autocomplete="off" />
+                </td>
+               
 
             </tr>
         }
@@ -124,6 +131,21 @@
             };
 
 
+            
+          
+
+            var offsiteJob = {
+                Id: @Model.OffsiteJob.Id,
+                PONumber: @Model.OffsiteJob.PONumber,
+
+                AssemblyHouseId: @Model.OffsiteJob.AssemblyHouseId,
+
+                ProductId:  @Model.OffsiteJob.ProductId,
+                JobQuantity:  @Model.OffsiteJob.JobQuantity,
+                IssuedDate: "@Model.OffsiteJob.IssuedDate",
+                QuantityOfProductDelivered: @Model.OffsiteJob.QuantityOfProductDelivered
+            };
+
 
 
 
@@ -140,38 +162,75 @@
 
             $('.saveChangesButton').on('click', function () {
 
-                $('#jobInventoriesTable tr').each(function (i, data) {
-                    var value = $(this).find("input").val();
-                    var offsiteJobId = @Model.OffsiteJob.Id;
-                    var partId =  $(this).find("input").attr("id");
-                    var qtyAtJobSite =  $(this).find("input").attr("data-originalValue");
-                    var id =  $(this).find(".jobInventoryId").attr("id");
-                    if (value >= 0){
-                        //console.log("SAVING - ID: " + partId + " Value: " + value + " offsiteJobId: " + offsiteJobId);
-                        vm.id = id;
-                        vm.PartId = partId;
-                        vm.OffsiteJobId =  offsiteJobId;
-                        vm.QuantityAtJobSite = qtyAtJobSite - value;
-                        console.log(vm);
 
+                if (confirm("Are you sure?")) {
+
+                    
+                    var initialQty = parseInt($('#completedPartQty').attr('data-originalValue'));
+                    var receivedQty = parseInt($('#completedPartQty').val());
+                    var finalQty = receivedQty + initialQty;
+                    offsiteJob.QuantityOfProductDelivered = finalQty;
+                    if ($('#completedPartQty').val() >= 0){
                         $.ajax({
-                            url: "/api/jobinventories/" + id,
+                            url: "/api/offsitejobs/" + @Model.OffsiteJob.Id,
                             method: "put",
-                            data: vm
+                            async: true,
+                            data: offsiteJob,
+                        
                         })
-              .done(function () {
-                            console.log("DONE");
-                            window.location.reload()
+                  .done(function () {
+                      console.log("DONE");
 
-              })
-              .fail(function () {
-                  console.log("FAIL");
-              });
+
+                  })
+                  .fail(function () {
+                      console.log("FAIL");
+                  });
                     }
-                    $(this).find("input").val(0);
-                });
 
-                //console.log(vm);
+                    $('#jobInventoriesTable tr').each(function (i, data) {
+                        var value = $(this).find("input").val();
+                        var offsiteJobId = @Model.OffsiteJob.Id;
+                        var partId =  $(this).find("input").attr("id");
+                        var qtyAtJobSite =  $(this).find("input").attr("data-originalValue");
+                        var id =  $(this).find(".jobInventoryId").attr("id");
+                        if (value >= 0){
+                            //console.log("SAVING - ID: " + partId + " Value: " + value + " offsiteJobId: " + offsiteJobId);
+                            vm.id = id;
+                            vm.PartId = partId;
+                            vm.OffsiteJobId =  offsiteJobId;
+                            vm.QuantityAtJobSite = (qtyAtJobSite - value) - (parseInt($('#completedPartQty').val()) *  $(this).find("input").attr("data-qtyPerBoard"));
+                            console.log(vm);
+
+                            $.ajax({
+                                url: "/api/jobinventories/" + id,
+                                method: "put",
+                                data: vm
+                            })
+                  .done(function () {
+                      console.log("DONE");
+
+                  })
+                  .fail(function () {
+                      console.log("FAIL");
+
+                  });
+                        }
+                    });
+                    window.location.reload()
+
+                    //console.log(vm);
+
+
+
+                    return true;
+                }
+                else {
+                    event.preventDefault();
+                    return false;
+                }
+                
+
 
 
 

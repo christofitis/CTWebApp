@@ -218,6 +218,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\JobInventoriesController.cs" />
+    <Compile Include="Controllers\Api\OffsiteJobsController.cs" />
     <Compile Include="Controllers\Api\ProductsController.cs" />
     <Compile Include="Controllers\Api\RepairsController.cs" />
     <Compile Include="Controllers\Api\SerialNumbersController.cs" />
