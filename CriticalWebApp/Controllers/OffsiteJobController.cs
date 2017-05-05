@@ -165,7 +165,13 @@ namespace CriticalWebApp.Controllers
         {
             
             var viewModel = _context.JobInventories.Include(p => p.Part).ToList();
-            var parts = viewModel.GroupBy(i => new {i.PartId, i.Part.Name, i.QuantityAtJobSite });
+            var distinctParts = viewModel.Distinct().ToList();
+            var parts = new List<JobInventory>();
+
+            foreach (var part in distinctParts)
+            {
+
+            }
                 
             return View(parts);
         }
