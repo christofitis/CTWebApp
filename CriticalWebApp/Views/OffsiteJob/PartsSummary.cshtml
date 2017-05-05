@@ -1,0 +1,27 @@
+﻿@model IEnumerable<CriticalWebApp.Models.JobInventory>
+
+@{
+    ViewBag.Title = "PartsSummary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PartsSummary</h2>
+
+<table class="table">
+    <tr>
+        <th>Part Name</th>
+        <th>Part Description</th>
+        <th> Qty @@ Offsite Location</th>
+
+    </tr>
+    @foreach (var part in Model)
+    {
+        <tr>
+            <td>@part.Part.Name</td>
+            <td>@part.Part.Description</td>
+            <td>@part.QuantityAtJobSite</td>
+
+        </tr>
+    }
+        
+</table>

@@ -161,6 +161,15 @@ namespace CriticalWebApp.Controllers
             return View(viewModel);
         }
 
+        public ActionResult PartsSummary()
+        {
+            
+            var viewModel = _context.JobInventories.Include(p => p.Part).ToList();
+            var parts = viewModel.GroupBy(i => new {i.PartId, i.Part.Name, i.QuantityAtJobSite });
+                
+            return View(parts);
+        }
+
 
     }
 }

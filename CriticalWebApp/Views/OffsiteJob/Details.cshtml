@@ -67,6 +67,7 @@
     <table class="table table-striped">
         <tr>
             <th>Part</th>
+            <th> Description</th>
            
             <th>Qty At Job Location</th>
             @*Original QTY given to location*@
@@ -78,7 +79,9 @@
                 <th>
                     @part.Part.Name
                 </th>
-            
+                <th>
+                    @part.Part.Description
+                </th>
                 <th>
                     @part.QuantityAtJobSite
                 </th>
