@@ -163,16 +163,22 @@ namespace CriticalWebApp.Controllers
 
         public ActionResult PartsSummary()
         {
-            
-            var viewModel = _context.JobInventories.Include(p => p.Part).ToList();
-            var distinctParts = viewModel.Distinct().ToList();
             var parts = new List<JobInventory>();
-
-            foreach (var part in distinctParts)
+            var distinctParts = _context.JobInventories
+                         .GroupBy(a => a.PartId)
+                         .Select(g => new { g.Key, Part = g.Count() }).ToList();
+            foreach(var part in distinctParts)
             {
-
+                var tempParts = _context.JobInventories.Include(p => p.Part).Where(p => p.PartId == part.Key);
+                int quantityTotal = 0;
+                foreach(var countPart in tempParts)
+                {
+                    quantityTotal += countPart.QuantityAtJobSite;
+                }
+                var tempPart = tempParts.First();
+                tempPart.QuantityAtJobSite = quantityTotal;
+                parts.Add(tempPart);
             }
-                
             return View(parts);
         }
 

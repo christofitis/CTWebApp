@@ -7,13 +7,13 @@ namespace CriticalWebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initizlizeNewDbWork : IMigrationMetadata
+    public sealed partial class intialize : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initizlizeNewDbWork));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(intialize));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705011449460_initizlizeNewDbWork"; }
+            get { return "201705070436281_intialize"; }
         }
         
         string IMigrationMetadata.Source
