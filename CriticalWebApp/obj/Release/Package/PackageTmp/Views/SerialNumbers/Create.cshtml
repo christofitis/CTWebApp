@@ -6,7 +6,21 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
 
+@@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
 <h2>Log a new Serial Number</h2>
 @using (Html.BeginForm("Create", "SerialNumbers", FormMethod.Post, new { id = "serialNumberForm" }))
 {
@@ -115,10 +129,13 @@
                 @Html.HiddenFor(model => model.Product.SerialNumberPrefix, new { id = "serialNumberPrefixHidden" })
                 @Html.HiddenFor(model => model.Product.HardwareRevision, new { id = "hardwareRevisionHidden" })
                 @Html.HiddenFor(model => model.Product.SoftwareRevision, new { id = "softwareRevisionHidden" })
-                <input type="submit" value="Create" class="btn btn-default" id="submitButton" />
-            </div>
+                <div>
+                    <input type="submit" value="Create" class="btn btn-default" id="submitButton" />
+                    <div class="loader"></div>
+                </div>
+                </div>
         </div>
-        
+       
     </div>
 }
 
@@ -132,7 +149,7 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-
+            $('.loader').hide();
             document.getElementById('MFGDatePicker').valueAsDate = new Date();
             var isSingleEntry = false;
             document.getElementById('endSerialNumberHidden').value = 0;
@@ -183,12 +200,12 @@
             else {
                 document.getElementById('endSerialNumberHidden').value = document.getElementById('endSerialNumberTextBox').value;
             }
-        });
+        
 
         //------------------------FORM SUBMIT BUTTON -----------------------------------------
-        $("#serialNumberForm").submit(function(event){
+        
+           
             console.log("LOGGING SERIAL NUMBER");
-
 
 
 
@@ -219,49 +236,82 @@
 
             
             console.log('num of entried: ' + numOfEntries);
+            var promises = [];
+            $('.loader').show();
+
             for (var i = 0; i < numOfEntries; i++) {
                 //supCheckNum adds 1 to first num to check in /api/serialnumbers
                 var dupCheckNum = $("#serialNumberPrefixHidden").val() + ('00000'+(parseInt(firstNum, 10)+ parseInt(i, 10))).substring((parseInt(firstNum, 10)+ parseInt(i, 10)).toString().length);
-                //console.log('Checking: ' + dupCheckNum);
                 
                 
-                $.ajax({
+                var ajaxCall = $.ajax({
                     type: 'GET',
                     url: '/api/serialnumbers',
                     datatype: 'json',
-                    async: false,
+                    async: true,
                     data: { numberQuery: dupCheckNum},
                     success: function (result) {
-                        //console.log(result.length + ' dupes found');
                         if (result.length >=1 ){
                             console.log('Duplicate found: ' + dupCheckNum);
                             numOfDuplicates++;
+                            //console.log((parseInt(i, 10)));
+                            //$("div.progress > div.progress-bar").css({ "width": ((parseInt(i, 10)/parseInt(numOfEntries, 10))*100) + "%" });
 
                         }
                     }
                 });
+                promises.push(ajaxCall);
                 
             }
             
-
-
-
-            if (numOfDuplicates >= 1){
-                alert(numOfDuplicates + ' duplicates found!!! Press F12 (in chrome) to see what which were duplicates. Review your entries or inform a System Admin to help. :)');
-                //console.log('DUPLICATE FOUND!!!! ');
-            }
-            if (numOfDuplicates <= 0){
-                if ($("#endSerialNumberTextBox").val() > 0){
+                $.when.apply(null, promises).done(function(){
+                    $('.loader').hide();
+                    logNumbers();
                     
+
+                
+            });
+          
+            function logNumbers() {
+
+                if (numOfDuplicates >= 1){
+                    alert(numOfDuplicates + ' duplicates found!!! Press F12 (in chrome) to see what which were duplicates. Review your entries or inform a System Admin to help. :)');
+                    //console.log('DUPLICATE FOUND!!!! ');
                 }
-                else{
-                    numOfEntries = 1;
+                if (numOfDuplicates <= 0){
+                    if ($("#endSerialNumberTextBox").val() > 0){
+                    
+                    }
+                    else{
+                        numOfEntries = 1;
+                        if (confirm("About to log: "
+                        + numOfEntries + " Entry -  "
+                        + $("#serialNumberPrefixHidden").val()
+                        + firstNum
+                        + ". Are you sure?" ))
+                        {
+                            $("#serialNumberForm").submit();
+                            toastr.success("Serial # Successfully Logged!");
+
+                            return true;
+                        }
+                    
+                        else{
+                            event.preventDefault();
+                            return false;
+                        }
+                    }
                     if (confirm("About to log: "
-                    + numOfEntries + " Entry -  "
-                    + $("#serialNumberPrefixHidden").val()
-                    + firstNum
-                    + ". Are you sure?" ))
+                        + numOfEntries + " Entries -  "
+                        + $("#serialNumberPrefixHidden").val()
+                        + firstNum
+                        + " to "
+                        + $("#serialNumberPrefixHidden").val()
+                        + endNum
+                        + ". Are you sure?" ))
                     {
+                        $("#serialNumberForm").submit();
+                        toastr.success("Serial #'s Successfully Logged!");
                         return true;
                     }
                     
@@ -270,27 +320,12 @@
                         return false;
                     }
                 }
-                if (confirm("About to log: "
-                    + numOfEntries + " Entries -  "
-                    + $("#serialNumberPrefixHidden").val()
-                    + firstNum
-                    + " to "
-                    + $("#serialNumberPrefixHidden").val()
-                    + endNum
-                    + ". Are you sure?" ))
-                {
-                    return true;
-                }
-                    
-                else{
-                    event.preventDefault();
-                    return false;
-                }
             }
-                
                 event.preventDefault();
                 return false;
-        });
+
+            });
+
 
     </script>
 }

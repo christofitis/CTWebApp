@@ -1046,7 +1046,7 @@ C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\Critica
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initial.resources
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
 D:\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.categoryToPart.resources
-C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.initizlizeNewDbWork.resources
 C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.intialize.resources
 C:\Users\C13\Documents\GitHub\critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.csproj.GenerateResource.Cache
+C:\Users\chris\Projects\Critical\CTWebApp\CriticalWebApp\obj\Debug\CriticalWebApp.Migrations.intialize.resources

@@ -60,6 +60,8 @@ namespace CriticalWebApp.Controllers
             return View(viewModel);
         }
 
+       
+
         [HttpPost]
         public ActionResult Create(OffsiteJobCreateViewModel viewModel, string hardwareRevisionDropDown = null)
         {
@@ -118,8 +120,34 @@ namespace CriticalWebApp.Controllers
 
             }
         }
+        /// OFFSITEJOB EDIT FUNCTIONALITY BROKE
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            OffsiteJob offsiteJob = _context.OffsiteJobs.Find(id);
+            if (offsiteJob == null)
+            {
+                return HttpNotFound();
+            }
+            return View(offsiteJob);
+        }
 
-     
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(OffsiteJob offsiteJob)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Entry(offsiteJob).State = EntityState.Modified;
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(offsiteJob);
+        }
 
         public ActionResult CreateKit(int? id)
         {

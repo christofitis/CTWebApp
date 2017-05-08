@@ -390,6 +390,7 @@
     <Content Include="Views\OffsiteJob\CreateKit.cshtml" />
     <Content Include="Views\OffsiteJob\Receive.cshtml" />
     <Content Include="Views\OffsiteJob\PartsSummary.cshtml" />
+    <Content Include="Views\OffsiteJob\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\ReceiptUploads\" />
