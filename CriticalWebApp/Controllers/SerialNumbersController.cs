@@ -18,8 +18,12 @@ namespace CriticalWebApp.Controllers
         private ApplicationDbContext _context = new ApplicationDbContext();
         // GET: SerialNumbers
         //TODO: Build list of objects then return that to view (will allow for multiple searches to be added together), not return per input. 
-        public ActionResult Index(DateTime? startShipDateQuery, DateTime? endShipDateQuery, DateTime? startDateQuery, DateTime? endDateQuery, string serialNumberQuery = null, string customerFirstNameQuery = null, string customerLastNameQuery = null, string invoiceNumberQuery = null)
+        public ActionResult Index( DateTime? startShipDateQuery, DateTime? endShipDateQuery, DateTime? startDateQuery, DateTime? endDateQuery,IEnumerable<SerialNumber> newEntries = null, string serialNumberQuery = null, string customerFirstNameQuery = null, string customerLastNameQuery = null, string invoiceNumberQuery = null)
         {
+            if (newEntries != null)
+            {
+                return View(newEntries);
+            }
             if (!string.IsNullOrEmpty(invoiceNumberQuery))
             {
                 ViewBag.InvoiceNumber = invoiceNumberQuery;
@@ -159,12 +163,12 @@ namespace CriticalWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateSerialNumberViewModel viewModel)
         {
-   
+            var snToReturnToView = new List<SerialNumber>();
             // if (!ModelState.IsValid)
             // {
             if (viewModel.EndSerialNumber == 0) //for single serial input
             {
-         
+              
                 var sn = viewModel.SerialNumber;
                 //sn.Product.HardwareRevision = viewModel.Product.HardwareRevision;
                 //sn.Product.SoftwareRevision = viewModel.Product.SoftwareRevision;
@@ -179,7 +183,8 @@ namespace CriticalWebApp.Controllers
                 sn.Number = product.First().SerialNumberPrefix + num.ToString("D5");
                 _context.SerialNumbers.Add(sn);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                snToReturnToView.Add(sn);
+                return RedirectToAction("Create");
             }
             else if (viewModel.EndSerialNumber >= 1)
                 {
@@ -194,9 +199,9 @@ namespace CriticalWebApp.Controllers
                         sn.Number = product.First().SerialNumberPrefix + num.ToString("D5");
                         _context.SerialNumbers.Add(sn);
                         _context.SaveChanges();
-
+                    snToReturnToView.Add(sn);
                     }
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Create");
                 }
            // }
 

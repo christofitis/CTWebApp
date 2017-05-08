@@ -200,10 +200,11 @@
             else {
                 document.getElementById('endSerialNumberHidden').value = document.getElementById('endSerialNumberTextBox').value;
             }
-        });
+        
 
         //------------------------FORM SUBMIT BUTTON -----------------------------------------
-        $("#serialNumberForm").submit(function(event){
+        
+           
             console.log("LOGGING SERIAL NUMBER");
 
 
@@ -264,8 +265,11 @@
             }
             
                 $.when.apply(null, promises).done(function(){
-                $('.loader').hide();
-                logNumbers();
+                    $('.loader').hide();
+                    logNumbers();
+                    
+
+                
             });
           
             function logNumbers() {
@@ -286,6 +290,7 @@
                         + firstNum
                         + ". Are you sure?" ))
                         {
+                            $("#serialNumberForm").submit();
                             toastr.success("Serial # Successfully Logged!");
 
                             return true;
@@ -305,6 +310,7 @@
                         + endNum
                         + ". Are you sure?" ))
                     {
+                        $("#serialNumberForm").submit();
                         toastr.success("Serial #'s Successfully Logged!");
                         return true;
                     }
