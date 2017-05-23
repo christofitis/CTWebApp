@@ -22,7 +22,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/06/2017 19:28:20</publishTime>
     </File>
     <File Include="bin/CriticalWebApp.dll">
-      <publishTime>05/08/2017 07:32:19</publishTime>
+      <publishTime>05/23/2017 07:40:34</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 08:32:26</publishTime>
@@ -274,7 +274,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/06/2017 19:28:14</publishTime>
     </File>
     <File Include="Scripts/toastr.js">
-      <publishTime>04/11/2017 07:35:12</publishTime>
+      <publishTime>05/23/2017 07:32:53</publishTime>
     </File>
     <File Include="Scripts/toastr.min.js">
       <publishTime>04/11/2017 07:35:12</publishTime>
@@ -376,16 +376,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/01/2017 07:28:32</publishTime>
     </File>
     <File Include="Views/OffsiteJob/CreateKit.cshtml">
-      <publishTime>05/01/2017 09:09:44</publishTime>
+      <publishTime>05/08/2017 08:46:22</publishTime>
     </File>
     <File Include="Views/OffsiteJob/Details.cshtml">
       <publishTime>05/05/2017 12:36:36</publishTime>
     </File>
+    <File Include="Views/OffsiteJob/Edit.cshtml">
+      <publishTime>05/08/2017 08:38:35</publishTime>
+    </File>
     <File Include="Views/OffsiteJob/Index.cshtml">
-      <publishTime>05/01/2017 07:28:32</publishTime>
+      <publishTime>05/08/2017 08:40:42</publishTime>
     </File>
     <File Include="Views/OffsiteJob/PartsSummary.cshtml">
-      <publishTime>05/05/2017 13:15:21</publishTime>
+      <publishTime>05/08/2017 08:44:28</publishTime>
     </File>
     <File Include="Views/OffsiteJob/Receive.cshtml">
       <publishTime>05/01/2017 09:10:21</publishTime>
@@ -469,7 +472,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2017 11:24:39</publishTime>
     </File>
     <File Include="Views/SerialNumbers/Index.cshtml">
-      <publishTime>04/17/2017 08:32:10</publishTime>
+      <publishTime>05/23/2017 07:32:53</publishTime>
     </File>
     <File Include="Views/SerialNumbers/LogShipment.cshtml">
       <publishTime>04/17/2017 12:08:59</publishTime>
@@ -502,7 +505,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/06/2017 19:28:11</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/08/2017 07:32:20</publishTime>
+      <publishTime>05/23/2017 07:40:36</publishTime>
     </File>
   </ItemGroup>
 </Project>

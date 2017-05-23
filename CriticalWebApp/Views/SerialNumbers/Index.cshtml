@@ -19,7 +19,7 @@
     <div class="form-inline">
         <div class="text-primary">Customer: <b class="text-info">@ViewBag.CustomerFirstName @ViewBag.CustomerLastName</b> </div>
         <input class="form-control" type="text" name="customerFirstNameQuery" id="customerFirstNameQuery" placeholder="First or Company Name" />
-        <input class="form-control" type="text" name="customerLastNameQuery" id="customerFirstNameQuery" placeholder="Last Name" />
+        <input class="form-control" type="text" name="customerLastNameQuery" id="customerLastNameQuery" placeholder="Last Name" />
     </div>
 
 
@@ -43,7 +43,8 @@
         <input class="form-control" type="date" name="startShipDateQuery" id="startShipDateQueryInput" />
         <input class="form-control" type="date" name="endShipDateQuery" id="endShipDateQueryInput" />
 
-        <input class="btn btn-default" type="button" value="Search" id="shipDateSearchButton" />
+        @*<input class="btn btn-default" type="button" value="Search" id="shipDateSearchButton" />*@
+        <div class="loader"></div>
     </div>
 }
 
@@ -132,6 +133,7 @@
 
                 <script>
                     $(document).ready(function () {
+                        $('.loader').hide();
                         var counter = 0;
                         var numOfTimesToCheck = 0;
                         var inputPrefix = "";
@@ -141,24 +143,33 @@
                         $('#serialNumberQuery').on('keydown', function search(event) {
                             toastr.clear();
                             if (event.keyCode == 13) {
+                                $('.loader').show();
                                 var userInput = $(this).val();
                                 numOfTimesToCheck = 0;
                                 counter = 0;
                                 clearTable();
-                                getSerialNumberNoPrefix(userInput);
-                                console.log("Checking: " + inputPrefix + inputNumber);
+                                console.log("isNumberis?: " + userInput.match(/\d+/));
                                 
-                                $.when(makeAjaxCall("/api/serialnumbers?numberquery=", inputPrefix + inputNumber, false)).done(function () {
-                                    if (counter == 0) {
-                                        $.when(makeAjaxCall("/api/serialnumbers?estimageNumberQuery=", inputPrefix + inputNumber, true)).done(function () {
-                                            toastr.warning("Closest Serial # Found.", "Exact match not found!");
-                                        });
-                                    }
-                                    else {
-                                        toastr.success("Exact match found!");
-                                    }
-                                });
-                                
+                                if ($.isNumeric(userInput.match(/\d+/))) {
+                                    getSerialNumberNoPrefix(userInput);
+
+                                    $.when(makeAjaxCall("/api/serialnumbers?numberquery=", inputPrefix + inputNumber, false)).done(function () {
+                                        if (counter == 0) {
+                                            $.when(makeAjaxCall("/api/serialnumbers?estimageNumberQuery=", inputPrefix + inputNumber, true)).done(function () {
+                                                toastr.warning("Closest Serial #'s Found.", "Exact match not found!");
+                                                $('.loader').hide();
+                                            });
+                                        }
+                                        else {
+                                            toastr.success(counter + " match(s) found!");
+                                            $('.loader').hide();
+                                        }
+                                    });
+                                }
+                                else {
+                                    toastr.warning("Please enter a valid serial number");
+                                    $('.loader').hide();
+                                }
 
                                     
                                     
@@ -170,7 +181,7 @@
                                 url: url + input,
                                 method: "GET",
                                 async: true,
-                                timeout: 10000,
+                                timeout: 15000,
                                 success: function (data) {
                                     //console.log(data);
                                     var maxReturn = 1000;
@@ -204,7 +215,8 @@
                                             console.log(counter);
                                         }
                                         else {
-                                            toastr.warning('Enter more spacific serial number.', 'Too many results')
+                                            toastr.warning('Enter more spacific serial number.', 'Too many results');
+                                            $('.loader').hide();
                                             return false;
                                         }
 
@@ -212,7 +224,8 @@
                                     //return counter;
                                 },
                                 error: function () {
-                                    toastr.error("Nothing found close to that SERIAL #","Timed out");
+                                    toastr.error("Nothing found close to that SERIAL #", "Timed out");
+                                    $('.loader').hide();
                                 }
 
                             });
