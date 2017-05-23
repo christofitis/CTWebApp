@@ -6,11 +6,12 @@
 }
 
 <h2>Serial Number Lookup</h2>
-@using (Html.BeginForm("Index", "SerialNumbers"))
+@using (Html.BeginForm("Index", "SerialNumbers",FormMethod.Post, new { id = "serialNumberSearchForm"}))
 {
     <div class="form-inline">
         <div class="text-primary">Serial #: <b class="text-info">@ViewBag.Number </b></div>
         <input class="form-control" autocomplete="off" type="text" name="serialNumberQuery" id="serialNumberQuery" placeholder="2r1234" />
+        
     </div>
 
 
@@ -42,12 +43,12 @@
         <input class="form-control" type="date" name="startShipDateQuery" id="startShipDateQueryInput" />
         <input class="form-control" type="date" name="endShipDateQuery" id="endShipDateQueryInput" />
 
-        <input class="btn btn-default" type="submit" value="Search" id="shipDateSearchButton" />
+        <input class="btn btn-default" type="button" value="Search" id="shipDateSearchButton" />
     </div>
 }
 
 <div class="containt">
-    <h4>Totals: @Model.Count()</h4>
+    <h4></h4>
 </div>
 
 
@@ -56,7 +57,7 @@
 
 
 
-                <table class="table table-hover">
+                <table class="table table-hover" id="serialNumberTable">
                     <tr >
                         <th>
                             Serial Number
@@ -93,7 +94,7 @@
 
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr style="background-color: aqua">
                             <td>
                                 <b>@Html.ActionLink((@Html.DisplayFor(modelItem => item.Number).ToString()), "Details", new { id = item.Id })</b>
                             </td>
@@ -131,56 +132,125 @@
 
                 <script>
                     $(document).ready(function () {
-                        @*document.getElementById('serialNumberQuery').value = '@ViewBag.UserInput';
-                        document.getElementById('startDateQueryInput').valueAsDate = '@ViewBag.StartMFGDate';
-                        document.getElementById('endDateQueryInput').value = '@ViewBag.EndMFGDate';
-                        document.getElementById('startShipDateQueryInput').value = '@ViewBag.StartShipDate';
-                        document.getElementById('endShipDateQueryInput').value = '@ViewBag.EndShipDate';
-                        document.getElementById('customerFirstNameQuery').value = '@ViewBag.CustomerFirstName';
-                        document.getElementById('customerLastNameQuery').value = '@ViewBag.CustomerLastName';*@
-
-
-
-
-                        startShipDateQueryInput
-
+                        var counter = 0;
+                        var numOfTimesToCheck = 0;
+                        var inputPrefix = "";
+                        var inputNumber = 0;
+                        
                         document.getElementById('serialNumberQuery').focus();
-                    });
-
-
-                    //can do studd depending is search box is left empty or not
-                    document.getElementById('searchButton').onclick = function () {
-                        var queryNum = document.getElementById('serialNumberQuery').value;
-                        console.log('Searching for: ' + queryNum);
-                        if (document.getElementById('serialNumberQuery').value == "") {
-                            //alert('blank');
-                        }
-                        else {
-                            document.getElementById('serialNumberQuery').value = queryNum;
-
-
-
-
-
-                            var searchQuery = {
-                                numberQuery: queryNum
-
-                            };
-                            console.log(searchQuery.numberQuery);
-                            $.ajax({
-                                type: 'GET',
-                                url: '/api/serialnumbers/',
-                                data: searchQuery,
-                                success: function (result) {
-                                    if (result[0] == null) {
-                                        //alert('nothing found');
+                        $('#serialNumberQuery').on('keydown', function search(event) {
+                            toastr.clear();
+                            if (event.keyCode == 13) {
+                                var userInput = $(this).val();
+                                numOfTimesToCheck = 0;
+                                counter = 0;
+                                clearTable();
+                                getSerialNumberNoPrefix(userInput);
+                                console.log("Checking: " + inputPrefix + inputNumber);
+                                
+                                $.when(makeAjaxCall("/api/serialnumbers?numberquery=", inputPrefix + inputNumber, false)).done(function () {
+                                    if (counter == 0) {
+                                        $.when(makeAjaxCall("/api/serialnumbers?estimageNumberQuery=", inputPrefix + inputNumber, true)).done(function () {
+                                            toastr.warning("Closest Serial # Found.", "Exact match not found!");
+                                        });
                                     }
                                     else {
-                                        //alert('found: ' + result.length + ' items');
+                                        toastr.success("Exact match found!");
                                     }
-                                }
-                            });
-                        }
-                    };
+                                });
+                                
 
+                                    
+                                    
+                            }
+                        });
+                        
+                        function makeAjaxCall(url, input, isEstimate) {
+                          return  $.ajax({
+                                url: url + input,
+                                method: "GET",
+                                async: true,
+                                timeout: 10000,
+                                success: function (data) {
+                                    //console.log(data);
+                                    var maxReturn = 1000;
+                                    $.each(data, function (i, data) {
+                                        //console.log(data);
+                                        if (counter < maxReturn) {
+                                            //console.log(counter);
+                                            var mfgDate = new Date(data.MFGDate);
+                                            var mfgDay = mfgDate.getDate();
+                                            var mfgMonth = mfgDate.getMonth();
+                                            mfgMonth += 1; //jquery getMonth is 0 based, so add 1
+                                            var mfgYear = mfgDate.getFullYear();
+                                            var mfgDateFormatted = mfgMonth + '/' + mfgDay + '/' + mfgYear;
+                                            if (data.Number == null) data.Number = '';   //if value returned is null, it displays nothing in that cell
+                                            if (data.Product.Name == null) data.Product.Name = '';
+                                            if (data.Product.HardwareRevision == null) data.Product.HardwareRevision = '';
+                                            if (data.Product.SoftwareRevision == null) data.Product.SoftwareRevision = '';
+                                            if (data.MFGDate == null) mfgDateFormatted = '';
+                                            if (data.CustomerFirstName == null) data.CustomerFirstName = '';
+                                            if (data.InvoiceNumber == null) data.InvoiceNumber = '';
+                                            if (data.ShipDate == null) data.ShipDate = '';
+                                            if (data.Notes == null) data.Notes = '';
+                                            //append the result to the table
+                                            if (isEstimate) {
+                                                $('#serialNumberTable').append('<tr><td>' + data.Number + '</td><td>' + data.Product.Name + '</td><td>' + data.Product.HardwareRevision + '</td><td>' + data.Product.SoftwareRevision + '</td><td>' + mfgDateFormatted + '</td><td>' + data.CustomerFirstName + '</td><td>' + data.InvoiceNumber + '</td><td>' + data.ShipDate + '</td><td>' + data.Notes + '</td></tr>');
+                                            }
+                                            else {
+                                                $('#serialNumberTable').append('<tr><td>' + data.Number + '</td><td>' + data.Product.Name + '</td><td>' + data.Product.HardwareRevision + '</td><td>' + data.Product.SoftwareRevision + '</td><td>' + mfgDateFormatted + '</td><td>' + data.CustomerFirstName + '</td><td>' + data.InvoiceNumber + '</td><td>' + data.ShipDate + '</td><td>' + data.Notes + '</td></tr>');
+                                            }
+                                            counter++;
+                                            console.log(counter);
+                                        }
+                                        else {
+                                            toastr.warning('Enter more spacific serial number.', 'Too many results')
+                                            return false;
+                                        }
+
+                                    });
+                                    //return counter;
+                                },
+                                error: function () {
+                                    toastr.error("Nothing found close to that SERIAL #","Timed out");
+                                }
+
+                            });
+                        };
+
+                        function clearTable() {
+                            $('#serialNumberTable td').remove();
+                        };
+
+                        //function to take user input and format it to proper AT12345 (prefix + 5 digits)
+                        function getSerialNumberNoPrefix(input) {
+                            var reversedUserInput = input.split("").reverse().join("");
+                            var snNumber = reversedUserInput.match(/\d+/)[0].split("").reverse().join(""); //string works for 0123
+                            var snPrefix = input.substring(0, (input.length - snNumber.length));
+                            var concatSnNumber = ("00000" + snNumber).toString();
+                            var formattedSnNumber = concatSnNumber.substring(concatSnNumber.length - 5);
+                            inputPrefix = snPrefix;
+                            inputNumber = formattedSnNumber;
+                        };
+                    });
                 </script>
+<style>
+    .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
